@@ -1,0 +1,14 @@
+#mainPage {
+  display: flex;
+  flex-direction: row;
+}
+
+#currentApp {
+  border: 1px solid lightgrey;
+  flex-grow: 1;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+}

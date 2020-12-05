@@ -3,18 +3,20 @@
  */
 
 import React, {useState} from 'react';
-import Switch from 'react-switch';
+import ToggleSwitch from 'react-switch';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import './CorePage.css';
 
 import Navigator from './Navigator';
 import JsonRetrival from '../ModuleLoader/JsonRetrival';
-import APAppEntry from '../AcademicPlanner/APAppEntry';
+import AcademicPlanner from '../AcademicPlanner/AcademicPlanner';
+import CAPCalculator from '../CAPCalculator/CAPCalculator';
 
 import Logo from './Assets/Title.png';
 
 export default function CorePage() {
-  // var newObj = JsonRetrival();
+  var newObj = JsonRetrival();
   // console.log(JsonRetrival());
 
   const [darkTheme, updateDarkTheme] = useState(false);
@@ -29,7 +31,7 @@ export default function CorePage() {
         <div id="darkModeChecker">
           <h3 className={`${darkTheme ? 'dark' : 'light'}Words`}>Dark Mode</h3>
           <div id="spacer" />
-          <Switch
+          <ToggleSwitch
             id="switch"
             onChange={(checked) => updateDarkTheme(checked)}
             checked={darkTheme}

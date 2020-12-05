@@ -1,6 +1,11 @@
 import React from 'react';
 
+import './Navigator.css';
+
+import AcademicPlanner from '../AcademicPlanner/AcademicPlanner';
+import CAPCalculator from '../CAPCalculator/CAPCalculator';
 import SideButton from './Components/SideButton';
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
 export default function Navigator(props) {
   const planner = require('./Assets/PlannerIcon.png').default;
@@ -10,14 +15,28 @@ export default function Navigator(props) {
   // console.log(darkTheme);
 
   return (
-    <div>
-      <SideButton icon={planner} desc="Planner" darkTheme={darkTheme} />
-      <SideButton icon={calculator} desc="Calculator" darkTheme={darkTheme} />
-      {/* <SideButton
-        icon={planner}
-        desc="Academic Planner"
-        darkTheme={darkTheme}
-      /> */}
-    </div>
+    <Router>
+      <div id="mainPage">
+        <nav>
+          <Link to="/AcademicPlanner">
+            <SideButton icon={planner} desc="Planner" darkTheme={darkTheme} />
+          </Link>
+          <Link to="/CAPCalculator">
+            <SideButton
+              icon={calculator}
+              desc="Calculator"
+              darkTheme={darkTheme}
+            />
+          </Link>
+        </nav>
+
+        <div id="currentApp">
+          <Switch>
+            <Route exact path="/AcademicPlanner" component={AcademicPlanner} />
+            <Route exact path="/CAPCalculator" component={CAPCalculator} />
+          </Switch>
+        </div>
+      </div>
+    </Router>
   );
 }
