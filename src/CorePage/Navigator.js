@@ -5,7 +5,13 @@ import './Navigator.css';
 import AcademicPlanner from '../AcademicPlanner/AcademicPlanner';
 import CAPCalculator from '../CAPCalculator/CAPCalculator';
 import SideButton from './Components/SideButton';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from 'react-router-dom';
 
 export default function Navigator(props) {
   const planner = require('./Assets/PlannerIcon.png').default;
@@ -29,6 +35,8 @@ export default function Navigator(props) {
             />
           </Link>
         </nav>
+
+        <Redirect exact from="/" to="/AcademicPlanner" />
 
         <div id="currentApp">
           <Switch>
