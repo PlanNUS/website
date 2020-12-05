@@ -1,0 +1,31 @@
+#darkTheme {
+  background-color: darkgrey;
+}
+
+#lightTheme {
+  background-color: white;
+}
+
+#headerBanner {
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+}
+
+#spacer {
+  width: 10px;
+}
+
+#darkModeChecker {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 20px;
+  /* border: 2px solid black; */
+  /* max-width: 200px; */
+}
+
+#logoPadding {
+  padding: 20px;
+}

@@ -1,0 +1,9 @@
+.darkWords {
+  color: white;
+  font-family: monospace;
+}
+
+.lightWords {
+  color: black;
+  font-family: monospace;
+}
