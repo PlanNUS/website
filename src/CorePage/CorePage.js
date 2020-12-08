@@ -4,42 +4,90 @@
 
 import React, {useState} from 'react';
 import ToggleSwitch from 'react-switch';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import './CorePage.css';
 
 import Navigator from './Navigator';
-import JsonRetrival from '../ModuleLoader/JsonRetrival';
-import AcademicPlanner from '../AcademicPlanner/AcademicPlanner';
-import CAPCalculator from '../CAPCalculator/CAPCalculator';
 
 import Logo from './Assets/Title.png';
+import ErrorIcon from './Assets/SadFace.png';
 
 export default function CorePage() {
-  var newObj = JsonRetrival();
-  // console.log(JsonRetrival());
-
+  const acadamicYear = '2020-2021';
   const [darkTheme, updateDarkTheme] = useState(false);
+  const [isLoading, updateIsLoading] = useState(true);
+  const [isLoadingSuccess, updateIsLoadingSuccess] = useState(false);
 
-  return (
-    <div id={`${darkTheme ? 'dark' : 'light'}Theme`}>
-      <div id="headerBanner">
-        <div id="logoPadding">
-          <img alt="PlanNUS Home" src={Logo} />
-        </div>
+  let moduleData = null;
+  let moduleDataLength = -1;
 
-        <div id="darkModeChecker">
-          <h3 className={`${darkTheme ? 'dark' : 'light'}Words`}>Dark Mode</h3>
-          <div id="spacer" />
-          <ToggleSwitch
-            id="switch"
-            onChange={(checked) => updateDarkTheme(checked)}
-            checked={darkTheme}
+  if (isLoading) {
+    try {
+      //Retrival of data from server
+      const url =
+        'https://api.nusmods.com/v2/' + acadamicYear + '/moduleInfo.json';
+
+      // const url = '';
+      const xmlHttp = new XMLHttpRequest();
+      xmlHttp.open('GET', url, false); //False for synchorous request
+      xmlHttp.send(null);
+
+      moduleData = JSON.parse(xmlHttp.responseText);
+
+      console.log(moduleData[0]);
+
+      moduleDataLength = moduleData.length;
+
+      console.log(moduleDataLength);
+
+      updateIsLoading(false);
+      updateIsLoadingSuccess(true);
+    } catch (err) {
+      updateIsLoading(false);
+      updateIsLoadingSuccess(false);
+    }
+  }
+
+  if (isLoading) {
+    return <p>is loading</p>;
+  } else {
+    if (isLoadingSuccess) {
+      return (
+        <div id={`${darkTheme ? 'dark' : 'light'}Theme`}>
+          <div id="headerBanner">
+            <div id="logoPadding">
+              <img alt="PlanNUS Home" src={Logo} />
+            </div>
+
+            <div id="darkModeChecker">
+              <h3 className={`${darkTheme ? 'dark' : 'light'}Words`}>
+                Dark Mode
+              </h3>
+              <div id="spacer" />
+              <ToggleSwitch
+                id="switch"
+                onChange={(checked) => updateDarkTheme(checked)}
+                checked={darkTheme}
+              />
+            </div>
+          </div>
+
+          <Navigator
+            darkTheme={darkTheme}
+            moduleData={moduleData}
+            moduleDataLength={moduleDataLength}
           />
         </div>
-      </div>
-
-      <Navigator darkTheme={darkTheme} />
-    </div>
-  );
+      );
+    } else {
+      return (
+        <div id="wholePageCenter">
+          <img src={ErrorIcon} alt="LoadingError" height="70px" />
+          <h1 id="error" className="lightWords">
+            Sorry! Something seems to went wrong (Error code: 1)
+          </h1>
+        </div>
+      );
+    }
+  }
 }

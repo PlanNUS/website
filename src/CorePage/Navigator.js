@@ -18,7 +18,8 @@ export default function Navigator(props) {
   const calculator = require('./Assets/CalculatorIcon.png').default;
 
   const darkTheme = props.darkTheme;
-  // console.log(darkTheme);
+  const moduleData = props.moduleData;
+  const moduleDataLength = props.moduleDataLength;
 
   return (
     <Router>
@@ -40,8 +41,30 @@ export default function Navigator(props) {
 
         <div id="currentApp">
           <Switch>
-            <Route exact path="/AcademicPlanner" component={AcademicPlanner} />
-            <Route exact path="/CAPCalculator" component={CAPCalculator} />
+            <Route
+              exact
+              path="/AcademicPlanner"
+              render={(routeProps) => (
+                <AcademicPlanner
+                  {...routeProps}
+                  darkTheme={darkTheme}
+                  moduleData={moduleData}
+                  moduleDataLength={moduleDataLength}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/CAPCalculator"
+              render={(routeProps) => (
+                <CAPCalculator
+                  {...routeProps}
+                  darkTheme={darkTheme}
+                  moduleData={moduleData}
+                  moduleDataLength={moduleDataLength}
+                />
+              )}
+            />
           </Switch>
         </div>
       </div>
