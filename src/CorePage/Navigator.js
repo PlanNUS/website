@@ -24,7 +24,7 @@ export default function Navigator(props) {
   return (
     <Router>
       <div id="mainPage">
-        <nav>
+        <nav id="navigatorSelector">
           <Link to="/AcademicPlanner">
             <SideButton icon={planner} desc="Planner" darkTheme={darkTheme} />
           </Link>

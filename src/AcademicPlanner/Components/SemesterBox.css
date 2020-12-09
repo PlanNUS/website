@@ -1,0 +1,8 @@
+#mainBox {
+  border: 1px solid pink;
+  width: 20%;
+  position: relative;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 15px;
+}

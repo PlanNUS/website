@@ -1,11 +1,18 @@
 #mainPage {
   display: flex;
+  /* position: relative; */
+  height: 90%;
   flex-direction: row;
+}
+
+#navigatorSelector {
+  width: 190px;
 }
 
 #currentApp {
   border: 1px solid lightgrey;
-  flex-grow: 1;
+  /* flex-grow: 1; */
+  width: 100%;
   margin-left: 20px;
   margin-right: 20px;
   border-radius: 15px;
