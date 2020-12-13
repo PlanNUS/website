@@ -71,7 +71,7 @@ export default function CorePage() {
             </div>
 
             <div id="darkModeChecker">
-              <p className={`${darkTheme ? 'dark' : 'light'}Words`}>
+              <p className={`${darkTheme ? 'dark' : 'light'}Words`} id="darkModeWords">
                 Dark Mode
               </p>
               <div id="spacer" />

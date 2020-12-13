@@ -10,8 +10,6 @@ import Slide from '@material-ui/core/Slide';
 import Select from '@material-ui/core/Select';
 
 import './AcademicPlanner.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-// import bootstrapModal from 'bootstrap/scss/_modal.scss';
 
 import YearBox from './Components/YearBox';
 import AdditionButton from './Components/AdditionButton';
