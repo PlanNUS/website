@@ -1,11 +1,13 @@
 .darkWords {
   color: white;
-  font-family: monospace;
+  margin: 0px;
+  padding: 0px;
 }
 
 .lightWords {
-  color: black;
-  font-family: monospace;
+  color: grey;
+  margin: 0px;
+  padding: 0px;
 }
 
 html {
@@ -20,6 +22,10 @@ body {
   display: flex;
   margin: 0;
   padding: 0;
+}
+
+a {
+  text-decoration: none !important;
 }
 
 #root {

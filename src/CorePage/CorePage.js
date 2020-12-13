@@ -18,6 +18,8 @@ export default function CorePage() {
   const [isLoading, updateIsLoading] = useState(true);
   const [isLoadingSuccess, updateIsLoadingSuccess] = useState(false);
 
+  // const [showAddYearModal, updateShowAddYearModal] = useState(false);
+
   let moduleData = null;
   let moduleDataLength = -1;
 
@@ -54,15 +56,24 @@ export default function CorePage() {
     if (isLoadingSuccess) {
       return (
         <div id={`${darkTheme ? 'dark' : 'light'}Theme`}>
+          {/* <Modal
+            show={showAddYearModal}
+            onHide={() => updateShowAddYearModal(false)}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered>
+            <p>helloo</p>
+          </Modal> */}
+
           <div id="headerBanner">
             <div id="logoPadding">
               <img alt="PlanNUS Home" src={Logo} />
             </div>
 
             <div id="darkModeChecker">
-              <h3 className={`${darkTheme ? 'dark' : 'light'}Words`}>
+              <p className={`${darkTheme ? 'dark' : 'light'}Words`}>
                 Dark Mode
-              </h3>
+              </p>
               <div id="spacer" />
               <ToggleSwitch
                 id="switch"
@@ -76,6 +87,7 @@ export default function CorePage() {
             darkTheme={darkTheme}
             moduleData={moduleData}
             moduleDataLength={moduleDataLength}
+            // updateShowAddYearModal={updateShowAddYearModal}
           />
         </div>
       );

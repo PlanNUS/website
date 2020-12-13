@@ -20,6 +20,7 @@ export default function Navigator(props) {
   const darkTheme = props.darkTheme;
   const moduleData = props.moduleData;
   const moduleDataLength = props.moduleDataLength;
+  // const updateShowAddYearModal = props.updateShowAddYearModal;
 
   return (
     <Router>
@@ -50,6 +51,7 @@ export default function Navigator(props) {
                   darkTheme={darkTheme}
                   moduleData={moduleData}
                   moduleDataLength={moduleDataLength}
+                  // updateShowAddYearModal={updateShowAddYearModal}
                 />
               )}
             />

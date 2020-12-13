@@ -13,11 +13,9 @@ export default function SideButton(props) {
         <img id="buttonLogo" src={icon} alt={desc} />
       </div>
 
-      <h3
-        className={`${darkTheme ? 'dark' : 'light'}Words`}
-        id="navigatorTitle">
+      <p className={`${darkTheme ? 'dark' : 'light'}Words`} id="navigatorTitle">
         {desc}
-      </h3>
+      </p>
     </div>
   );
 }
