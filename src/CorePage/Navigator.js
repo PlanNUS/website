@@ -20,6 +20,7 @@ export default function Navigator(props) {
   const darkTheme = props.darkTheme;
   const moduleData = props.moduleData;
   const moduleDataLength = props.moduleDataLength;
+  const transition = props.transition;
   // const updateShowAddYearModal = props.updateShowAddYearModal;
 
   return (
@@ -51,6 +52,7 @@ export default function Navigator(props) {
                   darkTheme={darkTheme}
                   moduleData={moduleData}
                   moduleDataLength={moduleDataLength}
+                  transition={transition}
                   // updateShowAddYearModal={updateShowAddYearModal}
                 />
               )}
@@ -64,6 +66,7 @@ export default function Navigator(props) {
                   darkTheme={darkTheme}
                   moduleData={moduleData}
                   moduleDataLength={moduleDataLength}
+                  transition={transition}
                 />
               )}
             />

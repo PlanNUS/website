@@ -10,11 +10,17 @@
   padding: 0px;
 }
 
+.clickableIcon {
+  cursor: pointer;
+}
+
 html {
   height: 100%;
   width: 100%;
   display: flex;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* font-size: 16px; */
+  line-height: 1.5;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 body {

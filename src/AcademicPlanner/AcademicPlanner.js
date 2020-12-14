@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -6,7 +6,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
-import Slide from '@material-ui/core/Slide';
 import Select from '@material-ui/core/Select';
 
 import './AcademicPlanner.css';
@@ -14,26 +13,25 @@ import './AcademicPlanner.css';
 import YearBox from './Components/YearBox';
 import AdditionButton from './Components/AdditionButton';
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-
 export default function AcademicPlanner(props) {
   const darkTheme = props.darkTheme;
+  const transition = props.transition;
   const moduleData = props.moduleData;
   const moduleDataLength = props.moduleDataLength;
 
   const [showModal, updateShowModal] = useState(false);
 
-  const [yearCurrentlyShown, updateYearCurrentlyShown] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  // const [yearCurrentlyShown, updateYearCurrentlyShown] = useState([
+  //   false,
+  //   false,
+  //   false,
+  //   false,
+  //   false,
+  // ]);
 
-  const [yearOneShown, updateYearOneShown] = useState(false);
+  //Change this back to false once you are done with it
+  console.log('change this back nowww in acadamicPlanner.js');
+  const [yearOneShown, updateYearOneShown] = useState(true);
   const [yearTwoShown, updateYearTwoShown] = useState(false);
   const [yearThreeShown, updateYearThreeShown] = useState(false);
   const [yearFourShown, updateYearFourShown] = useState(false);
@@ -43,43 +41,52 @@ export default function AcademicPlanner(props) {
 
   const [addYearErrorString, updateAddYearErrorString] = useState('');
 
-  useEffect(() => {
-    console.log('triggered as ' + yearTwoShown);
-  }, [yearTwoShown]);
-
-  useEffect(() => {
-    console.log('Selected year is ' + selectedYear);
-  }, [selectedYear]);
-
   function handleSelectUpdate() {
-    if (yearCurrentlyShown[selectedYear] === false) {
-      switch (selectedYear) {
-        case '0':
+    switch (selectedYear) {
+      case '0':
+        if (yearOneShown === false) {
           updateYearOneShown(true);
-          break;
-        case '1':
-          console.log('inside 2');
+          updateShowModal(false);
+        } else {
+          updateAddYearErrorString('The chosen year is already shown!');
+        }
+        break;
+      case '1':
+        if (yearTwoShown === false) {
           updateYearTwoShown(true);
-          break;
-        case '2':
+          updateShowModal(false);
+        } else {
+          updateAddYearErrorString('The chosen year is already shown!');
+        }
+        break;
+      case '2':
+        if (yearThreeShown === false) {
           updateYearThreeShown(true);
-          break;
-        case '3':
+          updateShowModal(false);
+        } else {
+          updateAddYearErrorString('The chosen year is already shown!');
+        }
+        break;
+      case '3':
+        if (yearFourShown === false) {
           updateYearFourShown(true);
-          break;
-        case '4':
+          updateShowModal(false);
+        } else {
+          updateAddYearErrorString('The chosen year is already shown!');
+        }
+        break;
+      case '4':
+        if (yearFiveShown === false) {
           updateYearFiveShown(true);
-          break;
-        default:
-          break;
-      }
-      const tempArr = [...yearCurrentlyShown];
-      tempArr[selectedYear] = true;
-      updateYearCurrentlyShown(tempArr);
-      updateShowModal(false);
-    } else {
-      updateAddYearErrorString('The chosen year is already shown!');
+          updateShowModal(false);
+        } else {
+          updateAddYearErrorString('The chosen year is already shown!');
+        }
+        break;
+      default:
+        break;
     }
+    updateSelectedYear('0');
   }
 
   return (
@@ -98,7 +105,7 @@ export default function AcademicPlanner(props) {
 
       <Dialog
         open={showModal}
-        TransitionComponent={Transition}
+        TransitionComponent={transition}
         // keepMounted
         onClose={() => {
           updateShowModal(false);
@@ -135,11 +142,46 @@ export default function AcademicPlanner(props) {
         </DialogActions>
       </Dialog>
 
-      <YearBox darkTheme={darkTheme} year="1" isShown={yearOneShown} />
-      <YearBox darkTheme={darkTheme} year="2" isShown={yearTwoShown} />
-      <YearBox darkTheme={darkTheme} year="3" isShown={yearThreeShown} />
-      <YearBox darkTheme={darkTheme} year="4" isShown={yearFourShown} />
-      <YearBox darkTheme={darkTheme} year="5" isShown={yearFiveShown} />
+      <YearBox
+        darkTheme={darkTheme}
+        year="1"
+        isShown={yearOneShown}
+        transition={transition}
+        moduleData={moduleData}
+        updateIsShown={updateYearOneShown}
+      />
+      <YearBox
+        darkTheme={darkTheme}
+        year="2"
+        isShown={yearTwoShown}
+        transition={transition}
+        moduleData={moduleData}
+        updateIsShown={updateYearTwoShown}
+      />
+      <YearBox
+        darkTheme={darkTheme}
+        year="3"
+        isShown={yearThreeShown}
+        transition={transition}
+        moduleData={moduleData}
+        updateIsShown={updateYearThreeShown}
+      />
+      <YearBox
+        darkTheme={darkTheme}
+        year="4"
+        isShown={yearFourShown}
+        transition={transition}
+        moduleData={moduleData}
+        updateIsShown={updateYearFourShown}
+      />
+      <YearBox
+        darkTheme={darkTheme}
+        year="5"
+        isShown={yearFiveShown}
+        transition={transition}
+        moduleData={moduleData}
+        updateIsShown={updateYearFiveShown}
+      />
     </div>
   );
 }

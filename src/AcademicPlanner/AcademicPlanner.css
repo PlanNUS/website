@@ -1,12 +1,13 @@
 #acadPlanWrapper {
-  border: 2px solid green;
+  /* border: 2px solid green; */
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
 #plannerHeader {
-  border: 2px solid orange;
+  /* border: 2px solid orange; */
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

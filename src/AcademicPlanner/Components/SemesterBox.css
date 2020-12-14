@@ -1,8 +1,23 @@
 #mainBox {
   border: 1px solid pink;
-  width: 20%;
-  position: relative;
+  display: flex;
+  flex: 0 1 calc(25% - 42px);
   margin: 10px;
   padding: 10px;
   border-radius: 15px;
+}
+
+#semesterHeader {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid green; */
+}
+
+#semesterButtonGroups {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }

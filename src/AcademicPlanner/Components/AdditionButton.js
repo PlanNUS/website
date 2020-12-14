@@ -13,7 +13,7 @@ export default function AdditionButton(props) {
       <p id="description" className={`${darkTheme ? 'dark' : 'light'}Words`}>
         {buttonDesc}
       </p>
-      <IoAdd color="white" size="20px" />
+      <IoAdd color="white" size="25px" />
     </div>
   );
 }

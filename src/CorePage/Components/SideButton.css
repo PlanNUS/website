@@ -22,6 +22,7 @@
 }
 
 #navigatorTitle {
-  font-weight: bold;
+  font-weight: 600;
   text-decoration: none;
+  font-size: 15px;
 }

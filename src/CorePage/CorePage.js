@@ -4,6 +4,7 @@
 
 import React, {useState} from 'react';
 import ToggleSwitch from 'react-switch';
+import Slide from '@material-ui/core/Slide';
 
 import './CorePage.css';
 
@@ -11,6 +12,10 @@ import Navigator from './Navigator';
 
 import Logo from './Assets/Title.png';
 import ErrorIcon from './Assets/SadFace.png';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function CorePage() {
   const acadamicYear = '2020-2021';
@@ -71,7 +76,9 @@ export default function CorePage() {
             </div>
 
             <div id="darkModeChecker">
-              <p className={`${darkTheme ? 'dark' : 'light'}Words`} id="darkModeWords">
+              <p
+                className={`${darkTheme ? 'dark' : 'light'}Words`}
+                id="darkModeWords">
                 Dark Mode
               </p>
               <div id="spacer" />
@@ -87,6 +94,7 @@ export default function CorePage() {
             darkTheme={darkTheme}
             moduleData={moduleData}
             moduleDataLength={moduleDataLength}
+            transition={Transition}
             // updateShowAddYearModal={updateShowAddYearModal}
           />
         </div>
