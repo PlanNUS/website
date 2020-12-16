@@ -1,5 +1,5 @@
 import {IoAdd, IoClose} from 'react-icons/io5';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -12,6 +12,8 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import './SemesterBox.css';
 
+import Search from './Search';
+
 export default function SemesterBox(props) {
   const currentSemester = props.currentSemester;
   const transition = props.transition;
@@ -19,6 +21,7 @@ export default function SemesterBox(props) {
   const darkTheme = props.darkTheme;
   const updateIsShown = props.updateIsShown;
   const moduleData = props.moduleData;
+  const moduleDataLength = props.moduleDataLength;
 
   console.log(moduleData);
 
@@ -26,12 +29,22 @@ export default function SemesterBox(props) {
     false,
   );
   const [showAdditionPopup, updateShowAdditionPopup] = useState(false);
+  const [searchStringByUser, updateSearchStringByUser] = useState('');
+  const [dataToDisplay, updateDataToDisplay] = useState([]);
 
   function handleSemesterDeletion() {
     //Clear array;
     updateShowDeleteConfirmation(false);
     updateIsShown(false);
   }
+
+  useEffect(() => {
+    if (searchStringByUser === '') {
+      updateDataToDisplay([]);
+    } else {
+      
+    }
+  }, [searchStringByUser]);
 
   if (isShown) {
     return (
@@ -51,7 +64,8 @@ export default function SemesterBox(props) {
             </DialogContentText> */}
             <Autocomplete
               id="combo-box-demo"
-              options={moduleData}
+              onChange={updateSearchStringByUser}
+              options={dataToDisplay}
               getOptionLabel={(option) => option.moduleCode}
               style={{width: 300}}
               renderInput={(params) => (

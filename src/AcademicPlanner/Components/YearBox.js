@@ -19,6 +19,7 @@ export default function YearBox(props) {
   const transition = props.transition;
   const updateIsShown = props.updateIsShown;
   const moduleData = props.moduleData;
+  const moduleDataLength = props.moduleDataLength;
 
   const [showDeleteConfirmation, updateShowDeleteConfirmation] = useState(
     false,
@@ -180,6 +181,7 @@ export default function YearBox(props) {
             transition={transition}
             isShown={semesterOneShown}
             moduleData={moduleData}
+            moduleDataLength={moduleDataLength}
             updateIsShown={updateSemesterOneShown}
           />
           <SemesterBox
@@ -188,6 +190,7 @@ export default function YearBox(props) {
             transition={transition}
             isShown={specialTermOneShown}
             moduleData={moduleData}
+            moduleDataLength={moduleDataLength}
             updateIsShown={updateSpecialTermOneShown}
           />
           <SemesterBox
@@ -196,6 +199,7 @@ export default function YearBox(props) {
             transition={transition}
             isShown={specialTermTwoShown}
             moduleData={moduleData}
+            moduleDataLength={moduleDataLength}
             updateIsShown={updateSpecialTermTwoShown}
           />
           <SemesterBox
@@ -204,6 +208,7 @@ export default function YearBox(props) {
             transition={transition}
             isShown={semesterTwoShown}
             moduleData={moduleData}
+            moduleDataLength={moduleDataLength}
             updateIsShown={updateSemesterTwoShown}
           />
         </div>

@@ -148,6 +148,7 @@ export default function AcademicPlanner(props) {
         isShown={yearOneShown}
         transition={transition}
         moduleData={moduleData}
+        moduleDataLength={moduleDataLength}
         updateIsShown={updateYearOneShown}
       />
       <YearBox
@@ -156,6 +157,7 @@ export default function AcademicPlanner(props) {
         isShown={yearTwoShown}
         transition={transition}
         moduleData={moduleData}
+        moduleDataLength={moduleDataLength}
         updateIsShown={updateYearTwoShown}
       />
       <YearBox
@@ -164,6 +166,7 @@ export default function AcademicPlanner(props) {
         isShown={yearThreeShown}
         transition={transition}
         moduleData={moduleData}
+        moduleDataLength={moduleDataLength}
         updateIsShown={updateYearThreeShown}
       />
       <YearBox
@@ -172,6 +175,7 @@ export default function AcademicPlanner(props) {
         isShown={yearFourShown}
         transition={transition}
         moduleData={moduleData}
+        moduleDataLength={moduleDataLength}
         updateIsShown={updateYearFourShown}
       />
       <YearBox
@@ -180,6 +184,7 @@ export default function AcademicPlanner(props) {
         isShown={yearFiveShown}
         transition={transition}
         moduleData={moduleData}
+        moduleDataLength={moduleDataLength}
         updateIsShown={updateYearFiveShown}
       />
     </div>
