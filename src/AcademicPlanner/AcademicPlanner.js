@@ -21,14 +21,6 @@ export default function AcademicPlanner(props) {
 
   const [showModal, updateShowModal] = useState(false);
 
-  // const [yearCurrentlyShown, updateYearCurrentlyShown] = useState([
-  //   false,
-  //   false,
-  //   false,
-  //   false,
-  //   false,
-  // ]);
-
   //Change this back to false once you are done with it
   console.log('change this back nowww in acadamicPlanner.js');
   const [yearOneShown, updateYearOneShown] = useState(true);
@@ -92,10 +84,6 @@ export default function AcademicPlanner(props) {
   return (
     <div id="acadPlanWrapper">
       <div id="plannerHeader">
-        {/* <p className={`${darkTheme ? 'dark' : 'light'}Words`}>
-          This is the academic planner
-        </p> */}
-
         <AdditionButton
           darkTheme={darkTheme}
           buttonDesc="Add Year"

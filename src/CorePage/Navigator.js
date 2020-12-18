@@ -21,7 +21,6 @@ export default function Navigator(props) {
   const moduleData = props.moduleData;
   const moduleDataLength = props.moduleDataLength;
   const transition = props.transition;
-  // const updateShowAddYearModal = props.updateShowAddYearModal;
 
   return (
     <Router>
@@ -53,7 +52,6 @@ export default function Navigator(props) {
                   moduleData={moduleData}
                   moduleDataLength={moduleDataLength}
                   transition={transition}
-                  // updateShowAddYearModal={updateShowAddYearModal}
                 />
               )}
             />

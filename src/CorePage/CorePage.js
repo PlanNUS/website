@@ -2,7 +2,7 @@
  *https://www.npmjs.com/package/react-switch
  */
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ToggleSwitch from 'react-switch';
 import Slide from '@material-ui/core/Slide';
 
@@ -22,11 +22,16 @@ export default function CorePage() {
   const [darkTheme, updateDarkTheme] = useState(false);
   const [isLoading, updateIsLoading] = useState(true);
   const [isLoadingSuccess, updateIsLoadingSuccess] = useState(false);
+  const [moduleData, updateModuleData] = useState([]);
+  const [moduleDataLength, updateModuleDataLength] = useState(-1);
 
-  // const [showAddYearModal, updateShowAddYearModal] = useState(false);
+  // useEffect(() => {
+  //   console.log(moduleDataLength);
+  // }, [moduleDataLength]);
 
-  let moduleData = null;
-  let moduleDataLength = -1;
+  // useEffect(() => {
+  //   console.log(moduleData);
+  // }, [moduleData]);
 
   if (isLoading) {
     try {
@@ -39,13 +44,10 @@ export default function CorePage() {
       xmlHttp.open('GET', url, false); //False for synchorous request
       xmlHttp.send(null);
 
-      moduleData = JSON.parse(xmlHttp.responseText);
+      const tempModuleData = JSON.parse(xmlHttp.responseText);
 
-      console.log(moduleData[0]);
-
-      moduleDataLength = moduleData.length;
-
-      console.log(moduleDataLength);
+      updateModuleData(tempModuleData);
+      updateModuleDataLength(tempModuleData.length);
 
       updateIsLoading(false);
       updateIsLoadingSuccess(true);
@@ -61,15 +63,6 @@ export default function CorePage() {
     if (isLoadingSuccess) {
       return (
         <div id={`${darkTheme ? 'dark' : 'light'}Theme`}>
-          {/* <Modal
-            show={showAddYearModal}
-            onHide={() => updateShowAddYearModal(false)}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered>
-            <p>helloo</p>
-          </Modal> */}
-
           <div id="headerBanner">
             <div id="logoPadding">
               <img alt="PlanNUS Home" src={Logo} />
@@ -95,7 +88,6 @@ export default function CorePage() {
             moduleData={moduleData}
             moduleDataLength={moduleDataLength}
             transition={Transition}
-            // updateShowAddYearModal={updateShowAddYearModal}
           />
         </div>
       );

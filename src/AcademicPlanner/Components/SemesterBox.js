@@ -7,7 +7,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
+// import Select from '@material-ui/core/Select';
+import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import './SemesterBox.css';
@@ -23,14 +24,20 @@ export default function SemesterBox(props) {
   const moduleData = props.moduleData;
   const moduleDataLength = props.moduleDataLength;
 
-  console.log(moduleData);
+  const numberOfDataDisplay = 5;
+
+  // useEffect(() => {
+  //   console.log(moduleData);
+  // }, [moduleData]);
 
   const [showDeleteConfirmation, updateShowDeleteConfirmation] = useState(
     false,
   );
   const [showAdditionPopup, updateShowAdditionPopup] = useState(false);
   const [searchStringByUser, updateSearchStringByUser] = useState('');
-  const [dataToDisplay, updateDataToDisplay] = useState([]);
+  const [searchDataToDisplay, updateSearchDataToDisplay] = useState([]);
+  // const [selectedIndex, updatedSelectedIndex] = useState(-1);
+  const [chipsDataToDisplay, updateChipsDataToDisplay] = useState([]);
 
   function handleSemesterDeletion() {
     //Clear array;
@@ -38,13 +45,58 @@ export default function SemesterBox(props) {
     updateIsShown(false);
   }
 
-  useEffect(() => {
-    if (searchStringByUser === '') {
-      updateDataToDisplay([]);
-    } else {
-      
+  // useEffect(() => {
+  //   // console.log(searchDataToDisplay);
+  //   if (selectedIndex > -1) {
+  //     let tempArr = [...chipsDataToDisplay];
+  //     tempArr.push(searchDataToDisplay[selectedIndex]);
+  //     updateChipsDataToDisplay(tempArr);
+  //     updatedSelectedIndex(-1);
+  //   }
+  // }, [selectedIndex, chipsDataToDisplay, searchDataToDisplay]);
+
+  function addChip(indexToAdd) {
+    if (typeof indexToAdd === 'number') {
+      let tempArr = [...chipsDataToDisplay];
+      tempArr.push(searchDataToDisplay[indexToAdd]);
+      updateChipsDataToDisplay(tempArr);
+      // updateSearchStringByUser('');
     }
-  }, [searchStringByUser]);
+  }
+
+  function deleteChip(indexToDelete) {
+    if (typeof indexToDelete === 'number') {
+      const tempArr = [...chipsDataToDisplay];
+      tempArr.splice(indexToDelete);
+      updateChipsDataToDisplay(tempArr);
+    }
+  }
+
+  useEffect(() => {
+    if (typeof searchStringByUser === 'string') {
+      if (searchStringByUser.length < 2) {
+        updateSearchDataToDisplay([]);
+      } else {
+        let userSearchIndex = Search(
+          moduleData,
+          moduleDataLength,
+          searchStringByUser.toUpperCase(),
+        );
+
+        if (userSearchIndex !== -1) {
+          const temporaryDisplayData = [];
+
+          for (let i = 0; i < numberOfDataDisplay; i++) {
+            temporaryDisplayData.push(moduleData[userSearchIndex + i]);
+          }
+
+          updateSearchDataToDisplay(temporaryDisplayData);
+        } else {
+          updateSearchDataToDisplay([]);
+        }
+      }
+    }
+  }, [searchStringByUser, moduleData, moduleDataLength]);
 
   if (isShown) {
     return (
@@ -58,20 +110,38 @@ export default function SemesterBox(props) {
           }}>
           <DialogTitle>Add modules to {currentSemester}</DialogTitle>
           <DialogContent>
-            {/* <DialogContentText id="error">
-              Warning! All the data for {currentSemester} will be deleted. This
-              action is irreversible.
-            </DialogContentText> */}
             <Autocomplete
               id="combo-box-demo"
-              onChange={updateSearchStringByUser}
-              options={dataToDisplay}
+              // value="dfkasldflk"
+              onInputChange={(event) => {
+                // console.log('inside input change ' + event.target.value);
+                updateSearchStringByUser(event.target.value);
+              }}
+              onChange={(event) => {
+                // console.log('inside userClick ' + event.target.value);
+                addChip(event.target.value);
+              }} //On change happens when user chooses sth
+              options={searchDataToDisplay}
               getOptionLabel={(option) => option.moduleCode}
               style={{width: 300}}
               renderInput={(params) => (
-                <TextField {...params} label="Combo box" variant="outlined" />
+                <TextField {...params} label="Module Code" variant="outlined" />
               )}
             />
+
+            {chipsDataToDisplay.map((data, index) => {
+              return (
+                // <li key={index}>
+                <Chip
+                  key={index}
+                  // icon={icon}
+                  label={data.moduleCode}
+                  onDelete={() => deleteChip(index)}
+                  id="chip"
+                />
+                // </li>
+              );
+            })}
           </DialogContent>
           <DialogActions>
             <Button
