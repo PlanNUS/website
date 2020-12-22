@@ -133,6 +133,7 @@ export default function AcademicPlanner(props) {
       <YearBox
         darkTheme={darkTheme}
         year="1"
+        currentYearIndex={0}
         isShown={yearOneShown}
         transition={transition}
         moduleData={moduleData}
@@ -142,6 +143,7 @@ export default function AcademicPlanner(props) {
       <YearBox
         darkTheme={darkTheme}
         year="2"
+        currentYearIndex={1}
         isShown={yearTwoShown}
         transition={transition}
         moduleData={moduleData}
@@ -151,6 +153,7 @@ export default function AcademicPlanner(props) {
       <YearBox
         darkTheme={darkTheme}
         year="3"
+        currentYearIndex={2}
         isShown={yearThreeShown}
         transition={transition}
         moduleData={moduleData}
@@ -160,6 +163,7 @@ export default function AcademicPlanner(props) {
       <YearBox
         darkTheme={darkTheme}
         year="4"
+        currentYearIndex={3}
         isShown={yearFourShown}
         transition={transition}
         moduleData={moduleData}
@@ -169,6 +173,7 @@ export default function AcademicPlanner(props) {
       <YearBox
         darkTheme={darkTheme}
         year="5"
+        currentYearIndex={4}
         isShown={yearFiveShown}
         transition={transition}
         moduleData={moduleData}

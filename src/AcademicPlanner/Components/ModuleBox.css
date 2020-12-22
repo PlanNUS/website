@@ -1,0 +1,53 @@
+#moduleBox {
+  border: 1px solid orange;
+  border-radius: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.white {
+  background-color: white;
+}
+
+.lightOrange {
+  background-color: rgb(255, 214, 198);
+  /* opacity: 0.5; */
+}
+
+#errorMessage {
+  font-size: 12px;
+}
+
+#errorListHidden {
+  display: none;
+  margin: 0px;
+  padding-left: 12%;
+  /* list-style-type: none; */
+}
+
+#errorListShown {
+  margin: 0px;
+  padding-left: 12%;
+  /* list-style-type: none; */
+}
+
+/* #errorInnerList {
+  padding: 0;
+} */
+
+#moduleCodetitle {
+  font-weight: bold;
+  color: rgb(107, 107, 107);
+}
+
+#contentBox {
+  flex-grow: 1;
+}

@@ -2,23 +2,24 @@
  *https://www.npmjs.com/package/react-switch
  */
 
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import ToggleSwitch from 'react-switch';
-import Slide from '@material-ui/core/Slide';
+// import Slide from '@material-ui/core/Slide';
 
 import './CorePage.css';
+import {Transition, AcadamicYear} from '../Constants';
 
 import Navigator from './Navigator';
 
 import Logo from './Assets/Title.png';
 import ErrorIcon from './Assets/SadFace.png';
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+// const Transition = React.forwardRef(function Transition(props, ref) {
+//   return <Slide direction="up" ref={ref} {...props} />;
+// });
 
 export default function CorePage() {
-  const acadamicYear = '2020-2021';
+  // const acadamicYear = '2020-2021';
   const [darkTheme, updateDarkTheme] = useState(false);
   const [isLoading, updateIsLoading] = useState(true);
   const [isLoadingSuccess, updateIsLoadingSuccess] = useState(false);
@@ -37,14 +38,29 @@ export default function CorePage() {
     try {
       //Retrival of data from server
       const url =
-        'https://api.nusmods.com/v2/' + acadamicYear + '/moduleInfo.json';
+        'https://api.nusmods.com/v2/' + AcadamicYear + '/moduleInfo.json';
 
       // const url = '';
       const xmlHttp = new XMLHttpRequest();
       xmlHttp.open('GET', url, false); //False for synchorous request
       xmlHttp.send(null);
 
-      const tempModuleData = JSON.parse(xmlHttp.responseText);
+      const fetchedModuleData = JSON.parse(xmlHttp.responseText);
+
+      let tempModuleData = [];
+      for (let i = 0; i < fetchedModuleData.length; i++) {
+        let tempObj = {
+          moduleCode: fetchedModuleData[i].moduleCode,
+          moduleCredit: fetchedModuleData[i].moduleCredit,
+          isFlagged: false, //default is false
+          prereqCleared: true, //Value must be true, default is true
+          prereqInSameSem: false, //Value must be false
+          coreqInSameSem: true, //Value must be true, default is true
+          precluAdded: false, //value must be false, default is false
+        };
+
+        tempModuleData.push(tempObj);
+      }
 
       updateModuleData(tempModuleData);
       updateModuleDataLength(tempModuleData.length);

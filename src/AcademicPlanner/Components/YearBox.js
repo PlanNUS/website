@@ -20,6 +20,7 @@ export default function YearBox(props) {
   const updateIsShown = props.updateIsShown;
   const moduleData = props.moduleData;
   const moduleDataLength = props.moduleDataLength;
+  const currentYearIndex = props.currentYearIndex;
 
   const [showDeleteConfirmation, updateShowDeleteConfirmation] = useState(
     false,
@@ -177,6 +178,8 @@ export default function YearBox(props) {
         <div id="semesterWrapper">
           <SemesterBox
             currentSemester="Semester 1"
+            currentSemesterIndex={0}
+            currentYearIndex={currentYearIndex}
             darkTheme={darkTheme}
             transition={transition}
             isShown={semesterOneShown}
@@ -186,6 +189,8 @@ export default function YearBox(props) {
           />
           <SemesterBox
             currentSemester="Special Term 1"
+            currentSemesterIndex={1}
+            currentYearIndex={currentYearIndex}
             darkTheme={darkTheme}
             transition={transition}
             isShown={specialTermOneShown}
@@ -195,6 +200,8 @@ export default function YearBox(props) {
           />
           <SemesterBox
             currentSemester="Special Term 2"
+            currentSemesterIndex={2}
+            currentYearIndex={currentYearIndex}
             darkTheme={darkTheme}
             transition={transition}
             isShown={specialTermTwoShown}
@@ -204,6 +211,8 @@ export default function YearBox(props) {
           />
           <SemesterBox
             currentSemester="Semester 2"
+            currentSemesterIndex={3}
+            currentYearIndex={currentYearIndex}
             darkTheme={darkTheme}
             transition={transition}
             isShown={semesterTwoShown}

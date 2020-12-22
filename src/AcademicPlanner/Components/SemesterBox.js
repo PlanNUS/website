@@ -1,5 +1,6 @@
 import {IoAdd, IoClose} from 'react-icons/io5';
 import React, {useState, useEffect} from 'react';
+import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -7,15 +8,16 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
-// import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import './SemesterBox.css';
 
-import Search from './Search';
+import {VerifyModulesForAddition} from '../Functions/VerifyModule';
+import Search from '../Functions/Search';
+import ModuleBox from './ModuleBox';
 
-export default function SemesterBox(props) {
+function SemesterBox(props) {
   const currentSemester = props.currentSemester;
   const transition = props.transition;
   const isShown = props.isShown;
@@ -23,12 +25,12 @@ export default function SemesterBox(props) {
   const updateIsShown = props.updateIsShown;
   const moduleData = props.moduleData;
   const moduleDataLength = props.moduleDataLength;
+  const currentYearIndex = props.currentYearIndex;
+  const currentSemesterIndex = props.currentSemesterIndex;
+  const currentModuleData = props.currentModuleData;
+  const updateData = props.updateData;
 
   const numberOfDataDisplay = 5;
-
-  // useEffect(() => {
-  //   console.log(moduleData);
-  // }, [moduleData]);
 
   const [showDeleteConfirmation, updateShowDeleteConfirmation] = useState(
     false,
@@ -36,41 +38,15 @@ export default function SemesterBox(props) {
   const [showAdditionPopup, updateShowAdditionPopup] = useState(false);
   const [searchStringByUser, updateSearchStringByUser] = useState('');
   const [searchDataToDisplay, updateSearchDataToDisplay] = useState([]);
-  // const [selectedIndex, updatedSelectedIndex] = useState(-1);
   const [chipsDataToDisplay, updateChipsDataToDisplay] = useState([]);
+  const [moduleInSemester, updateModuleInSemester] = useState([]);
 
-  function handleSemesterDeletion() {
-    //Clear array;
-    updateShowDeleteConfirmation(false);
-    updateIsShown(false);
-  }
-
-  // useEffect(() => {
-  //   // console.log(searchDataToDisplay);
-  //   if (selectedIndex > -1) {
-  //     let tempArr = [...chipsDataToDisplay];
-  //     tempArr.push(searchDataToDisplay[selectedIndex]);
-  //     updateChipsDataToDisplay(tempArr);
-  //     updatedSelectedIndex(-1);
-  //   }
-  // }, [selectedIndex, chipsDataToDisplay, searchDataToDisplay]);
-
-  function addChip(indexToAdd) {
-    if (typeof indexToAdd === 'number') {
-      let tempArr = [...chipsDataToDisplay];
-      tempArr.push(searchDataToDisplay[indexToAdd]);
-      updateChipsDataToDisplay(tempArr);
-      // updateSearchStringByUser('');
-    }
-  }
-
-  function deleteChip(indexToDelete) {
-    if (typeof indexToDelete === 'number') {
-      const tempArr = [...chipsDataToDisplay];
-      tempArr.splice(indexToDelete);
-      updateChipsDataToDisplay(tempArr);
-    }
-  }
+  useEffect(() => {
+    const tempModuleInSemester = [
+      ...currentModuleData[currentYearIndex][currentSemesterIndex],
+    ];
+    updateModuleInSemester(tempModuleInSemester);
+  }, [currentModuleData, currentSemesterIndex, currentYearIndex]);
 
   useEffect(() => {
     if (typeof searchStringByUser === 'string') {
@@ -98,6 +74,97 @@ export default function SemesterBox(props) {
     }
   }, [searchStringByUser, moduleData, moduleDataLength]);
 
+  function handleSemesterDeletion() {
+    //Clear array;
+    updateShowDeleteConfirmation(false);
+    updateIsShown(false);
+  }
+
+  function addChip(indexToAdd) {
+    if (typeof indexToAdd === 'number') {
+      let tempArr = [...chipsDataToDisplay];
+      tempArr.push(searchDataToDisplay[indexToAdd]);
+      updateChipsDataToDisplay(tempArr);
+    }
+  }
+
+  function deleteChip(indexToDelete) {
+    if (typeof indexToDelete === 'number') {
+      const tempArr = [...chipsDataToDisplay];
+      tempArr.splice(indexToDelete);
+      updateChipsDataToDisplay(tempArr);
+    }
+  }
+
+  function addToGlobalData() {
+    if (chipsDataToDisplay.length !== 0) {
+      const checkString = JSON.stringify(moduleInSemester);
+
+      const modulestoAdd = [];
+      let modularCreditsToAdd = 0;
+
+      //Updating data
+      const tempCurrentModuleData = [...currentModuleData];
+      const totalModularCredits = tempCurrentModuleData[5].totalModularCredits;
+      console.log(tempCurrentModuleData);
+
+      for (let i = 0; i < chipsDataToDisplay.length; i++) {
+        if (!checkString.includes(chipsDataToDisplay[i])) {
+          // const flags = {
+          //   isFlagged: false,
+          //   prereqCleared: true, //Value must be true
+          //   prereqInSameSem: false, //Value must be false
+          //   coreqInSameSem: true, //Value must be true
+          //   precluAdded: false, //value must be false
+          // };
+          const newModule = VerifyModulesForAddition(
+            chipsDataToDisplay[i],
+            currentYearIndex,
+            currentSemesterIndex,
+            currentModuleData,
+            totalModularCredits,
+          );
+          // const newModule = {
+          //   moduleCode: 'CS1010',
+          //   moduleCredit: '4',
+          //   isFlagged: true,
+          //   prereqCleared: false,
+          //   prereqInSameSem: false,
+          //   coreqInSameSem: false,
+          //   precluAdded: false,
+          // };
+          console.log(newModule);
+          console.log(JSON.stringify(newModule));
+          modulestoAdd.push(newModule);
+          modularCreditsToAdd += parseInt(newModule.moduleCredit);
+          updateChipsDataToDisplay([]);
+        }
+      }
+
+      const newArrayOfModules = tempCurrentModuleData[currentYearIndex][
+        currentSemesterIndex
+      ].concat(modulestoAdd);
+
+      tempCurrentModuleData[currentYearIndex][
+        currentSemesterIndex
+      ] = newArrayOfModules;
+
+      tempCurrentModuleData[currentYearIndex][
+        currentSemesterIndex + 4
+      ].semModularCredit += modularCreditsToAdd;
+
+      console.log(
+        tempCurrentModuleData[currentYearIndex][currentSemesterIndex + 4]
+          .semModularCredit,
+      );
+
+      tempCurrentModuleData[5].totalModularCredits += modularCreditsToAdd;
+      updateData(tempCurrentModuleData);
+
+      updateShowAdditionPopup(false);
+    }
+  }
+
   if (isShown) {
     return (
       <div id="mainBox">
@@ -118,7 +185,9 @@ export default function SemesterBox(props) {
                 updateSearchStringByUser(event.target.value);
               }}
               onChange={(event) => {
-                // console.log('inside userClick ' + event.target.value);
+                // console.log(
+                //   JSON.stringify(searchDataToDisplay[event.target.value]),
+                // );
                 addChip(event.target.value);
               }} //On change happens when user chooses sth
               options={searchDataToDisplay}
@@ -131,15 +200,12 @@ export default function SemesterBox(props) {
 
             {chipsDataToDisplay.map((data, index) => {
               return (
-                // <li key={index}>
                 <Chip
                   key={index}
-                  // icon={icon}
                   label={data.moduleCode}
                   onDelete={() => deleteChip(index)}
                   id="chip"
                 />
-                // </li>
               );
             })}
           </DialogContent>
@@ -149,9 +215,9 @@ export default function SemesterBox(props) {
               color="primary">
               Cancel
             </Button>
-            {/* <Button onClick={handleSemesterDeletion} color="primary">
+            <Button onClick={addToGlobalData} color="primary">
               Add
-            </Button> */}
+            </Button>
           </DialogActions>
         </Dialog>
 
@@ -201,9 +267,33 @@ export default function SemesterBox(props) {
             />
           </div>
         </div>
+
+        {moduleInSemester.map((currentData, index) => (
+          <ModuleBox
+            key={currentData.moduleCode}
+            module={currentData}
+            darkTheme={darkTheme}
+          />
+        ))}
       </div>
     );
   } else {
     return null;
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    currentModuleData: state.currentModuleData,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateData: (newModuleData) => {
+      dispatch({type: 'UPDATE_DATA', newData: newModuleData});
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SemesterBox);
