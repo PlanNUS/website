@@ -30,8 +30,8 @@ export default function YearBox(props) {
   const [selectedSemester, updateSelectedSemester] = useState('0');
 
   const [semesterOneShown, updateSemesterOneShown] = useState(true);
-  const [specialTermOneShown, updateSpecialTermOneShown] = useState(false);
-  const [specialTermTwoShown, updateSpecialTermTwoShown] = useState(false);
+  const [specialTermOneShown, updateSpecialTermOneShown] = useState(true);
+  const [specialTermTwoShown, updateSpecialTermTwoShown] = useState(true);
   const [semesterTwoShown, updateSemesterTwoShown] = useState(false);
 
   function handleYearDeletion() {

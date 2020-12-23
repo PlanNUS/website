@@ -81,6 +81,7 @@ function SemesterBox(props) {
   }
 
   function addChip(indexToAdd) {
+    console.log('index to add ' + indexToAdd);
     if (typeof indexToAdd === 'number') {
       let tempArr = [...chipsDataToDisplay];
       tempArr.push(searchDataToDisplay[indexToAdd]);
@@ -94,6 +95,11 @@ function SemesterBox(props) {
       tempArr.splice(indexToDelete);
       updateChipsDataToDisplay(tempArr);
     }
+  }
+
+  function handleCancel() {
+    updateShowAdditionPopup(false);
+    updateChipsDataToDisplay([]);
   }
 
   function addToGlobalData() {
@@ -188,7 +194,9 @@ function SemesterBox(props) {
                 // console.log(
                 //   JSON.stringify(searchDataToDisplay[event.target.value]),
                 // );
-                addChip(event.target.value);
+                // console.log('inside on change ');
+                // console.log(event.target.dataset.optionIndex);
+                addChip(parseInt(event.target.dataset.optionIndex));
               }} //On change happens when user chooses sth
               options={searchDataToDisplay}
               getOptionLabel={(option) => option.moduleCode}
@@ -210,9 +218,7 @@ function SemesterBox(props) {
             })}
           </DialogContent>
           <DialogActions>
-            <Button
-              onClick={() => updateShowAdditionPopup(false)}
-              color="primary">
+            <Button onClick={handleCancel} color="primary">
               Cancel
             </Button>
             <Button onClick={addToGlobalData} color="primary">

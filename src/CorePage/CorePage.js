@@ -52,10 +52,10 @@ export default function CorePage() {
         let tempObj = {
           moduleCode: fetchedModuleData[i].moduleCode,
           moduleCredit: fetchedModuleData[i].moduleCredit,
-          isFlagged: false, //default is false
+          isFlagged: true, //default is false
           prereqCleared: true, //Value must be true, default is true
           prereqInSameSem: false, //Value must be false
-          coreqInSameSem: true, //Value must be true, default is true
+          coreqInSameSem: false, //Value must be true, default is true
           precluAdded: false, //value must be false, default is false
         };
 
