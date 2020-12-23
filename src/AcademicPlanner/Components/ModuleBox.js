@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {IoClose} from 'react-icons/io5';
 
 import './ModuleBox.css';
@@ -6,17 +6,12 @@ import './ModuleBox.css';
 export default function ModuleBox(props) {
   const module = props.module;
   const darkTheme = props.darkTheme;
-
-  // {
-  //   prereqCleared: false, //Value must be true
-  //   prereqInSameSem: true, //Value must be false
-  //   coreqInSameSem: false, //Value must be true
-  //   precluAdded: true, //value must be false
-  // },
+  const currentIdx = props.currentIdx;
+  const removeModule = props.removeModule;
 
   let verifiedDisplay = [];
 
-  if (!module.prereqCleared) {
+  if (!module.isPrereqCleared) {
     let tempDisplay = {
       message: 'Prerequisite missing!',
       key: 'ClearedPrereq',
@@ -24,7 +19,7 @@ export default function ModuleBox(props) {
     verifiedDisplay.push(tempDisplay);
   }
 
-  if (module.prereqInSameSem) {
+  if (module.isPrereqInSameSem) {
     let tempDisplay = {
       message: 'Prerequisite found in the same semester!',
       key: 'SameSemPrereq',
@@ -32,7 +27,7 @@ export default function ModuleBox(props) {
     verifiedDisplay.push(tempDisplay);
   }
 
-  if (!module.coreqInSameSem) {
+  if (!module.isCoreqInSameSem) {
     let tempDisplay = {
       message: 'Corequisite is not in the same semester!',
       key: 'coreq',
@@ -40,7 +35,7 @@ export default function ModuleBox(props) {
     verifiedDisplay.push(tempDisplay);
   }
 
-  if (module.precluAdded) {
+  if (module.isPrecluAdded) {
     let tempDisplay = {
       message: 'Preclusion already exists!',
       key: 'preclude',
@@ -76,7 +71,7 @@ export default function ModuleBox(props) {
           className="clickableIcon"
           color={`${darkTheme ? 'white' : 'grey'}`}
           size="25px"
-          // onClick={() => updateShowDeleteConfirmation(true)}
+          onClick={() => removeModule(currentIdx)}
         />
       </div>
     </div>

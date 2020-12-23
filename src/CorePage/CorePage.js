@@ -7,16 +7,12 @@ import ToggleSwitch from 'react-switch';
 // import Slide from '@material-ui/core/Slide';
 
 import './CorePage.css';
-import {Transition, AcadamicYear} from '../Constants';
+import {Transition, AcadamicYear, FLAGS} from '../Constants';
 
 import Navigator from './Navigator';
 
 import Logo from './Assets/Title.png';
 import ErrorIcon from './Assets/SadFace.png';
-
-// const Transition = React.forwardRef(function Transition(props, ref) {
-//   return <Slide direction="up" ref={ref} {...props} />;
-// });
 
 export default function CorePage() {
   // const acadamicYear = '2020-2021';
@@ -25,14 +21,6 @@ export default function CorePage() {
   const [isLoadingSuccess, updateIsLoadingSuccess] = useState(false);
   const [moduleData, updateModuleData] = useState([]);
   const [moduleDataLength, updateModuleDataLength] = useState(-1);
-
-  // useEffect(() => {
-  //   console.log(moduleDataLength);
-  // }, [moduleDataLength]);
-
-  // useEffect(() => {
-  //   console.log(moduleData);
-  // }, [moduleData]);
 
   if (isLoading) {
     try {
@@ -52,11 +40,7 @@ export default function CorePage() {
         let tempObj = {
           moduleCode: fetchedModuleData[i].moduleCode,
           moduleCredit: fetchedModuleData[i].moduleCredit,
-          isFlagged: true, //default is false
-          prereqCleared: true, //Value must be true, default is true
-          prereqInSameSem: false, //Value must be false
-          coreqInSameSem: false, //Value must be true, default is true
-          precluAdded: false, //value must be false, default is false
+          ...FLAGS,
         };
 
         tempModuleData.push(tempObj);

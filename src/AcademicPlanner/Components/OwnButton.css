@@ -1,10 +1,11 @@
 #wholeButton {
-  width: 130px;
+  width: fit-content;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   border-radius: 7px;
+  padding-right: 7px;
   height: 40px;
   cursor: pointer;
   background-color: #1100b6;

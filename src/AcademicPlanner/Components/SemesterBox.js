@@ -1,4 +1,4 @@
-import {IoAdd, IoClose} from 'react-icons/io5';
+import {IoAdd, IoClose, IoFlagSharp} from 'react-icons/io5';
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
@@ -12,8 +12,9 @@ import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import './SemesterBox.css';
+import {FLAGS} from '../../Constants';
 
-import {VerifyModulesForAddition} from '../Functions/VerifyModule';
+// import {VerifyModulesForAddition} from '../Functions/VerifyModule';
 import Search from '../Functions/Search';
 import ModuleBox from './ModuleBox';
 
@@ -36,6 +37,8 @@ function SemesterBox(props) {
     false,
   );
   const [showAdditionPopup, updateShowAdditionPopup] = useState(false);
+  const [showDuplicationPopup, updateShowDuplicationPopup] = useState(false);
+  const [duplicatedModule, updateDuplicatedModules] = useState([]);
   const [searchStringByUser, updateSearchStringByUser] = useState('');
   const [searchDataToDisplay, updateSearchDataToDisplay] = useState([]);
   const [chipsDataToDisplay, updateChipsDataToDisplay] = useState([]);
@@ -81,10 +84,23 @@ function SemesterBox(props) {
   }
 
   function addChip(indexToAdd) {
-    console.log('index to add ' + indexToAdd);
-    if (typeof indexToAdd === 'number') {
+    if (typeof indexToAdd === 'number' && !isNaN(indexToAdd)) {
       let tempArr = [...chipsDataToDisplay];
-      tempArr.push(searchDataToDisplay[indexToAdd]);
+
+      let isExistInChips = false;
+      for (let i = 0; i < tempArr.length; i++) {
+        if (
+          tempArr[i].moduleCode === searchDataToDisplay[indexToAdd].moduleCode
+        ) {
+          isExistInChips = true;
+          break;
+        }
+      }
+
+      if (!isExistInChips) {
+        tempArr.push(searchDataToDisplay[indexToAdd]);
+      }
+
       updateChipsDataToDisplay(tempArr);
     }
   }
@@ -97,6 +113,7 @@ function SemesterBox(props) {
     }
   }
 
+  //Handling cancel from module addition dialog
   function handleCancel() {
     updateShowAdditionPopup(false);
     updateChipsDataToDisplay([]);
@@ -106,42 +123,25 @@ function SemesterBox(props) {
     if (chipsDataToDisplay.length !== 0) {
       const checkString = JSON.stringify(moduleInSemester);
 
-      const modulestoAdd = [];
+      const modulesToAdd = [];
+      const modulesDuplicated = [];
+      let isDuplicateExist = false;
       let modularCreditsToAdd = 0;
 
       //Updating data
       const tempCurrentModuleData = [...currentModuleData];
-      const totalModularCredits = tempCurrentModuleData[5].totalModularCredits;
-      console.log(tempCurrentModuleData);
 
       for (let i = 0; i < chipsDataToDisplay.length; i++) {
-        if (!checkString.includes(chipsDataToDisplay[i])) {
-          // const flags = {
-          //   isFlagged: false,
-          //   prereqCleared: true, //Value must be true
-          //   prereqInSameSem: false, //Value must be false
-          //   coreqInSameSem: true, //Value must be true
-          //   precluAdded: false, //value must be false
-          // };
-          const newModule = VerifyModulesForAddition(
-            chipsDataToDisplay[i],
-            currentYearIndex,
-            currentSemesterIndex,
-            currentModuleData,
-            totalModularCredits,
-          );
-          // const newModule = {
-          //   moduleCode: 'CS1010',
-          //   moduleCredit: '4',
-          //   isFlagged: true,
-          //   prereqCleared: false,
-          //   prereqInSameSem: false,
-          //   coreqInSameSem: false,
-          //   precluAdded: false,
-          // };
-          console.log(newModule);
-          console.log(JSON.stringify(newModule));
-          modulestoAdd.push(newModule);
+        if (checkString.includes(chipsDataToDisplay[i].moduleCode)) {
+          modulesDuplicated.push(chipsDataToDisplay[i].moduleCode);
+          isDuplicateExist = true;
+        } else {
+          let newModule = {
+            moduleCode: chipsDataToDisplay[i].moduleCode,
+            moduleCredit: chipsDataToDisplay[i].moduleCredit,
+            ...FLAGS,
+          };
+          modulesToAdd.push(newModule);
           modularCreditsToAdd += parseInt(newModule.moduleCredit);
           updateChipsDataToDisplay([]);
         }
@@ -149,7 +149,7 @@ function SemesterBox(props) {
 
       const newArrayOfModules = tempCurrentModuleData[currentYearIndex][
         currentSemesterIndex
-      ].concat(modulestoAdd);
+      ].concat(modulesToAdd);
 
       tempCurrentModuleData[currentYearIndex][
         currentSemesterIndex
@@ -159,16 +159,26 @@ function SemesterBox(props) {
         currentSemesterIndex + 4
       ].semModularCredit += modularCreditsToAdd;
 
-      console.log(
-        tempCurrentModuleData[currentYearIndex][currentSemesterIndex + 4]
-          .semModularCredit,
-      );
-
       tempCurrentModuleData[5].totalModularCredits += modularCreditsToAdd;
-      updateData(tempCurrentModuleData);
 
+      updateData(tempCurrentModuleData);
       updateShowAdditionPopup(false);
+
+      updateDuplicatedModules(modulesDuplicated);
+      updateShowDuplicationPopup(isDuplicateExist);
     }
+  }
+
+  function removeFromGlobalData(indexToRemove) {
+    let tempModuleInSemester = [...moduleInSemester];
+    let tempCurrentModuleData = [...currentModuleData];
+
+    tempModuleInSemester.splice(indexToRemove, 1);
+    tempCurrentModuleData[currentYearIndex][
+      currentSemesterIndex
+    ] = tempModuleInSemester;
+
+    updateData(tempCurrentModuleData);
   }
 
   if (isShown) {
@@ -185,19 +195,12 @@ function SemesterBox(props) {
           <DialogContent>
             <Autocomplete
               id="combo-box-demo"
-              // value="dfkasldflk"
               onInputChange={(event) => {
-                // console.log('inside input change ' + event.target.value);
                 updateSearchStringByUser(event.target.value);
               }}
               onChange={(event) => {
-                // console.log(
-                //   JSON.stringify(searchDataToDisplay[event.target.value]),
-                // );
-                // console.log('inside on change ');
-                // console.log(event.target.dataset.optionIndex);
                 addChip(parseInt(event.target.dataset.optionIndex));
-              }} //On change happens when user chooses sth
+              }}
               options={searchDataToDisplay}
               getOptionLabel={(option) => option.moduleCode}
               style={{width: 300}}
@@ -253,6 +256,37 @@ function SemesterBox(props) {
           </DialogActions>
         </Dialog>
 
+        <Dialog
+          open={showDuplicationPopup}
+          TransitionComponent={transition}
+          // keepMounted
+          onClose={() => {
+            updateShowDuplicationPopup(false);
+          }}>
+          <DialogTitle>Duplicated modules</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              The following modules already exist in current semester and will
+              not be Added.
+            </DialogContentText>
+
+            <ul>
+              {duplicatedModule.map((currData) => (
+                <li>{currData}</li>
+              ))}
+            </ul>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                updateShowDuplicationPopup(false);
+              }}
+              color="primary">
+              Ok
+            </Button>
+          </DialogActions>
+        </Dialog>
+
         <div id="semesterHeader">
           <p className={`${darkTheme ? 'dark' : 'light'}Words`}>
             {currentSemester}
@@ -276,6 +310,8 @@ function SemesterBox(props) {
 
         {moduleInSemester.map((currentData, index) => (
           <ModuleBox
+            removeModule={removeFromGlobalData}
+            currentIdx={index}
             key={currentData.moduleCode}
             module={currentData}
             darkTheme={darkTheme}

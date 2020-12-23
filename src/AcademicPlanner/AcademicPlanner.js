@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -11,18 +12,19 @@ import Select from '@material-ui/core/Select';
 import './AcademicPlanner.css';
 
 import YearBox from './Components/YearBox';
-import AdditionButton from './Components/AdditionButton';
+import OwnButton from './Components/OwnButton';
+import VerifyAllModules from './Functions/VerifyModule';
 
-export default function AcademicPlanner(props) {
+function AcademicPlanner(props) {
   const darkTheme = props.darkTheme;
   const transition = props.transition;
   const moduleData = props.moduleData;
   const moduleDataLength = props.moduleDataLength;
+  const currentModuleData = props.currentModuleData;
+  const updateData = props.updateData;
 
   const [showModal, updateShowModal] = useState(false);
 
-  //Change this back to false once you are done with it
-  console.log('change this back nowww in acadamicPlanner.js');
   const [yearOneShown, updateYearOneShown] = useState(true);
   const [yearTwoShown, updateYearTwoShown] = useState(false);
   const [yearThreeShown, updateYearThreeShown] = useState(false);
@@ -81,12 +83,25 @@ export default function AcademicPlanner(props) {
     updateSelectedYear('0');
   }
 
+  function handleCheckRequirement() {
+    const newAllData = VerifyAllModules(currentModuleData);
+    updateData(newAllData);
+  }
+
   return (
     <div id="acadPlanWrapper">
       <div id="plannerHeader">
-        <AdditionButton
+        <OwnButton
+          darkTheme={darkTheme}
+          buttonDesc="Check Requirements"
+          type="sync"
+          onClick={() => handleCheckRequirement()}
+        />
+        <div id="buttonSpacer" />
+        <OwnButton
           darkTheme={darkTheme}
           buttonDesc="Add Year"
+          type="add"
           onClick={() => updateShowModal(true)}
         />
       </div>
@@ -124,6 +139,9 @@ export default function AcademicPlanner(props) {
           <DialogContentText id="error">{addYearErrorString}</DialogContentText>
         </DialogContent>
         <DialogActions>
+          <Button onClick={() => updateShowModal(false)} color="primary">
+            Cancel
+          </Button>
           <Button onClick={handleSelectUpdate} color="primary">
             Add
           </Button>
@@ -183,3 +201,19 @@ export default function AcademicPlanner(props) {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    currentModuleData: state.currentModuleData,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateData: (newModuleData) => {
+      dispatch({type: 'UPDATE_DATA', newData: newModuleData});
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AcademicPlanner);
