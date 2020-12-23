@@ -1,0 +1,32 @@
+#mainBox {
+  border: 1px solid pink;
+  display: flex;
+  flex: 0 1 calc(25% - 42px);
+  margin: 10px;
+  padding: 10px;
+  border-radius: 15px;
+  flex-direction: column;
+  /* align-items: flex-start; */
+  /* justify-content: flex-start; */
+}
+
+#semesterHeader {
+  display: flex;
+  /* flex-grow: 1; */
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid green; */
+  margin-bottom: 8px;
+}
+
+#semesterButtonGroups {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#chip {
+  margin: 2px;
+  margin-top: 10px;
+}

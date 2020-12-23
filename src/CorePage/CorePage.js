@@ -4,8 +4,10 @@
 
 import React, {useState} from 'react';
 import ToggleSwitch from 'react-switch';
+// import Slide from '@material-ui/core/Slide';
 
 import './CorePage.css';
+import {Transition, AcadamicYear, FLAGS} from '../Constants';
 
 import Navigator from './Navigator';
 
@@ -13,32 +15,39 @@ import Logo from './Assets/Title.png';
 import ErrorIcon from './Assets/SadFace.png';
 
 export default function CorePage() {
-  const acadamicYear = '2020-2021';
+  // const acadamicYear = '2020-2021';
   const [darkTheme, updateDarkTheme] = useState(false);
   const [isLoading, updateIsLoading] = useState(true);
   const [isLoadingSuccess, updateIsLoadingSuccess] = useState(false);
-
-  let moduleData = null;
-  let moduleDataLength = -1;
+  const [moduleData, updateModuleData] = useState([]);
+  const [moduleDataLength, updateModuleDataLength] = useState(-1);
 
   if (isLoading) {
     try {
       //Retrival of data from server
       const url =
-        'https://api.nusmods.com/v2/' + acadamicYear + '/moduleInfo.json';
+        'https://api.nusmods.com/v2/' + AcadamicYear + '/moduleInfo.json';
 
       // const url = '';
       const xmlHttp = new XMLHttpRequest();
       xmlHttp.open('GET', url, false); //False for synchorous request
       xmlHttp.send(null);
 
-      moduleData = JSON.parse(xmlHttp.responseText);
+      const fetchedModuleData = JSON.parse(xmlHttp.responseText);
 
-      console.log(moduleData[0]);
+      let tempModuleData = [];
+      for (let i = 0; i < fetchedModuleData.length; i++) {
+        let tempObj = {
+          moduleCode: fetchedModuleData[i].moduleCode,
+          moduleCredit: fetchedModuleData[i].moduleCredit,
+          ...FLAGS,
+        };
 
-      moduleDataLength = moduleData.length;
+        tempModuleData.push(tempObj);
+      }
 
-      console.log(moduleDataLength);
+      updateModuleData(tempModuleData);
+      updateModuleDataLength(tempModuleData.length);
 
       updateIsLoading(false);
       updateIsLoadingSuccess(true);
@@ -60,9 +69,11 @@ export default function CorePage() {
             </div>
 
             <div id="darkModeChecker">
-              <h3 className={`${darkTheme ? 'dark' : 'light'}Words`}>
+              <p
+                className={`${darkTheme ? 'dark' : 'light'}Words`}
+                id="darkModeWords">
                 Dark Mode
-              </h3>
+              </p>
               <div id="spacer" />
               <ToggleSwitch
                 id="switch"
@@ -76,6 +87,7 @@ export default function CorePage() {
             darkTheme={darkTheme}
             moduleData={moduleData}
             moduleDataLength={moduleDataLength}
+            transition={Transition}
           />
         </div>
       );

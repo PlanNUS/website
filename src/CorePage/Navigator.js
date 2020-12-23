@@ -20,11 +20,12 @@ export default function Navigator(props) {
   const darkTheme = props.darkTheme;
   const moduleData = props.moduleData;
   const moduleDataLength = props.moduleDataLength;
+  const transition = props.transition;
 
   return (
     <Router>
       <div id="mainPage">
-        <nav>
+        <nav id="navigatorSelector">
           <Link to="/AcademicPlanner">
             <SideButton icon={planner} desc="Planner" darkTheme={darkTheme} />
           </Link>
@@ -50,6 +51,7 @@ export default function Navigator(props) {
                   darkTheme={darkTheme}
                   moduleData={moduleData}
                   moduleDataLength={moduleDataLength}
+                  transition={transition}
                 />
               )}
             />
@@ -62,6 +64,7 @@ export default function Navigator(props) {
                   darkTheme={darkTheme}
                   moduleData={moduleData}
                   moduleDataLength={moduleDataLength}
+                  transition={transition}
                 />
               )}
             />

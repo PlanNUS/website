@@ -1,6 +1,24 @@
-#circle {
-  width: 50px;
-  height: 50px;
-  border: 2px solid green;
-  /* border-radius: 25px; */
+#acadPlanWrapper {
+  /* border: 2px solid green; */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+}
+
+#plannerHeader {
+  /* border: 2px solid orange; */
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  /* width: 100%; */
+}
+
+#error {
+  color: red;
+}
+
+#buttonSpacer {
+  width: 10px;
 }

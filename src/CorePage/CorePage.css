@@ -29,9 +29,8 @@ a {
   display: flex;
   flex-direction: row;
   align-items: center;
+  /* justify-content: center; */
   padding-right: 20px;
-  /* border: 2px solid black; */
-  /* max-width: 200px; */
 }
 
 #logoPadding {
@@ -49,4 +48,9 @@ a {
   height: 100%;
   align-items: center;
   justify-content: center;
+}
+
+#darkModeWords {
+  font-weight: 600;
+  font-size: 15px;
 }
