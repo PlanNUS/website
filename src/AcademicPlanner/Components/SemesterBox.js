@@ -1,4 +1,4 @@
-import {IoAdd, IoClose, IoFlagSharp} from 'react-icons/io5';
+import {IoAdd, IoClose} from 'react-icons/io5';
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
@@ -79,13 +79,25 @@ function SemesterBox(props) {
 
   function handleSemesterDeletion() {
     //Clear array;
+    const tempModuleData = [...currentModuleData];
+    tempModuleData[5].totalModularCredits -=
+      tempModuleData[currentYearIndex][
+        currentSemesterIndex + 4
+      ].semModularCredit;
+
+    tempModuleData[currentYearIndex][currentSemesterIndex] = [];
+    tempModuleData[currentYearIndex][
+      currentSemesterIndex + 4
+    ].semModularCredit = 0;
+
+    updateData(tempModuleData);
     updateShowDeleteConfirmation(false);
     updateIsShown(false);
   }
 
   function addChip(indexToAdd) {
     if (typeof indexToAdd === 'number' && !isNaN(indexToAdd)) {
-      let tempArr = [...chipsDataToDisplay];
+      const tempArr = [...chipsDataToDisplay];
 
       let isExistInChips = false;
       for (let i = 0; i < tempArr.length; i++) {
@@ -162,6 +174,7 @@ function SemesterBox(props) {
       tempCurrentModuleData[5].totalModularCredits += modularCreditsToAdd;
 
       updateData(tempCurrentModuleData);
+      updateChipsDataToDisplay([]);
       updateShowAdditionPopup(false);
 
       updateDuplicatedModules(modulesDuplicated);
@@ -170,13 +183,20 @@ function SemesterBox(props) {
   }
 
   function removeFromGlobalData(indexToRemove) {
-    let tempModuleInSemester = [...moduleInSemester];
-    let tempCurrentModuleData = [...currentModuleData];
+    const tempModuleInSemester = [...moduleInSemester];
+    const tempCurrentModuleData = [...currentModuleData];
+
+    const moduleToRemove = tempModuleInSemester[indexToRemove];
 
     tempModuleInSemester.splice(indexToRemove, 1);
     tempCurrentModuleData[currentYearIndex][
       currentSemesterIndex
     ] = tempModuleInSemester;
+
+    tempCurrentModuleData[currentYearIndex][
+      currentSemesterIndex + 4
+    ].semModularCredit -= moduleToRemove.moduleCredit;
+    tempCurrentModuleData[5].totalModularCredits -= moduleToRemove.moduleCredit;
 
     updateData(tempCurrentModuleData);
   }

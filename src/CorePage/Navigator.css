@@ -1,6 +1,5 @@
 #mainPage {
   display: flex;
-  /* position: relative; */
   height: 90%;
   flex-direction: row;
 }
@@ -11,7 +10,6 @@
 
 #currentApp {
   border: 1px solid lightgrey;
-  /* flex-grow: 1; */
   width: 100%;
   height: fit-content;
   margin-left: 20px;

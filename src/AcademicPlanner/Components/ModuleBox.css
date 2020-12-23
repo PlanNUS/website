@@ -14,7 +14,8 @@
 }
 
 .white {
-  background-color: white;
+  background-color: transparent;
+  /* opacity: 0%; */
 }
 
 .lightOrange {
@@ -45,7 +46,7 @@
 
 #moduleCodetitle {
   font-weight: bold;
-  color: rgb(107, 107, 107);
+  /* color: rgb(107, 107, 107); */
 }
 
 #contentBox {

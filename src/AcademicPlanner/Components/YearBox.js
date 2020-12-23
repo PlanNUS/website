@@ -1,5 +1,6 @@
 import {IoAdd, IoClose} from 'react-icons/io5';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -10,9 +11,10 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 import SemesterBox from './SemesterBox';
+import {TOTAL_SEMESTER} from '../../Constants';
 import './YearBox.css';
 
-export default function YearBox(props) {
+function YearBox(props) {
   const year = props.year;
   const darkTheme = props.darkTheme;
   const isShown = props.isShown;
@@ -21,6 +23,8 @@ export default function YearBox(props) {
   const moduleData = props.moduleData;
   const moduleDataLength = props.moduleDataLength;
   const currentYearIndex = props.currentYearIndex;
+  const currentModuleData = props.currentModuleData;
+  const updateData = props.updateData;
 
   const [showDeleteConfirmation, updateShowDeleteConfirmation] = useState(
     false,
@@ -32,11 +36,36 @@ export default function YearBox(props) {
   const [semesterOneShown, updateSemesterOneShown] = useState(true);
   const [specialTermOneShown, updateSpecialTermOneShown] = useState(true);
   const [specialTermTwoShown, updateSpecialTermTwoShown] = useState(true);
-  const [semesterTwoShown, updateSemesterTwoShown] = useState(false);
+  const [semesterTwoShown, updateSemesterTwoShown] = useState(true);
 
   function handleYearDeletion() {
     //Hide everything and trigger deletion inside semester box
-    updateSemesterOneShown(false);
+
+    const tempCurrentModuleData = [...currentModuleData];
+    const currentYear = tempCurrentModuleData[currentYearIndex];
+
+    let MCToRemoveFromTotal = 0;
+    const lastIndex = TOTAL_SEMESTER + 4;
+
+    for (let i = 4; i < lastIndex; i++) {
+      MCToRemoveFromTotal += currentYear[i].semModularCredit;
+    }
+
+    tempCurrentModuleData[5].totalModularCredits -= MCToRemoveFromTotal;
+    tempCurrentModuleData[currentYearIndex] = [
+      [],
+      [],
+      [],
+      [],
+      {semModularCredit: 0},
+      {semModularCredit: 0},
+      {semModularCredit: 0},
+      {semModularCredit: 0},
+    ];
+
+    updateData(tempCurrentModuleData);
+
+    updateSemesterOneShown(true);
     updateSpecialTermOneShown(false);
     updateSpecialTermTwoShown(false);
     updateSemesterTwoShown(false);
@@ -227,3 +256,19 @@ export default function YearBox(props) {
     return null;
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    currentModuleData: state.currentModuleData,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateData: (newModuleData) => {
+      dispatch({type: 'UPDATE_DATA', newData: newModuleData});
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(YearBox);
