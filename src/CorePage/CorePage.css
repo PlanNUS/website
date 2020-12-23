@@ -4,14 +4,16 @@ a {
 
 #darkTheme {
   background-color: darkgrey;
-  width: 100%;
+  width: fit-content;
   height: 100%;
+  padding-right: 5px;
 }
 
 #lightTheme {
   background-color: white;
-  width: 100%;
+  width: fit-content;
   height: 100%;
+  padding-right: 5px;
 }
 
 #headerBanner {
@@ -29,7 +31,6 @@ a {
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: center; */
   padding-right: 20px;
 }
 

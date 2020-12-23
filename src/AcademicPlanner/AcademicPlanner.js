@@ -139,7 +139,12 @@ function AcademicPlanner(props) {
           <DialogContentText id="error">{addYearErrorString}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => updateShowModal(false)} color="primary">
+          <Button
+            onClick={() => {
+              updateShowModal(false);
+              updateAddYearErrorString('');
+            }}
+            color="primary">
             Cancel
           </Button>
           <Button onClick={handleSelectUpdate} color="primary">
