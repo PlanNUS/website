@@ -4,7 +4,7 @@ import {
   Switch,
   Route,
   Link,
-  // Redirect,
+  Redirect,
 } from 'react-router-dom';
 
 import '../../Style/CorePage/Navigator.css';
@@ -31,10 +31,10 @@ export default function Navigator(props) {
     <Router>
       <div id="mainPage">
         <nav id="navigatorSelector">
-          <Link to="/AcademicPlanner">
+          <Link to="/PlanNUS//AcademicPlanner">
             <SideButton icon={planner} desc="Planner" darkTheme={darkTheme} />
           </Link>
-          <Link to="/CAPCalculator">
+          <Link to="/PlanNUS//CAPCalculator">
             <SideButton
               icon={calculator}
               desc="Calculator"
@@ -43,7 +43,7 @@ export default function Navigator(props) {
           </Link>
         </nav>
 
-        {/* <Redirect exact from="/" to="/AcademicPlanner" /> */}
+        <Redirect exact from="/PlanNUS/" to="/PlanNUS/AcademicPlanner" />
         <div id="appWrapper">
           <Notification darkTheme={darkTheme} />
           <ImportConfirmation
@@ -55,7 +55,7 @@ export default function Navigator(props) {
             <Switch>
               <Route
                 exact
-                path="/"
+                path="/PlanNUS/"
                 render={(routeProps) => (
                   <Home
                     {...routeProps}
@@ -68,7 +68,7 @@ export default function Navigator(props) {
               />
               <Route
                 exact
-                path="/AcademicPlanner"
+                path="/PlanNUS/AcademicPlanner"
                 render={(routeProps) => (
                   <AcademicPlanner
                     {...routeProps}
@@ -81,7 +81,7 @@ export default function Navigator(props) {
               />
               <Route
                 exact
-                path="/CAPCalculator"
+                path="/PlanNUS/CAPCalculator"
                 render={(routeProps) => (
                   <CAPCalculator
                     {...routeProps}
