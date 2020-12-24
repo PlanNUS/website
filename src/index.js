@@ -6,11 +6,13 @@ import {createStore} from 'redux';
 
 import './index.css';
 
-import CorePage from './CorePage/CorePage.js';
+// import CorePage from './CorePage/CorePage.js';
+import CorePage from './Core/CorePage/CorePage';
+import Login from './Core/Login/Login';
 import reportWebVitals from './reportWebVitals';
 
 const initialState = {
-  currentModuleData: [
+  globalData: [
     //Year 1
     [
       //Sem 1 to Special term 2 in order from left to right
@@ -73,43 +75,63 @@ const initialState = {
     ],
     {
       totalModularCredits: 0,
+      isDarkModeChecked: false,
+      isDisplayed: [
+        //Year 1
+        [
+          true, //Is current year shown? ("Overrides" the rest)
+          true, //Is Sem 1 shown?
+          false, //Is Special Term 1 shown?
+          false, //Is Special Term 2 shown?
+          false, //Is Sem 2 shown?
+        ],
+
+        //Year 2
+        [
+          false, //Is current year shown? ("Overrides" the rest)
+          true, //Is Sem 1 shown?
+          false, //Is Special Term 1 shown?
+          false, //Is Special Term 2 shown?
+          false, //Is Sem 2 shown?
+        ],
+
+        //Year 3,
+        [
+          false, //Is current year shown? ("Overrides" the rest)
+          true, //Is Sem 1 shown?
+          false, //Is Special Term 1 shown?
+          false, //Is Special Term 2 shown?
+          false, //Is Sem 2 shown?
+        ],
+
+        //Year 4
+        [
+          false, //Is current year shown? ("Overrides" the rest)
+          true, //Is Sem 1 shown?
+          false, //Is Special Term 1 shown?
+          false, //Is Special Term 2 shown?
+          false, //Is Sem 2 shown?
+        ],
+
+        //Year 5
+        [
+          false, //Is current year shown? ("Overrides" the rest)
+          true, //Is Sem 1 shown?
+          false, //Is Special Term 1 shown?
+          false, //Is Special Term 2 shown?
+          false, //Is Sem 2 shown?
+        ],
+      ],
     },
   ],
-
-  // currentModuleFlags: [
-  //   //Year 1
-  //   [
-  //     //Sem 1 to Special term 2 in order from left to right
-  //     [],
-  //     [],
-  //     [],
-  //     [],
-  //   ],
-
-  //   //Year 2
-  //   [[], [], [], []],
-
-  //   //Year 3,
-  //   [[], [], [], []],
-
-  //   //Year 4
-  //   [[], [], [], []],
-
-  //   //Year 5
-  //   [[], [], [], []],
-  // ],
 };
 
 function newDataRedux(state = initialState, action) {
   switch (action.type) {
     case 'UPDATE_DATA':
       return {
-        currentModuleData: action.newData,
+        globalData: action.newData,
       };
-    // case 'UPDATE_FLAGS':
-    //   return {
-    //     currentModuleFlags: action.newFlags,
-    //   };
     default:
       return state;
   }
@@ -120,7 +142,8 @@ const store = createStore(newDataRedux);
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <CorePage />
+      <Login />
+      {/* <CorePage /> */}
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),

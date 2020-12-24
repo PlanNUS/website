@@ -1,0 +1,23 @@
+#footerWrapper {
+  background-color: rgb(226, 226, 226);
+  height: fit-content;
+  padding: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+#footerFont {
+  font-size: 14px;
+}
+
+#clickable {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(119, 119, 119);
+}
+
+#clickableLine {
+  display: flex;
+  flex-direction: row;
+}

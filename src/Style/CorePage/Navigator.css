@@ -1,0 +1,29 @@
+#mainPage {
+  display: flex;
+  height: fit-content;
+  margin-bottom: 20px;
+  width: 100%;
+  flex-direction: row;
+}
+
+#navigatorSelector {
+  min-width: 150px;
+}
+
+#currentApp {
+  border: 1px solid lightgrey;
+  height: fit-content;
+  border-radius: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+}
+
+#appWrapper {
+  /* border: 1px solid lightgrey; */
+  height: fit-content;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 15px;
+  width: 100%;
+}
