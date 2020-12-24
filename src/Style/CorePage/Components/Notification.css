@@ -1,0 +1,20 @@
+#importConfirmWrapper {
+  border: 1px solid green;
+  border-radius: 15px;
+  height: fit-content;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  /* border: 1px solid black; */
+  /* flex-grow: 1; */
+}

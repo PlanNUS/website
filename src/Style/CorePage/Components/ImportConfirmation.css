@@ -1,0 +1,32 @@
+#importConfirmWrapper {
+  border: 1px solid green;
+  border-radius: 15px;
+  height: fit-content;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#buttonWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+#crossSpacer {
+  height: 20px;
+}
+
+#spacer {
+  height: 10px;
+}
+
+#controls {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-end; */
+  align-items: flex-end;
+  /* border: 1px solid black; */
+}
