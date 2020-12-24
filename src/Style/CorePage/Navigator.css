@@ -1,6 +1,8 @@
 #mainPage {
   display: flex;
   height: fit-content;
+  /* min-height: 100%; */
+  /* flex-grow: 1; */
   margin-bottom: 20px;
   width: 100%;
   flex-direction: row;

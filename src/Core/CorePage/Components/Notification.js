@@ -33,6 +33,10 @@ export default function Notification(props) {
               General usability
             </li>
           </ul>
+          <p className={`${darkTheme ? 'dark' : 'light'}Words`}>
+            The feedback link can be found in the footer. Thanks again and enjoy
+            hehe!
+          </p>
         </div>
         <div id="controls">
           <IoClose

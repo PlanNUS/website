@@ -149,69 +149,72 @@ function CorePage(props) {
     if (isLoadingSuccess) {
       return (
         <div id={`${darkTheme ? 'dark' : 'light'}Theme`}>
-          <Dialog
-            open={isLinkDialogOpen}
-            TransitionComponent={Transition}
-            // keepMounted
-            onClose={() => {
-              updateIsLinkDialogOpen(false);
-            }}>
-            <DialogTitle>Share Link!</DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-                Copy the link below to share your plan with friends!
-              </DialogContentText>
-              <TextField
-                fullWidth
-                variant="outlined"
-                value={shareLink}
-                disabled
+          <div id="forceFooterToBtm">
+            <div>
+              <Dialog
+                open={isLinkDialogOpen}
+                TransitionComponent={Transition}
+                // keepMounted
+                onClose={() => {
+                  updateIsLinkDialogOpen(false);
+                }}>
+                <DialogTitle>Share Link!</DialogTitle>
+                <DialogContent>
+                  <DialogContentText>
+                    Copy the link below to share your plan with friends!
+                  </DialogContentText>
+                  <TextField
+                    fullWidth
+                    variant="outlined"
+                    value={shareLink}
+                    disabled
+                  />
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    onClick={() => updateIsLinkDialogOpen(false)}
+                    color="primary">
+                    Done
+                  </Button>
+                </DialogActions>
+              </Dialog>
+
+              <div id="headerBanner">
+                <div id="logoPadding">
+                  <img alt="PlanNUS Home" src={Logo} />
+                </div>
+
+                <div id="rightMenu">
+                  <div id="shareButton" onClick={handleShareLinkOpen}>
+                    <p id="shareText">Share</p>
+                  </div>
+                  <div id="darkModeChecker">
+                    <p
+                      className={`${darkTheme ? 'dark' : 'light'}Words`}
+                      id="darkModeWords">
+                      Dark Mode
+                    </p>
+                    <div id="spacer" />
+                    <ToggleSwitch
+                      id="switch"
+                      onChange={(checked) => handleDarkModeToggle(checked)}
+                      checked={darkTheme}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <Navigator
+                isImportConfirmShown={isImportConfirmShown}
+                handleImportConfirmation={handleImportConfirmation}
+                darkTheme={darkTheme}
+                moduleData={moduleData}
+                moduleDataLength={moduleDataLength}
+                transition={Transition}
               />
-            </DialogContent>
-            <DialogActions>
-              <Button
-                onClick={() => updateIsLinkDialogOpen(false)}
-                color="primary">
-                Done
-              </Button>
-            </DialogActions>
-          </Dialog>
-
-          <div id="headerBanner">
-            <div id="logoPadding">
-              <img alt="PlanNUS Home" src={Logo} />
             </div>
-
-            <div id="rightMenu">
-              <div id="shareButton" onClick={handleShareLinkOpen}>
-                <p id="shareText">Share</p>
-              </div>
-              <div id="darkModeChecker">
-                <p
-                  className={`${darkTheme ? 'dark' : 'light'}Words`}
-                  id="darkModeWords">
-                  Dark Mode
-                </p>
-                <div id="spacer" />
-                <ToggleSwitch
-                  id="switch"
-                  onChange={(checked) => handleDarkModeToggle(checked)}
-                  checked={darkTheme}
-                />
-              </div>
-            </div>
+            <Footer darkTheme={darkTheme} />
           </div>
-
-          <Navigator
-            isImportConfirmShown={isImportConfirmShown}
-            handleImportConfirmation={handleImportConfirmation}
-            darkTheme={darkTheme}
-            moduleData={moduleData}
-            moduleDataLength={moduleDataLength}
-            transition={Transition}
-          />
-
-          <Footer darkTheme={darkTheme} />
         </div>
       );
     } else {
