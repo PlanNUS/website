@@ -31,7 +31,7 @@ export default function Navigator(props) {
     <Router>
       <div id="mainPage">
         <nav id="navigatorSelector">
-          <Link to="/PlanNUS//AcademicPlanner">
+          <Link to="/PlanNUS/AcademicPlanner">
             <SideButton icon={planner} desc="Planner" darkTheme={darkTheme} />
           </Link>
           <Link to="/PlanNUS//CAPCalculator">
