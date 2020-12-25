@@ -17,8 +17,8 @@
 html {
   height: fit-content;
   display: flex;
-  min-width: 1050px; /* Suppose you want minimum width of 1000px */
-  width: auto !important; /* Firefox will set width as auto */
+  min-width: 1050px;
+  width: auto !important;
   width: 1050px;
   min-height: 100%;
   line-height: 1.5;

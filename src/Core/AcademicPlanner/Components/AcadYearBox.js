@@ -10,13 +10,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-import SemesterBox from './SemesterBox';
+import AcadSemesterBox from './AcadSemesterBox';
 import {TOTAL_SEMESTER} from '../../../Constants';
 
 import '../../../Style/AcademicPlanner/Components/AcadYearBox.css';
 import '../../../Style/Common/YearBoxCommons.css';
 
-function YearBox(props) {
+function AcadYearBox(props) {
   const year = props.year;
   const darkTheme = props.darkTheme;
   const isShown = props.isShown;
@@ -237,7 +237,7 @@ function YearBox(props) {
         </div>
 
         <div id="semesterWrapper">
-          <SemesterBox
+          <AcadSemesterBox
             currentSemester="Semester 1"
             currentSemesterIndex={0}
             currentYearIndex={currentYearIndex}
@@ -248,7 +248,7 @@ function YearBox(props) {
             moduleDataLength={moduleDataLength}
             updateIsShown={updateSemesterOneShown}
           />
-          <SemesterBox
+          <AcadSemesterBox
             currentSemester="Special Term 1"
             currentSemesterIndex={1}
             currentYearIndex={currentYearIndex}
@@ -259,7 +259,7 @@ function YearBox(props) {
             moduleDataLength={moduleDataLength}
             updateIsShown={updateSpecialTermOneShown}
           />
-          <SemesterBox
+          <AcadSemesterBox
             currentSemester="Special Term 2"
             currentSemesterIndex={2}
             currentYearIndex={currentYearIndex}
@@ -270,7 +270,7 @@ function YearBox(props) {
             moduleDataLength={moduleDataLength}
             updateIsShown={updateSpecialTermTwoShown}
           />
-          <SemesterBox
+          <AcadSemesterBox
             currentSemester="Semester 2"
             currentSemesterIndex={3}
             currentYearIndex={currentYearIndex}
@@ -303,4 +303,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(YearBox);
+export default connect(mapStateToProps, mapDispatchToProps)(AcadYearBox);

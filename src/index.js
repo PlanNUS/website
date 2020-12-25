@@ -74,6 +74,7 @@ const initialState = {
       {semModularCredit: 0},
     ],
     {
+      suUsed: 0,
       totalModularCredits: 0,
       isDarkModeChecked: false,
       isDisplayed: [

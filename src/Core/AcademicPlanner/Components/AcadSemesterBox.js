@@ -17,9 +17,9 @@ import {FLAGS} from '../../../Constants';
 
 // import {VerifyModulesForAddition} from '../Functions/VerifyModule';
 import Search from '../Functions/Search';
-import ModuleBox from './ModuleBox';
+import AcadModuleBox from './AcadModuleBox';
 
-function SemesterBox(props) {
+function AcadSemesterBox(props) {
   const currentSemester = props.currentSemester;
   const transition = props.transition;
   const isShown = props.isShown;
@@ -334,7 +334,7 @@ function SemesterBox(props) {
         </div>
 
         {moduleInSemester.map((currentData, index) => (
-          <ModuleBox
+          <AcadModuleBox
             removeModule={removeFromGlobalData}
             currentIdx={index}
             key={currentData.moduleCode}
@@ -363,4 +363,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SemesterBox);
+export default connect(mapStateToProps, mapDispatchToProps)(AcadSemesterBox);

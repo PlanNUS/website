@@ -12,7 +12,7 @@ import Select from '@material-ui/core/Select';
 import '../../Style/AcademicPlanner/AcademicPlanner.css';
 import '../../Style/Common/AppCommons.css';
 
-import YearBox from './Components/YearBox';
+import AcadYearBox from './Components/AcadYearBox';
 import OwnButton from '../CorePage/Components/OwnButton';
 import VerifyAllModules from './Functions/VerifyModule';
 
@@ -168,23 +168,28 @@ function AcademicPlanner(props) {
 
   return (
     <div id="appWrapper">
-      <div id="plannerHeader">
-        <OwnButton
-          darkTheme={darkTheme}
-          buttonDesc={buttonString}
-          type="sync"
-          onClick={() => {
-            updateButtonString('Checking...');
-            setTimeout(handleCheckRequirement, 500);
-          }}
-        />
-        <div id="buttonSpacer" />
-        <OwnButton
-          darkTheme={darkTheme}
-          buttonDesc="Add Year"
-          type="add"
-          onClick={() => updateShowModal(true)}
-        />
+      <div id="appHeader">
+        <p className={`${darkTheme ? 'dark' : 'light'}Words`} id="appTitle">
+          Academic Planner
+        </p>
+        <div id="rightGroup">
+          <OwnButton
+            darkTheme={darkTheme}
+            buttonDesc={buttonString}
+            type="sync"
+            onClick={() => {
+              updateButtonString('Checking...');
+              setTimeout(handleCheckRequirement, 500);
+            }}
+          />
+          <div id="buttonSpacer" />
+          <OwnButton
+            darkTheme={darkTheme}
+            buttonDesc="Add Year"
+            type="add"
+            onClick={() => updateShowModal(true)}
+          />
+        </div>
       </div>
 
       <Dialog
@@ -234,7 +239,7 @@ function AcademicPlanner(props) {
         </DialogActions>
       </Dialog>
 
-      <YearBox
+      <AcadYearBox
         darkTheme={darkTheme}
         year="1"
         currentYearIndex={0}
@@ -245,7 +250,7 @@ function AcademicPlanner(props) {
         updateIsShown={updateYearOneShown}
         semToDisplay={toDisplayArr[0]}
       />
-      <YearBox
+      <AcadYearBox
         darkTheme={darkTheme}
         year="2"
         currentYearIndex={1}
@@ -256,7 +261,7 @@ function AcademicPlanner(props) {
         updateIsShown={updateYearTwoShown}
         semToDisplay={toDisplayArr[1]}
       />
-      <YearBox
+      <AcadYearBox
         darkTheme={darkTheme}
         year="3"
         currentYearIndex={2}
@@ -267,7 +272,7 @@ function AcademicPlanner(props) {
         updateIsShown={updateYearThreeShown}
         semToDisplay={toDisplayArr[2]}
       />
-      <YearBox
+      <AcadYearBox
         darkTheme={darkTheme}
         year="4"
         currentYearIndex={3}
@@ -278,7 +283,7 @@ function AcademicPlanner(props) {
         updateIsShown={updateYearFourShown}
         semToDisplay={toDisplayArr[3]}
       />
-      <YearBox
+      <AcadYearBox
         darkTheme={darkTheme}
         year="5"
         currentYearIndex={4}

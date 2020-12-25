@@ -115,7 +115,13 @@ function CorePage(props) {
 
       const localData = Cookies.get('plannusLocalGlobalData');
       if (localData !== undefined) {
-        updateData(JSON.parse(localData));
+        const parsedData = JSON.parse(localData);
+
+        if (parsedData[5].suUsed === undefined) {
+          Cookies.remove('plannusLocalGlobalData');
+        } else {
+          updateData(parsedData);
+        }
       }
 
       if (window.location.search !== '') {

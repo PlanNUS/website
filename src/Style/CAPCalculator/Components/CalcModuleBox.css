@@ -1,0 +1,17 @@
+#gradeSelector {
+  border: 1px solid grey;
+  border-radius: 3px;
+  min-width: 62px;
+  width: 35%;
+  /* font-size: 20px; */
+  /* height: 40px; */
+}
+
+.selector {
+  font-size: 17px;
+  min-width: 58px;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}

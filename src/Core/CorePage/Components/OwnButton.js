@@ -1,5 +1,5 @@
 import React from 'react';
-import {IoAdd, IoSync} from 'react-icons/io5';
+import {IoAdd, IoSync, IoEye, IoEyeOff} from 'react-icons/io5';
 
 // import './OwnButton.css';
 import '../../../Style/CorePage/Components/OwnButton.css';
@@ -17,6 +17,12 @@ export default function OwnButton(props) {
       break;
     case 'sync':
       icon = <IoSync color="white" size="25px" />;
+      break;
+    case 'Show Details':
+      icon = <IoEye color="white" size="25px" />;
+      break;
+    case 'Hide Details':
+      icon = <IoEyeOff color="white" size="25px" />;
       break;
     default:
       icon = <div />;

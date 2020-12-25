@@ -1,6 +1,7 @@
 #appWrapper {
   display: flex;
   flex-direction: column;
+  padding-top: 10px;
   padding-bottom: 10px;
   width: 100%;
   min-width: fit-content;
@@ -8,4 +9,21 @@
   margin-left: 20px;
   margin-right: 20px;
   border-radius: 15px;
+}
+
+#appTitle {
+  font-weight: 600;
+  font-size: 22px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+#rightGroup {
+  display: flex;
+}
+
+#appHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

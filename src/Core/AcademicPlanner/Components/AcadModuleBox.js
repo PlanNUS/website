@@ -1,11 +1,10 @@
 import React from 'react';
 import {IoClose} from 'react-icons/io5';
 
-// import './ModuleBox.css';
 import '../../../Style/AcademicPlanner/Components/AcadModuleBox.css';
 import '../../../Style/Common/ModuleBoxCommons.css';
 
-export default function ModuleBox(props) {
+export default function AcadModuleBox(props) {
   const module = props.module;
   const darkTheme = props.darkTheme;
   const currentIdx = props.currentIdx;
