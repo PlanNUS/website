@@ -150,7 +150,7 @@ function CorePage(props) {
       return (
         <div id={`${darkTheme ? 'dark' : 'light'}Theme`}>
           <div id="forceFooterToBtm">
-            <div>
+            <div id="fitContent">
               <Dialog
                 open={isLinkDialogOpen}
                 TransitionComponent={Transition}

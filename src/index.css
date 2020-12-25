@@ -17,14 +17,15 @@
 html {
   height: fit-content;
   display: flex;
-  width: 100%;
+  min-width: 1050px; /* Suppose you want minimum width of 1000px */
+  width: auto !important; /* Firefox will set width as auto */
+  width: 1050px;
   min-height: 100%;
   line-height: 1.5;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 body {
-  /* height: 100%; */
   width: 100%;
   display: flex;
   margin: 0;

@@ -10,7 +10,7 @@ export default function Notification(props) {
 
   if (isNotifOpen) {
     return (
-      <div id="importConfirmWrapper">
+      <div id="importNotifWrapper">
         <div>
           <p className={`${darkTheme ? 'dark' : 'light'}Words`}>
             Welcome to PlanNUS Alpha Testing!

@@ -1,0 +1,11 @@
+#appWrapper {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  width: 100%;
+  min-width: fit-content;
+  height: fit-content;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 15px;
+}

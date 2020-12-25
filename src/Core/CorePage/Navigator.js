@@ -34,7 +34,7 @@ export default function Navigator(props) {
           <Link to="/PlanNUS/AcademicPlanner">
             <SideButton icon={planner} desc="Planner" darkTheme={darkTheme} />
           </Link>
-          <Link to="/PlanNUS//CAPCalculator">
+          <Link to="/PlanNUS/CAPCalculator">
             <SideButton
               icon={calculator}
               desc="Calculator"

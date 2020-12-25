@@ -10,6 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 import '../../Style/AcademicPlanner/AcademicPlanner.css';
+import '../../Style/Common/AppCommons.css';
 
 import YearBox from './Components/YearBox';
 import OwnButton from '../CorePage/Components/OwnButton';
@@ -166,7 +167,7 @@ function AcademicPlanner(props) {
   }
 
   return (
-    <div id="acadPlanWrapper">
+    <div id="appWrapper">
       <div id="plannerHeader">
         <OwnButton
           darkTheme={darkTheme}

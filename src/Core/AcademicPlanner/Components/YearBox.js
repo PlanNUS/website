@@ -13,7 +13,8 @@ import Select from '@material-ui/core/Select';
 import SemesterBox from './SemesterBox';
 import {TOTAL_SEMESTER} from '../../../Constants';
 
-import '../../../Style/AcademicPlanner/Components/YearBox.css';
+import '../../../Style/AcademicPlanner/Components/AcadYearBox.css';
+import '../../../Style/Common/YearBoxCommons.css';
 
 function YearBox(props) {
   const year = props.year;

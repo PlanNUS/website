@@ -1,0 +1,9 @@
+#yearButtonGroups {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#buttonGroupSeperator {
+  width: 10px;
+}

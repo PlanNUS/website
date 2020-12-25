@@ -1,11 +1,9 @@
 #mainPage {
   display: flex;
   height: fit-content;
-  /* min-height: 100%; */
-  /* flex-grow: 1; */
   margin-bottom: 20px;
-  width: 100%;
   flex-direction: row;
+  width: 100%;
 }
 
 #navigatorSelector {
@@ -19,13 +17,4 @@
   padding-left: 10px;
   padding-right: 10px;
   display: flex;
-}
-
-#appWrapper {
-  /* border: 1px solid lightgrey; */
-  height: fit-content;
-  margin-left: 20px;
-  margin-right: 20px;
-  border-radius: 15px;
-  width: 100%;
 }

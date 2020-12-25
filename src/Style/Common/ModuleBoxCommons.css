@@ -13,33 +13,10 @@
   align-items: center;
 }
 
-.white {
-  background-color: transparent;
-}
-
-.lightOrange {
-  background-color: rgb(255, 214, 198);
-}
-
-#errorMessage {
-  font-size: 12px;
-}
-
-#errorListHidden {
-  display: none;
-  margin: 0px;
-  padding-left: 12%;
-}
-
-#errorListShown {
-  margin: 0px;
-  padding-left: 12%;
+#contentBox {
+  flex-grow: 1;
 }
 
 #moduleCodetitle {
   font-weight: bold;
-}
-
-#contentBox {
-  flex-grow: 1;
 }
