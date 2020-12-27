@@ -61,7 +61,7 @@ function AcadYearBox(props) {
       MCToRemoveFromTotal += currentYear[i].semModularCredit;
     }
 
-    tempGlobalData[5].totalModularCredits -= MCToRemoveFromTotal;
+    tempGlobalData[5].totalMCAdded -= MCToRemoveFromTotal;
     tempGlobalData[currentYearIndex] = [
       [],
       [],

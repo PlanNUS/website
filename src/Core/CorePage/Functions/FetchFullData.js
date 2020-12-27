@@ -1,6 +1,6 @@
 import {AcadamicYear} from '../../../Constants';
 
-export default function FetchPrerequisite(currentModuleCode) {
+export default function FetchFullData(currentModuleCode) {
   try {
     const url = `https://api.nusmods.com/v2/${AcadamicYear}/modules/${currentModuleCode}.json`;
 

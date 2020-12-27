@@ -19,6 +19,7 @@ import {Transition, AcadamicYear, FLAGS} from '../../Constants';
 
 import Navigator from './Navigator';
 import Footer from './Footer';
+import FetchFullData from './Functions/FetchFullData';
 
 import Logo from './Assets/Title.png';
 import ErrorIcon from './Assets/SadFace.png';
@@ -104,8 +105,24 @@ function CorePage(props) {
         let tempObj = {
           moduleCode: fetchedModuleData[i].moduleCode,
           moduleCredit: fetchedModuleData[i].moduleCredit,
+          attributes: fetchedModuleData[i].attributes,
           ...FLAGS,
         };
+
+        // if (
+        //   fetchedModuleData[i].moduleCode.match(/\bGEQ1000\b/) ||
+        //   fetchedModuleData[i].moduleCode.match(/\bCS1231\b/) ||
+        //   fetchedModuleData[i].moduleCode.match(/\bCG1111\b/) ||
+        //   fetchedModuleData[i].moduleCode.match(/\bCS2040\b/)
+        // ) {
+        //   // const tempData = FetchFullData(fetchedModuleData[i].moduleCode);
+        //   // console.log('ran');
+        //   // console.log(tempData);
+
+        //   console.log('ran local');
+        //   // console.log(fetchedModuleData[i]);
+        //   console.log(tempObj);
+        // }
 
         tempModuleData.push(tempObj);
       }
@@ -116,6 +133,8 @@ function CorePage(props) {
       const localData = Cookies.get('plannusLocalGlobalData');
       if (localData !== undefined) {
         const parsedData = JSON.parse(localData);
+
+        // Cookies.remove('plannusLocalGlobalData');
 
         if (parsedData[5].suUsed === undefined) {
           Cookies.remove('plannusLocalGlobalData');

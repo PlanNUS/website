@@ -69,6 +69,8 @@ function CAPCalculator(props) {
   const [suUsed, updateSuUsed] = useState(0);
   const [suLeft, updateSuLeft] = useState(0);
   const [MCAdded, updateMCAdded] = useState(0);
+  const [totalMCClearedExternal, updateTotalMCClearedExternal] = useState(0);
+  const [currCap, updateCurrCap] = useState(0.0);
 
   const [isDetailsShown, updateIsDetailsShown] = useState(true);
   const [detailButtonString, updateDetailButtonString] = useState('Hide');
@@ -78,6 +80,17 @@ function CAPCalculator(props) {
   const [yearThreeShown, updateYearThreeShown] = useState(false);
   const [yearFourShown, updateYearFourShown] = useState(false);
   const [yearFiveShown, updateYearFiveShown] = useState(false);
+
+  // const temp = {
+  //   totalSU: 0,
+  //   suUsed: 0,
+  //   totalMCAdded: 0,
+  //   totalMxP: 0,
+  //   totalMCClearedInternal: 0,
+  //   totalMCClearedExternal: 0,
+  //   currentCap: 0.0,
+  //   isDarkModeChecked: false,
+  // };
 
   useEffect(() => {
     const tempGlobalData = [...globalData];
@@ -91,8 +104,21 @@ function CAPCalculator(props) {
 
     updateToDisplayArr(tempToDisplayArr);
 
-    updateMCAdded(tempGlobalData[5].totalModularCredits);
+    updateMCAdded(tempGlobalData[5].totalMCAdded);
     updateSuUsed(tempGlobalData[5].suUsed);
+
+    if (tempGlobalData[5].totalSU === 0) {
+      updateTotalSUString('');
+    } else {
+      updateTotalSUString(tempGlobalData[5].totalSU.toString());
+    }
+
+    updateTotalSU(tempGlobalData[5].totalSU);
+    updateCurrCap(tempGlobalData[5].currentCap);
+
+    console.log(tempGlobalData[5].currentCap);
+
+    updateTotalMCClearedExternal(tempGlobalData[5].totalMCClearedExternal);
   }, [globalData]);
 
   useEffect(() => {
@@ -112,9 +138,15 @@ function CAPCalculator(props) {
     const inputNumber = parseInt(userInput);
 
     if (userInput === '') {
+      const tempGlobalData = [...globalData];
+      tempGlobalData[5].totalSU = 0;
+      updateData(tempGlobalData);
       updateTotalSUString('');
       updateTotalSU(0);
-    } else if (!isNaN(inputNumber)) {
+    } else if (!isNaN(inputNumber) && inputNumber >= 0) {
+      const tempGlobalData = [...globalData];
+      tempGlobalData[5].totalSU = inputNumber;
+      updateData(tempGlobalData);
       updateTotalSUString(inputNumber);
       updateTotalSU(inputNumber);
     }
@@ -131,7 +163,7 @@ function CAPCalculator(props) {
             type="cap"
             darkTheme={darkTheme}
             desc="Current CAP:"
-            value={totalSU}
+            value={currCap}
           />
           <div id="seperator" />
           <OwnButton
@@ -151,6 +183,7 @@ function CAPCalculator(props) {
         suUsed={suUsed}
         suLeft={suLeft}
         MCAdded={MCAdded}
+        totalMCClearedExternal={totalMCClearedExternal}
         handleNewSU={handleNewSU}
       />
 

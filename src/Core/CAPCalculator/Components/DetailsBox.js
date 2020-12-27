@@ -18,6 +18,8 @@ export default function DetailsBox(props) {
   const MCAdded = props.MCAdded;
   const handleNewSU = props.handleNewSU;
 
+  const totalMCClearedExternal = props.totalMCClearedExternal;
+
   if (isShown) {
     return (
       <div id="mainYearBox">
@@ -52,7 +54,7 @@ export default function DetailsBox(props) {
             type="display"
             darkTheme={darkTheme}
             desc="MCs Cleared:"
-            value={totalSU}
+            value={totalMCClearedExternal}
           />
         </div>
       </div>

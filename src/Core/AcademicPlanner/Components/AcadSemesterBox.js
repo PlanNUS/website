@@ -81,7 +81,7 @@ function AcadSemesterBox(props) {
   function handleSemesterDeletion() {
     //Clear array;
     const tempGlobalData = [...globalData];
-    tempGlobalData[5].totalModularCredits -=
+    tempGlobalData[5].totalMCAdded -=
       tempGlobalData[currentYearIndex][
         currentSemesterIndex + 4
       ].semModularCredit;
@@ -156,6 +156,7 @@ function AcadSemesterBox(props) {
           let newModule = {
             moduleCode: chipsDataToDisplay[i].moduleCode,
             moduleCredit: chipsDataToDisplay[i].moduleCredit,
+            attributes: chipsDataToDisplay[i].attributes,
             ...FLAGS,
           };
           modulesToAdd.push(newModule);
@@ -176,7 +177,7 @@ function AcadSemesterBox(props) {
         currentSemesterIndex + 4
       ].semModularCredit += modularCreditsToAdd;
 
-      tempGlobalData[5].totalModularCredits += modularCreditsToAdd;
+      tempGlobalData[5].totalMCAdded += modularCreditsToAdd;
 
       updateData(tempGlobalData);
       updateChipsDataToDisplay([]);
@@ -201,7 +202,7 @@ function AcadSemesterBox(props) {
     tempGlobalData[currentYearIndex][
       currentSemesterIndex + 4
     ].semModularCredit -= moduleToRemove.moduleCredit;
-    tempGlobalData[5].totalModularCredits -= moduleToRemove.moduleCredit;
+    tempGlobalData[5].totalMCAdded -= moduleToRemove.moduleCredit;
 
     updateData(tempGlobalData);
   }

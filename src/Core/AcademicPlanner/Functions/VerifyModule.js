@@ -1,4 +1,4 @@
-import FetchPrerequisite from './FetchPrerequisite';
+import FetchFullData from '../../CorePage/Functions/FetchFullData';
 
 import {TOTAL_YEAR, TOTAL_SEMESTER} from '../../../Constants';
 
@@ -16,7 +16,7 @@ export default function VerifyAllModules(allData) {
           i,
           j,
           allData,
-          newAllData[5].totalModularCredits,
+          newAllData[5].totalMCAdded,
         );
       }
     }
@@ -30,10 +30,10 @@ function VerifyEachModule(
   currentYear,
   currentSemester,
   fullModuleData,
-  totalModularCredits,
+  totalMCAdded,
 ) {
   // console.log('jafshdklasd');
-  const reqData = FetchPrerequisite(moduleToBeAdded.moduleCode);
+  const reqData = FetchFullData(moduleToBeAdded.moduleCode);
   const currentYearSemIndex = ConvertToIndex(currentYear, currentSemester);
 
   let newModule = {...moduleToBeAdded};
@@ -42,9 +42,9 @@ function VerifyEachModule(
 
   // console.log(
   //   'total modular credits sent in ' +
-  //     totalModularCredits +
+  //     totalMCAdded +
   //     ', type = ' +
-  //     typeof totalModularCredits,
+  //     typeof totalMCAdded,
   // );
   // console.log(
   //   'module to be added credit ' +
@@ -55,7 +55,7 @@ function VerifyEachModule(
 
   // console.log(reqData);
 
-  if (totalModularCredits === parseInt(moduleToBeAdded.moduleCredit)) {
+  if (totalMCAdded === parseInt(moduleToBeAdded.moduleCredit)) {
     // console.log('ran');
     if ('prereqTree' in reqData) {
       newModule.isPrereqCleared = false;

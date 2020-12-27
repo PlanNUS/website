@@ -74,8 +74,13 @@ const initialState = {
       {semModularCredit: 0},
     ],
     {
+      totalSU: 0,
       suUsed: 0,
-      totalModularCredits: 0,
+      totalMCAdded: 0,
+      totalMxP: 0,
+      totalMCClearedInternal: 0,
+      totalMCClearedExternal: 0,
+      currentCap: 0.0,
       isDarkModeChecked: false,
       isDisplayed: [
         //Year 1
