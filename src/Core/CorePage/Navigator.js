@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
+  HashRouter,
   Switch,
   Route,
   Link,
   Redirect,
-  useLocation,
 } from 'react-router-dom';
 
 import '../../Style/CorePage/Navigator.css';
@@ -40,13 +40,14 @@ export default function Navigator(props) {
   }, [currLocation]);
 
   return (
-    <Router>
+    // <BrowserRouter>
+    <HashRouter>
       <div id="mainPage">
         <nav id="navigatorSelector">
-          <Link to="/PlanNUS/AcademicPlanner">
+          <Link to="/AcademicPlanner">
             <SideButton icon={planner} desc="Planner" darkTheme={darkTheme} />
           </Link>
-          <Link to="/PlanNUS/CAPCalculator">
+          <Link to="/CAPCalculator">
             <SideButton
               icon={calculator}
               desc="Calculator"
@@ -55,7 +56,7 @@ export default function Navigator(props) {
           </Link>
         </nav>
 
-        <Redirect exact from="/PlanNUS/" to="/PlanNUS/CAPCalculator" />
+        <Redirect exact from="/" to="/CAPCalculator" />
         <div id="appWrapper">
           <Notification type="Global" darkTheme={darkTheme} />
           <Notification type={currNotif} darkTheme={darkTheme} />
@@ -68,7 +69,7 @@ export default function Navigator(props) {
             <Switch>
               <Route
                 exact
-                path="/PlanNUS/"
+                path="/"
                 render={(routeProps) => (
                   <Home
                     {...routeProps}
@@ -82,7 +83,7 @@ export default function Navigator(props) {
               />
               <Route
                 exact
-                path="/PlanNUS/AcademicPlanner"
+                path="/AcademicPlanner"
                 render={(routeProps) => (
                   <AcademicPlanner
                     {...routeProps}
@@ -96,7 +97,7 @@ export default function Navigator(props) {
               />
               <Route
                 exact
-                path="/PlanNUS/CAPCalculator"
+                path="/CAPCalculator"
                 render={(routeProps) => (
                   <CAPCalculator
                     {...routeProps}
@@ -109,6 +110,7 @@ export default function Navigator(props) {
           </div>
         </div>
       </div>
-    </Router>
+    </HashRouter>
+    // </BrowserRouter>
   );
 }
