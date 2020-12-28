@@ -9,6 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import {useLocation} from 'react-router-dom';
+import {Helmet} from 'react-helmet';
 
 import '../../Style/AcademicPlanner/AcademicPlanner.css';
 import '../../Style/Common/AppCommons.css';
@@ -175,6 +176,13 @@ function AcademicPlanner(props) {
 
   return (
     <div id="appWrapper">
+      <Helmet>
+        <title>Planner</title>
+        <meta
+          name="Academic Planner"
+          content="This app allows for the planning of schedules for courses in NUS"
+        />
+      </Helmet>
       <div id="appHeader">
         <p className={`${darkTheme ? 'dark' : 'light'}Words`} id="appTitle">
           Academic Planner

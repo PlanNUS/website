@@ -28,14 +28,14 @@ export default function Navigator(props) {
   const moduleDataLength = props.moduleDataLength;
   const transition = props.transition;
 
-  const [currLocation, updateCurrLocation] = useState({pathname: ''});
+  const [currLocation, updateCurrLocation] = useState({pathname: '/'});
   const [currNotif, updateCurrNotif] = useState('');
 
   useEffect(() => {
     if (currLocation.pathname.includes('CAPCalculator')) {
-      updateCurrNotif('CAPCalculator');
+      updateCurrNotif('/CAPCalculator');
     } else if (currLocation.pathname.includes('AcademicPlanner')) {
-      updateCurrNotif('AcademicPlanner');
+      updateCurrNotif('/AcademicPlanner');
     }
   }, [currLocation]);
 
@@ -56,7 +56,7 @@ export default function Navigator(props) {
           </Link>
         </nav>
 
-        <Redirect exact from="/" to="/CAPCalculator" />
+        <Redirect exact from="/" to={currLocation.pathname} />
         <div id="appWrapper">
           <Notification type="Global" darkTheme={darkTheme} />
           <Notification type={currNotif} darkTheme={darkTheme} />

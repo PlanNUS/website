@@ -10,7 +10,7 @@ export default function Notification(props) {
   const [isNotifOpen, updateIsNotifOpen] = useState(true);
 
   if (isNotifOpen) {
-    if (type === 'CAPCalculator') {
+    if (type === '/CAPCalculator') {
       return (
         <div id="importNotifWrapper" style={{borderColor: 'blue'}}>
           <div>
@@ -37,7 +37,7 @@ export default function Notification(props) {
           </div>
         </div>
       );
-    } else if (type === 'AcademicPlanner') {
+    } else if (type === '/AcademicPlanner') {
       return (
         <div id="importNotifWrapper" style={{borderColor: 'blue'}}>
           <div>

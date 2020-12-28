@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {useLocation} from 'react-router-dom';
+import {Helmet} from 'react-helmet';
 
 import '../../Style/CAPCalculator/CAPCalculator.css';
 import '../../Style/Common/AppCommons.css';
@@ -141,6 +142,13 @@ function CAPCalculator(props) {
 
   return (
     <div id="appWrapper">
+      <Helmet>
+        <title>Calculator</title>
+        <meta
+          name="CAP Calculator"
+          content="This app allows for the calculation of the user's CAP"
+        />
+      </Helmet>
       <div id="appHeader">
         <p className={`${darkTheme ? 'dark' : 'light'}Words`} id="appTitle">
           CAP Calculator
