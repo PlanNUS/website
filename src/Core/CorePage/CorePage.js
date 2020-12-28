@@ -12,14 +12,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-// import Slide from '@material-ui/core/Slide';
 
 import '../../Style/CorePage/CorePage.css';
 import {Transition, AcadamicYear, FLAGS} from '../../Constants';
 
 import Navigator from './Navigator';
 import Footer from './Footer';
-import FetchFullData from './Functions/FetchFullData';
 
 import Logo from './Assets/Title.png';
 import ErrorIcon from './Assets/SadFace.png';
@@ -109,21 +107,6 @@ function CorePage(props) {
           ...FLAGS,
         };
 
-        // if (
-        //   fetchedModuleData[i].moduleCode.match(/\bGEQ1000\b/) ||
-        //   fetchedModuleData[i].moduleCode.match(/\bCS1231\b/) ||
-        //   fetchedModuleData[i].moduleCode.match(/\bCG1111\b/) ||
-        //   fetchedModuleData[i].moduleCode.match(/\bCS2040\b/)
-        // ) {
-        //   // const tempData = FetchFullData(fetchedModuleData[i].moduleCode);
-        //   // console.log('ran');
-        //   // console.log(tempData);
-
-        //   console.log('ran local');
-        //   // console.log(fetchedModuleData[i]);
-        //   console.log(tempObj);
-        // }
-
         tempModuleData.push(tempObj);
       }
 
@@ -145,7 +128,6 @@ function CorePage(props) {
 
       if (window.location.search !== '') {
         const importArr = window.location.search.split('?');
-        // console.log(importArr);
         if (
           importArr[1].length !== localData.length &&
           !importArr[1].includes(localData)

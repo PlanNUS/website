@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
   Redirect,
+  useLocation,
 } from 'react-router-dom';
 
 import '../../Style/CorePage/Navigator.css';
@@ -27,6 +28,17 @@ export default function Navigator(props) {
   const moduleDataLength = props.moduleDataLength;
   const transition = props.transition;
 
+  const [currLocation, updateCurrLocation] = useState({pathname: ''});
+  const [currNotif, updateCurrNotif] = useState('');
+
+  useEffect(() => {
+    if (currLocation.pathname.includes('CAPCalculator')) {
+      updateCurrNotif('CAPCalculator');
+    } else if (currLocation.pathname.includes('AcademicPlanner')) {
+      updateCurrNotif('AcademicPlanner');
+    }
+  }, [currLocation]);
+
   return (
     <Router>
       <div id="mainPage">
@@ -45,7 +57,8 @@ export default function Navigator(props) {
 
         <Redirect exact from="/PlanNUS/" to="/PlanNUS/CAPCalculator" />
         <div id="appWrapper">
-          <Notification darkTheme={darkTheme} />
+          <Notification type="Global" darkTheme={darkTheme} />
+          <Notification type={currNotif} darkTheme={darkTheme} />
           <ImportConfirmation
             darkTheme={darkTheme}
             isShown={isImportConfirmShown}
@@ -63,6 +76,7 @@ export default function Navigator(props) {
                     moduleData={moduleData}
                     moduleDataLength={moduleDataLength}
                     transition={transition}
+                    updateCurrLocation={updateCurrLocation}
                   />
                 )}
               />
@@ -76,6 +90,7 @@ export default function Navigator(props) {
                     moduleData={moduleData}
                     moduleDataLength={moduleDataLength}
                     transition={transition}
+                    updateCurrLocation={updateCurrLocation}
                   />
                 )}
               />
@@ -86,9 +101,7 @@ export default function Navigator(props) {
                   <CAPCalculator
                     {...routeProps}
                     darkTheme={darkTheme}
-                    moduleData={moduleData}
-                    moduleDataLength={moduleDataLength}
-                    transition={transition}
+                    updateCurrLocation={updateCurrLocation}
                   />
                 )}
               />

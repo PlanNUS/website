@@ -5,12 +5,14 @@ a {
 #darkTheme {
   background-color: darkgrey;
   width: 100%;
+  min-width: fit-content;
   height: 100%;
 }
 
 #lightTheme {
   background-color: white;
   width: 100%;
+  min-width: fit-content;
   height: 100%;
 }
 

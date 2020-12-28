@@ -1,3 +1,11 @@
 #seperator {
   width: 10px;
 }
+
+.flagBackground {
+  background-color: pink;
+}
+
+.noneBackground {
+  background-color: transparent;
+}

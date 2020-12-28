@@ -3,7 +3,6 @@ import FetchFullData from '../../CorePage/Functions/FetchFullData';
 import {TOTAL_YEAR, TOTAL_SEMESTER} from '../../../Constants';
 
 export default function VerifyAllModules(allData) {
-  console.log('ini');
   let newAllData = [...allData];
 
   for (let i = 0; i < TOTAL_YEAR; i++) {
@@ -32,31 +31,13 @@ function VerifyEachModule(
   fullModuleData,
   totalMCAdded,
 ) {
-  // console.log('jafshdklasd');
   const reqData = FetchFullData(moduleToBeAdded.moduleCode);
   const currentYearSemIndex = ConvertToIndex(currentYear, currentSemester);
 
   let newModule = {...moduleToBeAdded};
-
   let isCoreqInSameSem = false;
 
-  // console.log(
-  //   'total modular credits sent in ' +
-  //     totalMCAdded +
-  //     ', type = ' +
-  //     typeof totalMCAdded,
-  // );
-  // console.log(
-  //   'module to be added credit ' +
-  //     moduleToBeAdded.moduleCredit +
-  //     ', type = ' +
-  //     typeof moduleToBeAdded.moduleCredit,
-  // );
-
-  // console.log(reqData);
-
   if (totalMCAdded === parseInt(moduleToBeAdded.moduleCredit)) {
-    // console.log('ran');
     if ('prereqTree' in reqData) {
       newModule.isPrereqCleared = false;
       newModule.isFlagged = true;
@@ -66,7 +47,6 @@ function VerifyEachModule(
       isCoreqInSameSem = true;
     }
   } else {
-    // console.log('ran ran');
     for (let year = 0; year < TOTAL_YEAR; year++) {
       for (let semester = 0; semester < TOTAL_SEMESTER; semester++) {
         const semesterToCheck = fullModuleData[year][semester];
@@ -84,7 +64,6 @@ function VerifyEachModule(
                 newModule.isFlagged = true;
               }
             }
-            // } else if (currentYear === year && currentSemester === semester) {
           } else if (currentYearSemIndex === toCheckYearSemIndex) {
             //Checking Corequisite
             if ('corequisite' in reqData) {
@@ -181,7 +160,6 @@ function CheckPrereqRecursive(currObj, currentCheckModuleCode) {
           currObj.splice(i);
         }
       } else {
-        // else if (typeof currObj[i] === 'object') {
         if ('and' in currObj) {
           const andData = currObj.and;
 
@@ -244,8 +222,6 @@ function CheckPrereqRecursive(currObj, currentCheckModuleCode) {
 function ConvertToIndex(year, sem) {
   const yearPlusOne = year * 4;
   const semPlusOne = sem;
-  // const semPlusOne = sem + 2;
-  // const yearPlusOne = year + 1;
 
   return yearPlusOne + semPlusOne;
 }

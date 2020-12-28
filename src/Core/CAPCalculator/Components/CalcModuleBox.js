@@ -9,6 +9,7 @@ import UpdateGrade from '../Functions/UpdateGrade';
 
 function CalcModuleBox(props) {
   const module = props.module;
+  const suLeft = props.suLeft;
   const darkTheme = props.darkTheme;
   const globalData = props.globalData;
   const updateData = props.updateData;
@@ -18,6 +19,8 @@ function CalcModuleBox(props) {
 
   const [selectedIdx, updateSelectedIdx] = useState(0);
   const [options, updateOptions] = useState(GRADES);
+  const [isSu, updateIsSU] = useState(false);
+  const [errorFlag, updateErrorFlag] = useState(null);
 
   // const temp = {
   //   totalSU: 0,
@@ -35,37 +38,44 @@ function CalcModuleBox(props) {
 
     if (module.attributes !== undefined) {
       if (module.attributes.su !== undefined && module.attributes.su) {
-        // console.log('ran');
+        updateIsSU(true);
         updateOptions(GRADES_SU);
       } else {
+        updateIsSU(false);
         updateOptions(GRADES);
       }
     }
   }, [module]);
 
+  useEffect(() => {
+    if (suLeft < 0 && isSu) {
+      updateErrorFlag(<p>Total SU exceeded!</p>);
+    } else {
+      updateErrorFlag(null);
+    }
+  }, [suLeft, isSu]);
+
   function handleGradeChange(newIdx) {
     if (newIdx !== selectedIdx) {
       const newGlobalData = UpdateGrade(options, newIdx, module, globalData);
       newGlobalData[currYear][currSem][currIdx].gradeIdx = newIdx;
-      // console.log(newGlobalData);
+
       updateData(newGlobalData);
       updateSelectedIdx(newIdx);
     }
   }
 
-  // useEffect(() => {
-  //   console.log('selected idx');
-  //   console.log(selectedIdx);
-  // }, [selectedIdx]);
-
   return (
-    <div id="moduleBox">
+    <div
+      id="moduleBox"
+      className={`${suLeft < 0 && isSu ? `flag` : `none`}Background`}>
       <div id="contentBox">
         <p
           className={`${darkTheme ? 'dark' : 'light'}Words`}
           id="moduleCodetitle">
           {module.moduleCode}
         </p>
+        <p className={`${darkTheme ? 'dark' : 'light'}Words`}>{errorFlag}</p>
       </div>
 
       <div id="gradeSelector">

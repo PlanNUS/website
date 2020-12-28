@@ -76,6 +76,7 @@ const initialState = {
     {
       totalSU: 0,
       suUsed: 0,
+      suLeft: 0,
       totalMCAdded: 0,
       totalMxP: 0,
       totalMCClearedInternal: 0,

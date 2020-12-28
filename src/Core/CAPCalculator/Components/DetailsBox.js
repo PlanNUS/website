@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 import '../../../Style/Common/YearBoxCommons.css';
 import '../../../Style/CAPCalculator/Components/DetailsBox.css';
@@ -9,7 +9,6 @@ export default function DetailsBox(props) {
   const isShown = props.isShown;
   const darkTheme = props.darkTheme;
 
-  const totalSU = props.totalSU;
   const totalSUString = props.totalSUString;
 
   const suUsed = props.suUsed;
@@ -39,7 +38,7 @@ export default function DetailsBox(props) {
             value={suUsed}
           />
           <OwnInput
-            type="display"
+            type="su"
             darkTheme={darkTheme}
             desc="SU Left:"
             value={suLeft}

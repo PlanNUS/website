@@ -6,22 +6,6 @@ export default function UpdateGrade(
   currModule,
   globalData,
 ) {
-  // const temp = {
-  //   totalSU: 0,
-  //   suUsed: 0,
-  //   totalMCAdded: 0,
-  //   totalMxP: 0,
-  //   totalMCClearedInternal: 0,
-  //   totalMCClearedExternal: 0,
-  //   currentCap: 0.0,
-  //   isDarkModeChecked: false,
-  // };
-
-  // const temp = { grade: '*', gradePoint: -1.0, type: NOT_CLEARED, isCleared: false };
-
-  // moduleCode: fetchedModuleData[i].moduleCode,
-  // moduleCredit: fetchedModuleData[i].moduleCredit,
-  // attributes: fetchedModuleData[i].attributes,
   const tempGlobalData = [...globalData];
   const calcData = tempGlobalData[5];
 
@@ -35,7 +19,6 @@ export default function UpdateGrade(
     newGradeObj.type === NORMAL
   ) {
     calcData.totalMxP += newGradeObj.gradePoint * currModuleCredit;
-    console.log(calcData.totalMxP);
     calcData.totalMCClearedInternal += currModuleCredit;
     calcData.currentCap =
       parseFloat(calcData.totalMxP) /
@@ -49,10 +32,13 @@ export default function UpdateGrade(
     const newMc = calcData.totalMCClearedInternal - currModuleCredit;
     const newCap = parseFloat(newMxP) / parseFloat(newMc);
 
+    calcData.totalMxP = newMxP;
+    calcData.totalMCClearedInternal = newMc;
+
     if (isNaN(newCap) || newCap === Infinity) {
-      calcData.totalMxP = newMxP;
-      calcData.totalMCClearedInternal = newMc;
       calcData.currentCap = 0.0;
+    } else {
+      calcData.currentCap = newCap;
     }
   } else if (prevGradeObj.type === NORMAL && newGradeObj.type === NORMAL) {
     const MxPToMinus = prevGradeObj.gradePoint * currModuleCredit;
@@ -75,24 +61,18 @@ export default function UpdateGrade(
     calcData.totalMCClearedExternal += currModuleCredit;
   }
 
-  // console.log('prev grade');
-  // console.log(prevGradeObj);
-
-  // console.log('new grade');
-  // console.log(newGradeObj);
-
   if (
     (prevGradeObj.grade === 'S' || prevGradeObj.grade === 'U') &&
     !(newGradeObj.grade === 'S' || newGradeObj.grade === 'U')
   ) {
-    // console.log('ran su to not su');
     calcData.suUsed -= currModuleCredit;
+    calcData.suLeft = calcData.totalSU - calcData.suUsed;
   } else if (
     !(prevGradeObj.grade === 'S' || prevGradeObj.grade === 'U') &&
     (newGradeObj.grade === 'S' || newGradeObj.grade === 'U')
   ) {
-    // console.log('ran not su to su');
     calcData.suUsed += currModuleCredit;
+    calcData.suLeft = calcData.totalSU - calcData.suUsed;
   }
 
   return tempGlobalData;

@@ -8,6 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import {useLocation} from 'react-router-dom';
 
 import '../../Style/AcademicPlanner/AcademicPlanner.css';
 import '../../Style/Common/AppCommons.css';
@@ -23,6 +24,7 @@ function AcademicPlanner(props) {
   const moduleDataLength = props.moduleDataLength;
   const globalData = props.globalData;
   const updateData = props.updateData;
+  const updateCurrLocation = props.updateCurrLocation;
 
   const [toDisplayArr, updateToDisplayArr] = useState([
     //Year 1
@@ -83,6 +85,11 @@ function AcademicPlanner(props) {
   const [selectedYear, updateSelectedYear] = useState('0');
 
   const [addYearErrorString, updateAddYearErrorString] = useState('');
+
+  const currLocation = useLocation();
+  useEffect(() => {
+    updateCurrLocation(currLocation);
+  }, [updateCurrLocation, currLocation]);
 
   useEffect(() => {
     const tempToDisplayArr = [...globalData[5].isDisplayed];

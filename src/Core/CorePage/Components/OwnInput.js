@@ -48,6 +48,21 @@ export default function OwnInput(props) {
         </div>
       </div>
     );
+  } else if (type === 'su') {
+    return (
+      <div
+        id="inputFields"
+        className={`${value < 0 ? `flag` : `none`}Background`}>
+        <p
+          className={`${darkTheme ? 'dark' : 'light'}Words`}
+          id="inputFieldsText">
+          {desc}
+        </p>
+        <div id="suTextinput">
+          <p className={`${darkTheme ? 'dark' : 'light'}Words`}>{value}</p>
+        </div>
+      </div>
+    );
   } else if (type === 'cap') {
     return (
       <div id="inputFields" style={{borderWidth: 0}}>

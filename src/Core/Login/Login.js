@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 
 import CorePage from '../CorePage/CorePage';
 import '../../Style/Login/Login.css';
+import {VERSION} from '../../Constants';
 
 export default function Login() {
   const [isLoggedIn, updateIsLoggedIn] = useState(false);
@@ -39,7 +40,7 @@ export default function Login() {
           Welcome to PlanNUS!
         </p>
         <p className="lightWords" id="subtitle">
-          Version 0.0.1a (Alpha)
+          Version {VERSION}
         </p>
         <br />
         <p className="lightWords">Tester Login</p>
