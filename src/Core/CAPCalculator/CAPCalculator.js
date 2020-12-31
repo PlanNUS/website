@@ -8,12 +8,12 @@ import '../../Style/Common/AppCommons.css';
 
 import CalcYearBox from './Components/CalcYearBox';
 import DetailsBox from './Components/DetailsBox';
-import TargetBox from './Components/TargetBox';
 import OwnButton from '../CorePage/Components/OwnButton';
 import OwnInput from '../CorePage/Components/OwnInput';
 
 function CAPCalculator(props) {
   const darkTheme = props.darkTheme;
+  const styles = props.styles;
   const globalData = props.globalData;
   // const updateData = props.updateData;
   const updateCurrLocation = props.updateCurrLocation;
@@ -136,14 +136,17 @@ function CAPCalculator(props) {
         </div>
       </div>
 
-      <DetailsBox isShown={isDetailsShown} darkTheme={darkTheme} />
-
-      <TargetBox isShown={isDetailsShown} darkTheme={darkTheme} />
+      <DetailsBox
+        isShown={isDetailsShown}
+        styles={styles}
+        darkTheme={darkTheme}
+      />
 
       <CalcYearBox
         darkTheme={darkTheme}
         year="1"
         currentYearIndex={0}
+        styles={styles}
         isShown={yearOneShown}
         semToDisplay={toDisplayArr[0]}
       />
@@ -151,6 +154,7 @@ function CAPCalculator(props) {
         darkTheme={darkTheme}
         year="2"
         currentYearIndex={1}
+        styles={styles}
         isShown={yearTwoShown}
         semToDisplay={toDisplayArr[1]}
       />
@@ -158,6 +162,7 @@ function CAPCalculator(props) {
         darkTheme={darkTheme}
         year="3"
         currentYearIndex={2}
+        styles={styles}
         isShown={yearThreeShown}
         semToDisplay={toDisplayArr[2]}
       />
@@ -165,6 +170,7 @@ function CAPCalculator(props) {
         darkTheme={darkTheme}
         year="4"
         currentYearIndex={3}
+        styles={styles}
         isShown={yearFourShown}
         semToDisplay={toDisplayArr[3]}
       />
@@ -172,11 +178,11 @@ function CAPCalculator(props) {
         darkTheme={darkTheme}
         year="5"
         currentYearIndex={4}
+        styles={styles}
         isShown={yearFiveShown}
         semToDisplay={toDisplayArr[4]}
       />
     </div>
-    // </div>
   );
 }
 

@@ -13,7 +13,13 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import '../../Style/CorePage/CorePage.css';
-import {Transition, AcadamicYear, FLAGS} from '../../Constants';
+import {
+  Transition,
+  AcadamicYear,
+  FLAGS,
+  STYLES,
+  DARK_STYLES,
+} from '../../Constants';
 
 import Navigator from './Navigator';
 import Footer from './Footer';
@@ -39,6 +45,7 @@ function CorePage(props) {
   const [importData, updateImportData] = useState([]);
   const [isImportConfirmShown, updateIsImportConfirmShown] = useState(false);
   const [darkTheme, updateDarkTheme] = useState(false);
+  const [styles, updateStyles] = useState(STYLES);
   const [isLoading, updateIsLoading] = useState(true);
   const [isLoadingSuccess, updateIsLoadingSuccess] = useState(false);
   const [isLoadingSuccessString, updateIsLoadingSuccessString] = useState('');
@@ -62,6 +69,14 @@ function CorePage(props) {
     updateIsLoading(false);
     console.log(globalData);
   }, [globalData]);
+
+  useEffect(() => {
+    if (darkTheme) {
+      updateStyles(DARK_STYLES);
+    } else {
+      updateStyles(STYLES);
+    }
+  }, [darkTheme]);
 
   function handleDarkModeToggle(isChecked) {
     const tempGlobalData = [...globalData];
@@ -129,13 +144,13 @@ function CorePage(props) {
       if (localData !== undefined) {
         const parsedData = JSON.parse(localData);
 
-        localStorage.removeItem('plannusLocalGlobalData');
+        // localStorage.removeItem('plannusLocalGlobalData');
 
-        // if (parsedData[5].suUsed === undefined) {
-        //   localStorage.removeItem('plannusLocalGlobalData');
-        // } else {
-        //   updateData(parsedData);
-        // }
+        if (parsedData[5].suUsed === undefined) {
+          localStorage.removeItem('plannusLocalGlobalData');
+        } else {
+          updateData(parsedData);
+        }
       }
 
       const URLArr = window.location.href.split('#');
@@ -250,6 +265,7 @@ function CorePage(props) {
                 moduleData={moduleData}
                 moduleDataLength={moduleDataLength}
                 transition={Transition}
+                styles={styles}
               />
             </div>
             <Footer darkTheme={darkTheme} />

@@ -28,6 +28,7 @@ function AcadYearBox(props) {
   const globalData = props.globalData;
   const updateData = props.updateData;
   const semToDisplay = props.semToDisplay;
+  const styles = props.styles;
 
   const [showDeleteConfirmation, updateShowDeleteConfirmation] = useState(
     false,
@@ -142,7 +143,13 @@ function AcadYearBox(props) {
 
   if (isShown) {
     return (
-      <div id="mainYearBox">
+      <div
+        id="mainYearBox"
+        style={{
+          borderWidth: styles.yearWidth,
+          borderColor: styles.yearBorderColor,
+          backgroundColor: styles.yearBackgroundColor,
+        }}>
         <Dialog
           open={showDeleteConfirmation}
           TransitionComponent={transition}
@@ -244,6 +251,7 @@ function AcadYearBox(props) {
             darkTheme={darkTheme}
             transition={transition}
             isShown={semesterOneShown}
+            styles={styles}
             moduleData={moduleData}
             moduleDataLength={moduleDataLength}
             updateIsShown={updateSemesterOneShown}
@@ -255,6 +263,7 @@ function AcadYearBox(props) {
             darkTheme={darkTheme}
             transition={transition}
             isShown={specialTermOneShown}
+            styles={styles}
             moduleData={moduleData}
             moduleDataLength={moduleDataLength}
             updateIsShown={updateSpecialTermOneShown}
@@ -266,6 +275,7 @@ function AcadYearBox(props) {
             darkTheme={darkTheme}
             transition={transition}
             isShown={specialTermTwoShown}
+            styles={styles}
             moduleData={moduleData}
             moduleDataLength={moduleDataLength}
             updateIsShown={updateSpecialTermTwoShown}
@@ -277,6 +287,7 @@ function AcadYearBox(props) {
             darkTheme={darkTheme}
             transition={transition}
             isShown={semesterTwoShown}
+            styles={styles}
             moduleData={moduleData}
             moduleDataLength={moduleDataLength}
             updateIsShown={updateSemesterTwoShown}

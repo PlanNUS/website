@@ -1,5 +1,5 @@
 #mainBox {
-  border: 1px solid pink;
+  border-style: solid;
   display: flex;
   flex: 0 1 calc(25% - 42px);
   margin: 10px;

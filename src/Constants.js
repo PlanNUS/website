@@ -69,3 +69,73 @@ export const GRADES = [
   // {grade: 'IP', gradePoint: 0.0, type: NOT_CLEARED},
   // {grade: 'W', gradePoint: 0.0, type: NOT_CLEARED},
 ];
+
+export const BORDER_WIDTH = 2;
+
+export const STYLES = {
+  notificationBorderColor: 'green',
+  notificationBackgroundColor: '#dbfaf1',
+  notificationWidth: BORDER_WIDTH,
+
+  disclaimerBorderColor: 'blue',
+  disclaimerBackgroundColor: '#e1effa',
+  disclaimerWidth: BORDER_WIDTH,
+
+  appBorderColor: '#4000ff',
+  appBackgroundColor: '#eeecff',
+  appWidth: BORDER_WIDTH,
+
+  yearBorderColor: '#6d51d0',
+  yearBackgroundColor: '#d9d5ff',
+  yearWidth: BORDER_WIDTH,
+
+  semBorderColor: '#ffab3f',
+  semBackgroundColor: '#c6c0fd',
+  semWidth: BORDER_WIDTH,
+
+  modBorderColor: '#ffcc00',
+  modBackgroundColor: '#beb7fe',
+  modWidth: BORDER_WIDTH,
+
+  inputBorderColor: '#c97200',
+  inputBackgroundColor: 'transparent',
+  inputWidth: BORDER_WIDTH,
+
+  selectorBorderColor: '#ffcc00',
+  selectorBackgroundColor: 'transparent',
+  selectorWidth: BORDER_WIDTH,
+};
+
+export const DARK_STYLES = {
+  notificationBorderColor: 'green',
+  notificationBackgroundColor: '#dbfaf1',
+  notificationWidth: BORDER_WIDTH,
+
+  disclaimerBorderColor: 'blue',
+  disclaimerBackgroundColor: '#e1effa',
+  disclaimerWidth: BORDER_WIDTH,
+
+  appBorderColor: '#4000ff',
+  appBackgroundColor: '#eeecff',
+  appWidth: BORDER_WIDTH,
+
+  yearBorderColor: '#6d51d0',
+  yearBackgroundColor: '#d9d5ff',
+  yearWidth: BORDER_WIDTH,
+
+  semBorderColor: '#ffab3f',
+  semBackgroundColor: '#c6c0fd',
+  semWidth: BORDER_WIDTH,
+
+  modBorderColor: '#ffcc00',
+  modBackgroundColor: '#beb7fe',
+  modWidth: BORDER_WIDTH,
+
+  inputBorderColor: '#c97200',
+  inputBackgroundColor: 'transparent',
+  inputWidth: BORDER_WIDTH,
+
+  selectorBorderColor: '#ffcc00',
+  selectorBackgroundColor: 'transparent',
+  selectorWidth: BORDER_WIDTH,
+};

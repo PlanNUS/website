@@ -11,6 +11,8 @@ function CalcModuleBox(props) {
   const module = props.module;
   const suLeft = props.suLeft;
   const darkTheme = props.darkTheme;
+  const styles = props.styles;
+
   const globalData = props.globalData;
   const updateData = props.updateData;
   const currYear = props.currentYear;
@@ -73,7 +75,12 @@ function CalcModuleBox(props) {
   return (
     <div
       id="moduleBox"
-      className={`${errorFlag !== null ? `flag` : `none`}Background`}>
+      className={`${errorFlag !== null ? `flag` : `none`}Background`}
+      style={{
+        borderWidth: styles.modWidth,
+        borderColor: styles.modBorderColor,
+        backgroundColor: styles.modBackgroundColor,
+      }}>
       <div id="contentBox">
         <p
           className={`${darkTheme ? 'dark' : 'light'}Words`}
@@ -83,11 +90,16 @@ function CalcModuleBox(props) {
         <p className={`${darkTheme ? 'dark' : 'light'}Words`}>{errorFlag}</p>
       </div>
 
-      <div id="gradeSelector">
+      <div
+        id="gradeSelector"
+        style={{
+          borderWidth: styles.selectorWidth,
+          borderColor: styles.selectorBorderColor,
+          backgroundColor: styles.selectorBackgroundColor,
+        }}>
         <form>
           <select
             name="grades"
-            // id="selector"
             className={`${darkTheme ? 'dark' : 'light'}Words selector`}
             value={selectedIdx}
             onChange={(event) => {

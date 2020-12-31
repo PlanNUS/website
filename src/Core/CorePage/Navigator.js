@@ -24,6 +24,7 @@ export default function Navigator(props) {
   const isImportConfirmShown = props.isImportConfirmShown;
   const handleImportConfirmation = props.handleImportConfirmation;
   const darkTheme = props.darkTheme;
+  const styles = props.styles;
   const moduleData = props.moduleData;
   const moduleDataLength = props.moduleDataLength;
   const transition = props.transition;
@@ -58,14 +59,25 @@ export default function Navigator(props) {
 
         <Redirect exact from="/" to={currLocation.pathname} />
         <div id="appWrapper">
-          <Notification type="Global" darkTheme={darkTheme} />
-          <Notification type={currNotif} darkTheme={darkTheme} />
+          <Notification type="Global" styles={styles} darkTheme={darkTheme} />
+          <Notification
+            type={currNotif}
+            styles={styles}
+            darkTheme={darkTheme}
+          />
           <ImportConfirmation
             darkTheme={darkTheme}
+            styles={styles}
             isShown={isImportConfirmShown}
             handleImportConfirmation={handleImportConfirmation}
           />
-          <div id="currentApp">
+          <div
+            id="currentApp"
+            style={{
+              borderWidth: styles.appWidth,
+              borderColor: styles.appBorderColor,
+              backgroundColor: styles.appBackgroundColor,
+            }}>
             <Switch>
               <Route
                 exact
@@ -87,6 +99,7 @@ export default function Navigator(props) {
                 render={(routeProps) => (
                   <AcademicPlanner
                     {...routeProps}
+                    styles={styles}
                     darkTheme={darkTheme}
                     moduleData={moduleData}
                     moduleDataLength={moduleDataLength}
@@ -101,6 +114,7 @@ export default function Navigator(props) {
                 render={(routeProps) => (
                   <CAPCalculator
                     {...routeProps}
+                    styles={styles}
                     darkTheme={darkTheme}
                     updateCurrLocation={updateCurrLocation}
                   />

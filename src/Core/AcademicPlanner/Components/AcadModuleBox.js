@@ -9,6 +9,7 @@ export default function AcadModuleBox(props) {
   const darkTheme = props.darkTheme;
   const currentIdx = props.currentIdx;
   const removeModule = props.removeModule;
+  const styles = props.styles;
 
   let verifiedDisplay = [];
 
@@ -47,6 +48,11 @@ export default function AcadModuleBox(props) {
   return (
     <div
       id="moduleBox"
+      style={{
+        borderWidth: styles.selectorWidth,
+        borderColor: styles.selectorBorderColor,
+        backgroundColor: styles.selectorBackgroundColor,
+      }}
       className={`${module.isFlagged ? 'lightOrange' : 'white'}`}>
       <div id="contentBox">
         <p

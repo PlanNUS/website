@@ -32,6 +32,7 @@ function AcademicPlanner(props) {
   const globalData = props.globalData;
   const updateData = props.updateData;
   const updateCurrLocation = props.updateCurrLocation;
+  const styles = props.styles;
 
   const [toDisplayArr, updateToDisplayArr] = useState([
     //Year 1
@@ -290,6 +291,7 @@ function AcademicPlanner(props) {
         isShown={yearOneShown}
         transition={transition}
         moduleData={moduleData}
+        styles={styles}
         moduleDataLength={moduleDataLength}
         updateIsShown={updateYearOneShown}
         semToDisplay={toDisplayArr[0]}
@@ -301,6 +303,7 @@ function AcademicPlanner(props) {
         isShown={yearTwoShown}
         transition={transition}
         moduleData={moduleData}
+        styles={styles}
         moduleDataLength={moduleDataLength}
         updateIsShown={updateYearTwoShown}
         semToDisplay={toDisplayArr[1]}
@@ -312,6 +315,7 @@ function AcademicPlanner(props) {
         isShown={yearThreeShown}
         transition={transition}
         moduleData={moduleData}
+        styles={styles}
         moduleDataLength={moduleDataLength}
         updateIsShown={updateYearThreeShown}
         semToDisplay={toDisplayArr[2]}
@@ -323,6 +327,7 @@ function AcademicPlanner(props) {
         isShown={yearFourShown}
         transition={transition}
         moduleData={moduleData}
+        styles={styles}
         moduleDataLength={moduleDataLength}
         updateIsShown={updateYearFourShown}
         semToDisplay={toDisplayArr[3]}
@@ -334,6 +339,7 @@ function AcademicPlanner(props) {
         isShown={yearFiveShown}
         transition={transition}
         moduleData={moduleData}
+        styles={styles}
         moduleDataLength={moduleDataLength}
         updateIsShown={updateYearFiveShown}
         semToDisplay={toDisplayArr[4]}

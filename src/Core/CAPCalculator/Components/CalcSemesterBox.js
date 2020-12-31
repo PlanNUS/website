@@ -12,6 +12,7 @@ function CalcSemesterBox(props) {
   const currentYearIndex = props.currentYearIndex;
   const currentSemesterIndex = props.currentSemesterIndex;
   const globalData = props.globalData;
+  const styles = props.styles;
 
   const [moduleInSemester, updateModuleInSemester] = useState([]);
   const [suLeft, updateSuLeft] = useState(0);
@@ -26,7 +27,13 @@ function CalcSemesterBox(props) {
 
   if (isShown) {
     return (
-      <div id="mainBox">
+      <div
+        id="mainBox"
+        style={{
+          borderWidth: styles.semWidth,
+          borderColor: styles.semBorderColor,
+          backgroundColor: styles.semBackgroundColor,
+        }}>
         <div id="semesterHeader">
           <p className={`${darkTheme ? 'dark' : 'light'}Words`}>
             {currentSemester}
@@ -41,6 +48,7 @@ function CalcSemesterBox(props) {
             currentSem={currentSemesterIndex}
             key={currentData.moduleCode}
             module={currentData}
+            styles={styles}
             darkTheme={darkTheme}
           />
         ))}

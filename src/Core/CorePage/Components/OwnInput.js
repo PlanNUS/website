@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
 import '../../../Style/CorePage/Components/OwnInput.css';
 
 export default function OwnInput(props) {
   const darkTheme = props.darkTheme;
+  const styles = props.styles;
   const desc = props.desc;
   const value = props.value;
   const onChangeHandler = props.onChangeHandler;
@@ -15,21 +16,28 @@ export default function OwnInput(props) {
     width = 20;
   }
 
-  const [borderColor, updateBorderColor] = useState('grey');
-
-  useEffect(() => {
-    darkTheme ? updateBorderColor('white') : updateBorderColor('grey');
-  }, [darkTheme]);
-
   if (type === 'input') {
     return (
-      <div id="inputFields">
+      <div
+        id="inputFields"
+        style={{
+          borderWidth: styles.semWidth,
+          borderColor: styles.semBorderColor,
+          backgroundColor: styles.semBackgroundColor,
+        }}>
         <p
           className={`${darkTheme ? 'dark' : 'light'}Words`}
           id="inputFieldsText">
           {desc}
         </p>
-        <div id="inputWrapper" style={{color: borderColor}}>
+        <div
+          id="inputWrapper"
+          style={{
+            borderWidth: styles.inputWidth,
+            borderColor: styles.inputBorderColor,
+            backgroundColor: styles.inputBackgroundColor,
+          }}>
+          {/* style={{ color: borderColor }}> */}
           <input
             value={value}
             type="text"
@@ -43,7 +51,13 @@ export default function OwnInput(props) {
     );
   } else if (type === 'display') {
     return (
-      <div id="inputFields">
+      <div
+        id="inputFields"
+        style={{
+          borderWidth: styles.semWidth,
+          borderColor: styles.semBorderColor,
+          backgroundColor: styles.semBackgroundColor,
+        }}>
         <p
           className={`${darkTheme ? 'dark' : 'light'}Words`}
           id="inputFieldsText">
@@ -58,7 +72,12 @@ export default function OwnInput(props) {
     return (
       <div
         id="inputFields"
-        className={`${value < 0 ? `flag` : `none`}Background`}>
+        className={`${value < 0 ? `flag` : `none`}Background`}
+        style={{
+          borderWidth: styles.semWidth,
+          borderColor: styles.semBorderColor,
+          backgroundColor: styles.semBackgroundColor,
+        }}>
         <p
           className={`${darkTheme ? 'dark' : 'light'}Words`}
           id="inputFieldsText">

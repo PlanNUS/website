@@ -3,7 +3,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px;
-  border: 1px solid lightgray;
+  border-style: solid;
   width: calc(100% - 22px);
 }
 

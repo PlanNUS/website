@@ -31,6 +31,7 @@ function AcadSemesterBox(props) {
   const currentSemesterIndex = props.currentSemesterIndex;
   const globalData = props.globalData;
   const updateData = props.updateData;
+  const styles = props.styles;
 
   const numberOfDataDisplay = 5;
 
@@ -225,7 +226,13 @@ function AcadSemesterBox(props) {
 
   if (isShown) {
     return (
-      <div id="mainBox">
+      <div
+        id="mainBox"
+        style={{
+          borderWidth: styles.semWidth,
+          borderColor: styles.semBorderColor,
+          backgroundColor: styles.semBackgroundColor,
+        }}>
         <Dialog
           open={showAdditionPopup}
           TransitionComponent={transition}
@@ -354,6 +361,7 @@ function AcadSemesterBox(props) {
           <AcadModuleBox
             removeModule={removeFromGlobalData}
             currentIdx={index}
+            styles={styles}
             key={currentData.moduleCode}
             module={currentData}
             darkTheme={darkTheme}

@@ -1,12 +1,11 @@
 #inputFields {
-  border: 1px solid rgb(209, 209, 209);
+  border-style: solid;
   width: fit-content;
   justify-content: center;
   align-items: center;
   display: flex;
   flex-grow: 1;
   border-radius: 15px;
-  /* min-width: 130px; */
   width: 130px;
   padding: 5px;
   margin-left: 10px;
@@ -26,16 +25,13 @@
   align-items: center;
   border-radius: 7px;
   border-style: solid;
-  border-width: 1px;
 }
 
 input {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-size: 17px;
-  /* width: 20px; */
   background-color: transparent;
   border-style: hidden;
-  /* border: 1px solid black; */
   outline: none;
 }
