@@ -74,6 +74,7 @@ export default function OwnInput(props) {
         <div id="suTextinput">
           <p className={`${darkTheme ? 'dark' : 'light'}Words`}>
             {(Math.floor(value * 100) / 100).toFixed(2)}
+            {/* {((value * 100) / 100).toFixed(2)} */}
           </p>
         </div>
       </div>

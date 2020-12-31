@@ -48,12 +48,17 @@ function CalcModuleBox(props) {
   }, [module]);
 
   useEffect(() => {
-    if (suLeft < 0 && isSu) {
-      updateErrorFlag(<p>Total SU exceeded!</p>);
-    } else {
-      updateErrorFlag(null);
+    if (
+      options[selectedIdx].grade === 'S' ||
+      options[selectedIdx].grade === 'U'
+    ) {
+      if (suLeft < 0 && isSu) {
+        updateErrorFlag(<p>Total SU exceeded!</p>);
+      } else {
+        updateErrorFlag(null);
+      }
     }
-  }, [suLeft, isSu]);
+  }, [suLeft, isSu, options, selectedIdx]);
 
   function handleGradeChange(newIdx) {
     if (newIdx !== selectedIdx) {

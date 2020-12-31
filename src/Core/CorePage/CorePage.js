@@ -5,7 +5,6 @@
 import React, {useEffect, useState} from 'react';
 import ToggleSwitch from 'react-switch';
 import {connect} from 'react-redux';
-import Cookies from 'js-cookie';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -18,6 +17,7 @@ import {Transition, AcadamicYear, FLAGS} from '../../Constants';
 
 import Navigator from './Navigator';
 import Footer from './Footer';
+import {dataToLink, linkToData} from './Functions/LinkHandler';
 
 import Logo from './Assets/Title.png';
 import ErrorIcon from './Assets/SadFace.png';
@@ -32,7 +32,7 @@ function CorePage(props) {
   // console.log(window.location.pathname);
   // console.log(window.location.search);
   // console.log(window.location.href);
-
+  // console.log(window.location.hash);
   // const acadamicYear = '2020-2021';
   const [shareLink, updateShareLink] = useState('');
   const [isLinkDialogOpen, updateIsLinkDialogOpen] = useState(false);
@@ -41,16 +41,25 @@ function CorePage(props) {
   const [darkTheme, updateDarkTheme] = useState(false);
   const [isLoading, updateIsLoading] = useState(true);
   const [isLoadingSuccess, updateIsLoadingSuccess] = useState(false);
+  const [isLoadingSuccessString, updateIsLoadingSuccessString] = useState('');
   const [moduleData, updateModuleData] = useState([]);
   const [moduleDataLength, updateModuleDataLength] = useState(-1);
 
   useEffect(() => {
-    const stringToStore = JSON.stringify(globalData);
-    Cookies.set('plannusLocalGlobalData', stringToStore);
-  }, [globalData]);
+    updateIsLoading(true);
 
-  useEffect(() => {
+    if (typeof Storage !== 'undefined') {
+      const stringToStore = JSON.stringify(globalData);
+      window.localStorage.plannusLocalGlobalData = stringToStore;
+    } else {
+      updateIsLoadingSuccess(false);
+      updateIsLoadingSuccessString(
+        'Sorry! Update your browser to use PlanNUS (Error code: 2)',
+      );
+    }
+
     updateDarkTheme(globalData[5].isDarkModeChecked);
+    updateIsLoading(false);
   }, [globalData]);
 
   function handleDarkModeToggle(isChecked) {
@@ -71,7 +80,7 @@ function CorePage(props) {
   }
 
   function handleShareLinkOpen() {
-    const searchText = `?${JSON.stringify(globalData)}`;
+    // const searchText = `?${JSON.stringify(globalData)}`;
     // const newURL =
     //   window.location.protocol +
     //   '//' +
@@ -79,10 +88,12 @@ function CorePage(props) {
     //   '/' +
     //   window.location.pathname +
     //   searchText;
-    const newURL = new URL(window.location.href);
-    newURL.search = searchText;
-    updateShareLink(newURL);
-    updateIsLinkDialogOpen(true);
+
+    dataToLink(globalData).then((result) => {
+      const newURL = window.location.href + '?' + result;
+      updateShareLink(newURL);
+      updateIsLinkDialogOpen(true);
+    });
   }
 
   if (isLoading) {
@@ -113,35 +124,55 @@ function CorePage(props) {
       updateModuleData(tempModuleData);
       updateModuleDataLength(tempModuleData.length);
 
-      const localData = Cookies.get('plannusLocalGlobalData');
+      const localData = window.localStorage.plannusLocalGlobalData;
       if (localData !== undefined) {
         const parsedData = JSON.parse(localData);
 
-        // Cookies.remove('plannusLocalGlobalData');
+        // localStorage.removeItem('plannusLocalGlobalData');
 
         if (parsedData[5].suUsed === undefined) {
-          Cookies.remove('plannusLocalGlobalData');
+          localStorage.removeItem('plannusLocalGlobalData');
         } else {
           updateData(parsedData);
         }
       }
 
-      if (window.location.search !== '') {
-        const importArr = window.location.search.split('?');
-        if (
-          importArr[1].length !== localData.length &&
-          !importArr[1].includes(localData)
-        ) {
-          const decodedString = decodeURIComponent(importArr[1]);
-          updateImportData(JSON.parse(decodedString));
-          updateIsImportConfirmShown(true);
+      const URLArr = window.location.href.split('#');
+      if (URLArr.length === 2) {
+        const dataStringArr = URLArr[1].split('?');
+        if (dataStringArr.length === 2) {
+          const dataString = dataStringArr[1];
+          const decodedString = decodeURIComponent(dataString);
+
+          linkToData(decodedString).then((result) => {
+            if (result !== undefined) {
+              const newDataString = JSON.stringify(result);
+
+              if (localData === undefined) {
+                updateImportData(result);
+                updateIsImportConfirmShown(true);
+              } else if (
+                !(
+                  newDataString.length === localData.length &&
+                  newDataString.includes(localData)
+                )
+              ) {
+                updateImportData(result);
+                updateIsImportConfirmShown(true);
+              }
+            }
+          });
         }
       }
+
       updateIsLoading(false);
       updateIsLoadingSuccess(true);
     } catch (err) {
       updateIsLoading(false);
       updateIsLoadingSuccess(false);
+      updateIsLoadingSuccessString(
+        'Sorry! Something seems to went wrong (Error code: 1)',
+      );
     }
   }
 
@@ -149,7 +180,7 @@ function CorePage(props) {
     return (
       <div id="wholePageCenter">
         {/* <img src={ErrorIcon} alt="LoadingError" height="70px" /> */}
-        <h1 className="lightWords">Loading...</h1>
+        <h3 className="lightWords">Loading...</h3>
       </div>
     );
   } else {
@@ -227,10 +258,9 @@ function CorePage(props) {
     } else {
       return (
         <div id="wholePageCenter">
-          <img src={ErrorIcon} alt="LoadingError" height="70px" />
-          <h1 id="error" className="lightWords">
-            Sorry! Something seems to went wrong (Error code: 1)
-          </h1>
+          <img src={ErrorIcon} alt="LoadingError" height="50px" />
+          <div id="seperator" />
+          <h3 className="lightWords">{isLoadingSuccessString}</h3>
         </div>
       );
     }

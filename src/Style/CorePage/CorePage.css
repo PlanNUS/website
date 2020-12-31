@@ -90,3 +90,7 @@ a {
   width: 100%;
   min-width: fit-content;
 }
+
+#seperator {
+  height: 15px;
+}
