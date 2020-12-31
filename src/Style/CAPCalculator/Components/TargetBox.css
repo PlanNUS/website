@@ -1,0 +1,27 @@
+#targetRow {
+  /* margin-left: 5px;
+  margin-right: 5px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#fullDetails {
+  display: flex;
+  padding-left: 20px;
+  padding-right: 20px;
+  /* width: calc(66% + 5px); */
+}
+
+#twoThirds {
+  display: flex;
+  /* border: 1px solid black; */
+  width: 66.66%;
+}
+
+#oneThird {
+  display: flex;
+  /* border: 1px solid black; */
+  width: 33.33%;
+}

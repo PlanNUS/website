@@ -5,23 +5,28 @@ import {TOTAL_YEAR, TOTAL_SEMESTER} from '../../../Constants';
 export default function VerifyAllModules(allData) {
   let newAllData = [...allData];
 
-  for (let i = 0; i < TOTAL_YEAR; i++) {
-    for (let j = 0; j < TOTAL_SEMESTER; j++) {
-      let currentSemesterData = newAllData[i][j];
+  try {
+    for (let i = 0; i < TOTAL_YEAR; i++) {
+      for (let j = 0; j < TOTAL_SEMESTER; j++) {
+        let currentSemesterData = newAllData[i][j];
 
-      for (let k = 0; k < currentSemesterData.length; k++) {
-        currentSemesterData[k] = VerifyEachModule(
-          currentSemesterData[k],
-          i,
-          j,
-          allData,
-          newAllData[5].totalMCAdded,
-        );
+        for (let k = 0; k < currentSemesterData.length; k++) {
+          currentSemesterData[k] = VerifyEachModule(
+            currentSemesterData[k],
+            i,
+            j,
+            allData,
+            newAllData[5].totalMCAdded,
+          );
+        }
       }
     }
-  }
 
-  return newAllData;
+    //Format: Global Data, showSuccessAlert, showFailAlert
+    return [newAllData, true, false];
+  } catch (err) {
+    return [[...allData], false, true];
+  }
 }
 
 function VerifyEachModule(
@@ -31,84 +36,89 @@ function VerifyEachModule(
   fullModuleData,
   totalMCAdded,
 ) {
-  const reqData = FetchFullData(moduleToBeAdded.moduleCode);
-  const currentYearSemIndex = ConvertToIndex(currentYear, currentSemester);
+  try {
+    const reqData = FetchFullData(moduleToBeAdded.moduleCode);
+    const currentYearSemIndex = ConvertToIndex(currentYear, currentSemester);
 
-  let newModule = {...moduleToBeAdded};
-  let isCoreqInSameSem = false;
+    let newModule = {...moduleToBeAdded};
+    let isCoreqInSameSem = false;
 
-  if (totalMCAdded === parseInt(moduleToBeAdded.moduleCredit)) {
-    if ('prereqTree' in reqData) {
-      newModule.isPrereqCleared = false;
-      newModule.isFlagged = true;
-    }
+    if (totalMCAdded === parseInt(moduleToBeAdded.moduleCredit)) {
+      if ('prereqTree' in reqData) {
+        newModule.isPrereqCleared = false;
+        newModule.isFlagged = true;
+      }
 
-    if (!('corequisite' in reqData)) {
-      isCoreqInSameSem = true;
-    }
-  } else {
-    for (let year = 0; year < TOTAL_YEAR; year++) {
-      for (let semester = 0; semester < TOTAL_SEMESTER; semester++) {
-        const semesterToCheck = fullModuleData[year][semester];
-        const toCheckYearSemIndex = ConvertToIndex(year, semester);
-        for (let i = 0; i < semesterToCheck.length; i++) {
-          const currentCheckModuleCode = semesterToCheck[i].moduleCode;
+      if (!('corequisite' in reqData)) {
+        isCoreqInSameSem = true;
+      }
+    } else {
+      for (let year = 0; year < TOTAL_YEAR; year++) {
+        for (let semester = 0; semester < TOTAL_SEMESTER; semester++) {
+          const semesterToCheck = fullModuleData[year][semester];
+          const toCheckYearSemIndex = ConvertToIndex(year, semester);
+          for (let i = 0; i < semesterToCheck.length; i++) {
+            const currentCheckModuleCode = semesterToCheck[i].moduleCode;
 
-          if (currentYearSemIndex > toCheckYearSemIndex) {
-            //Check for prereq
-            if ('prereqTree' in reqData) {
-              CheckPrereq(reqData, currentCheckModuleCode);
-
+            if (currentYearSemIndex > toCheckYearSemIndex) {
+              //Check for prereq
               if ('prereqTree' in reqData) {
-                newModule.isPrereqCleared = false;
-                newModule.isFlagged = true;
+                CheckPrereq(reqData, currentCheckModuleCode);
+
+                if ('prereqTree' in reqData) {
+                  newModule.isPrereqCleared = false;
+                  newModule.isFlagged = true;
+                }
               }
-            }
-          } else if (currentYearSemIndex === toCheckYearSemIndex) {
-            //Checking Corequisite
-            if ('corequisite' in reqData) {
-              if (reqData.corequisite.includes(currentCheckModuleCode)) {
+            } else if (currentYearSemIndex === toCheckYearSemIndex) {
+              //Checking Corequisite
+              if ('corequisite' in reqData) {
+                if (reqData.corequisite.includes(currentCheckModuleCode)) {
+                  isCoreqInSameSem = true;
+                }
+              } else {
                 isCoreqInSameSem = true;
               }
-            } else {
-              isCoreqInSameSem = true;
-            }
 
-            //Checking prerequisite
-            if ('prerequisite' in reqData) {
-              if (reqData.prerequisite.includes(currentCheckModuleCode)) {
-                newModule.isPrereqInSameSem = true;
-                newModule.isFlagged = true;
+              //Checking prerequisite
+              if ('prerequisite' in reqData) {
+                if (reqData.prerequisite.includes(currentCheckModuleCode)) {
+                  newModule.isPrereqInSameSem = true;
+                  newModule.isFlagged = true;
+                }
               }
             }
-          }
 
-          //Checking preclusion
-          if ('preclusion' in reqData) {
-            const precluArr = reqData.preclusion.split(',');
+            //Checking preclusion
+            if ('preclusion' in reqData) {
+              const precluArr = reqData.preclusion.split(',');
 
-            for (let x = 0; x < precluArr.length; x++) {
-              if (
-                precluArr[x].trim().length === currentCheckModuleCode.length &&
-                precluArr[x].includes(currentCheckModuleCode)
-              ) {
-                newModule.isPrecluAdded = true;
-                newModule.isFlagged = true;
-                break;
+              for (let x = 0; x < precluArr.length; x++) {
+                if (
+                  precluArr[x].trim().length ===
+                    currentCheckModuleCode.length &&
+                  precluArr[x].includes(currentCheckModuleCode)
+                ) {
+                  newModule.isPrecluAdded = true;
+                  newModule.isFlagged = true;
+                  break;
+                }
               }
             }
           }
         }
       }
     }
-  }
 
-  if (!isCoreqInSameSem) {
-    newModule.isCoreqInSameSem = false;
-    newModule.isFlagged = true;
-  }
+    if (!isCoreqInSameSem) {
+      newModule.isCoreqInSameSem = false;
+      newModule.isFlagged = true;
+    }
 
-  return newModule;
+    return newModule;
+  } catch (err) {
+    throw new Error();
+  }
 }
 
 function CheckPrereq(reqData, currentCheckModuleCode) {

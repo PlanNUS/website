@@ -73,7 +73,7 @@ function CalcModuleBox(props) {
   return (
     <div
       id="moduleBox"
-      className={`${suLeft < 0 && isSu ? `flag` : `none`}Background`}>
+      className={`${errorFlag !== null ? `flag` : `none`}Background`}>
       <div id="contentBox">
         <p
           className={`${darkTheme ? 'dark' : 'light'}Words`}

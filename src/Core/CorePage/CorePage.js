@@ -60,6 +60,7 @@ function CorePage(props) {
 
     updateDarkTheme(globalData[5].isDarkModeChecked);
     updateIsLoading(false);
+    console.log(globalData);
   }, [globalData]);
 
   function handleDarkModeToggle(isChecked) {
@@ -128,13 +129,13 @@ function CorePage(props) {
       if (localData !== undefined) {
         const parsedData = JSON.parse(localData);
 
-        // localStorage.removeItem('plannusLocalGlobalData');
+        localStorage.removeItem('plannusLocalGlobalData');
 
-        if (parsedData[5].suUsed === undefined) {
-          localStorage.removeItem('plannusLocalGlobalData');
-        } else {
-          updateData(parsedData);
-        }
+        // if (parsedData[5].suUsed === undefined) {
+        //   localStorage.removeItem('plannusLocalGlobalData');
+        // } else {
+        //   updateData(parsedData);
+        // }
       }
 
       const URLArr = window.location.href.split('#');

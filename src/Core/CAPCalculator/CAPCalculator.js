@@ -8,13 +8,14 @@ import '../../Style/Common/AppCommons.css';
 
 import CalcYearBox from './Components/CalcYearBox';
 import DetailsBox from './Components/DetailsBox';
+import TargetBox from './Components/TargetBox';
 import OwnButton from '../CorePage/Components/OwnButton';
 import OwnInput from '../CorePage/Components/OwnInput';
 
 function CAPCalculator(props) {
   const darkTheme = props.darkTheme;
   const globalData = props.globalData;
-  const updateData = props.updateData;
+  // const updateData = props.updateData;
   const updateCurrLocation = props.updateCurrLocation;
 
   const [toDisplayArr, updateToDisplayArr] = useState([
@@ -64,11 +65,8 @@ function CAPCalculator(props) {
     ],
   ]);
 
-  const [totalSUString, updateTotalSUString] = useState('');
-  const [suUsed, updateSuUsed] = useState(0);
-  const [suLeft, updateSuLeft] = useState(0);
-  const [MCAdded, updateMCAdded] = useState(0);
-  const [totalMCClearedExternal, updateTotalMCClearedExternal] = useState(0);
+  // const [targetCap, updateTargetCap] = useState(0.0);
+
   const [currCap, updateCurrCap] = useState(0.0);
 
   const [isDetailsShown, updateIsDetailsShown] = useState(true);
@@ -97,19 +95,7 @@ function CAPCalculator(props) {
 
     updateToDisplayArr(tempToDisplayArr);
 
-    updateMCAdded(tempGlobalData[5].totalMCAdded);
-    updateSuUsed(tempGlobalData[5].suUsed);
-
-    if (tempGlobalData[5].totalSU === 0) {
-      updateTotalSUString('');
-    } else {
-      updateTotalSUString(tempGlobalData[5].totalSU.toString());
-    }
-
-    updateSuLeft(tempGlobalData[5].suLeft);
     updateCurrCap(tempGlobalData[5].currentCap);
-
-    updateTotalMCClearedExternal(tempGlobalData[5].totalMCClearedExternal);
   }, [globalData]);
 
   useEffect(() => {
@@ -119,26 +105,6 @@ function CAPCalculator(props) {
       updateDetailButtonString('Show Details');
     }
   }, [isDetailsShown]);
-
-  function handleNewSU(userInput) {
-    const inputNumber = parseInt(userInput);
-
-    if (userInput === '') {
-      const tempGlobalData = [...globalData];
-      tempGlobalData[5].totalSU = 0;
-      tempGlobalData[5].suLeft =
-        tempGlobalData[5].totalSU - tempGlobalData[5].suUsed;
-
-      updateData(tempGlobalData);
-    } else if (!isNaN(inputNumber) && inputNumber >= 0) {
-      const tempGlobalData = [...globalData];
-      tempGlobalData[5].totalSU = inputNumber;
-      tempGlobalData[5].suLeft =
-        tempGlobalData[5].totalSU - tempGlobalData[5].suUsed;
-
-      updateData(tempGlobalData);
-    }
-  }
 
   return (
     <div id="appWrapper">
@@ -170,16 +136,9 @@ function CAPCalculator(props) {
         </div>
       </div>
 
-      <DetailsBox
-        isShown={isDetailsShown}
-        darkTheme={darkTheme}
-        totalSUString={totalSUString}
-        suUsed={suUsed}
-        suLeft={suLeft}
-        MCAdded={MCAdded}
-        totalMCClearedExternal={totalMCClearedExternal}
-        handleNewSU={handleNewSU}
-      />
+      <DetailsBox isShown={isDetailsShown} darkTheme={darkTheme} />
+
+      <TargetBox isShown={isDetailsShown} darkTheme={darkTheme} />
 
       <CalcYearBox
         darkTheme={darkTheme}

@@ -7,6 +7,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import Select from '@material-ui/core/Select';
 import {useLocation} from 'react-router-dom';
 import {Helmet} from 'react-helmet';
@@ -17,6 +19,10 @@ import '../../Style/Common/AppCommons.css';
 import AcadYearBox from './Components/AcadYearBox';
 import OwnButton from '../CorePage/Components/OwnButton';
 import VerifyAllModules from './Functions/VerifyModule';
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 function AcademicPlanner(props) {
   const darkTheme = props.darkTheme;
@@ -75,6 +81,8 @@ function AcademicPlanner(props) {
   ]);
 
   const [showModal, updateShowModal] = useState(false);
+  const [showCheckSuccess, updateShowCheckSuccess] = useState(false);
+  const [showCheckFail, updateShowCheckFail] = useState(false);
   const [buttonString, updateButtonString] = useState('Check Requirements');
 
   const [yearOneShown, updateYearOneShown] = useState(true);
@@ -170,7 +178,9 @@ function AcademicPlanner(props) {
   function handleCheckRequirement() {
     updateButtonString('Checking...');
     const newAllData = VerifyAllModules(globalData);
-    updateData(newAllData);
+    updateData(newAllData[0]);
+    updateShowCheckSuccess(newAllData[1]);
+    updateShowCheckFail(newAllData[2]);
     updateButtonString('Check Requirements');
   }
 
@@ -193,8 +203,9 @@ function AcademicPlanner(props) {
             buttonDesc={buttonString}
             type="sync"
             onClick={() => {
-              updateButtonString('Checking...');
-              setTimeout(handleCheckRequirement, 500);
+              // updateButtonString('Checking...');
+              // setTimeout(handleCheckRequirement, 100);
+              handleCheckRequirement();
             }}
           />
           <div id="buttonSpacer" />
@@ -206,6 +217,24 @@ function AcademicPlanner(props) {
           />
         </div>
       </div>
+
+      <Snackbar
+        open={showCheckSuccess}
+        autoHideDuration={5000}
+        onClose={() => updateShowCheckSuccess(false)}>
+        <Alert onClose={() => updateShowCheckSuccess(false)} severity="success">
+          Requirements checked successfully!
+        </Alert>
+      </Snackbar>
+
+      <Snackbar
+        open={showCheckFail}
+        autoHideDuration={5000}
+        onClose={() => updateShowCheckFail(false)}>
+        <Alert onClose={() => updateShowCheckFail(false)} severity="error">
+          Requirements checked failed! Please try again later.
+        </Alert>
+      </Snackbar>
 
       <Dialog
         open={showModal}

@@ -13,7 +13,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import '../../../Style/AcademicPlanner/Components/AcadSemesterBox.css';
 import '../../../Style/Common/SemBoxCommons.css';
-import {FLAGS} from '../../../Constants';
+import {FLAGS, GRADES_SU} from '../../../Constants';
 
 // import {VerifyModulesForAddition} from '../Functions/VerifyModule';
 import Search from '../Functions/Search';
@@ -44,12 +44,17 @@ function AcadSemesterBox(props) {
   const [searchDataToDisplay, updateSearchDataToDisplay] = useState([]);
   const [chipsDataToDisplay, updateChipsDataToDisplay] = useState([]);
   const [moduleInSemester, updateModuleInSemester] = useState([]);
+  const [creditsInSemester, updateCreditsInSemester] = useState(0);
 
   useEffect(() => {
     const tempModuleInSemester = [
       ...globalData[currentYearIndex][currentSemesterIndex],
     ];
+    const tempCreditsInSem =
+      globalData[currentYearIndex][currentSemesterIndex + 4].semModularCredit;
+
     updateModuleInSemester(tempModuleInSemester);
+    updateCreditsInSemester(tempCreditsInSem);
   }, [globalData, currentSemesterIndex, currentYearIndex]);
 
   useEffect(() => {
@@ -179,6 +184,10 @@ function AcadSemesterBox(props) {
 
       tempGlobalData[5].totalMCAdded += modularCreditsToAdd;
 
+      tempGlobalData[5].mcLeft =
+        tempGlobalData[5].totalMCAdded -
+        tempGlobalData[5].totalMCClearedExternal;
+
       updateData(tempGlobalData);
       updateChipsDataToDisplay([]);
       updateShowAdditionPopup(false);
@@ -202,7 +211,14 @@ function AcadSemesterBox(props) {
     tempGlobalData[currentYearIndex][
       currentSemesterIndex + 4
     ].semModularCredit -= moduleToRemove.moduleCredit;
+
     tempGlobalData[5].totalMCAdded -= moduleToRemove.moduleCredit;
+
+    tempGlobalData[5].totalMCClearedExternal -=
+      GRADES_SU[moduleToRemove.gradeIdx].gradePoint;
+
+    tempGlobalData[5].mcLeft =
+      tempGlobalData[5].totalMCAdded - tempGlobalData[5].totalMCClearedExternal;
 
     updateData(tempGlobalData);
   }
@@ -315,7 +331,7 @@ function AcadSemesterBox(props) {
 
         <div id="semesterHeader">
           <p className={`${darkTheme ? 'dark' : 'light'}Words`}>
-            {currentSemester}
+            {`${currentSemester} (MCs: ${creditsInSemester})`}
           </p>
           <div id="semesterButtonGroups">
             <IoAdd

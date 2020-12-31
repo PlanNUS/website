@@ -75,5 +75,7 @@ export default function UpdateGrade(
     calcData.suLeft = calcData.totalSU - calcData.suUsed;
   }
 
+  calcData.mcLeft = calcData.totalMCAdded - calcData.totalMCClearedExternal;
+
   return tempGlobalData;
 }

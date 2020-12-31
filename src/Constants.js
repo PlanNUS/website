@@ -29,7 +29,7 @@ export const SU = 2;
 // export const isPassed
 
 export const GRADES_SU = [
-  {grade: '*', gradePoint: -1.0, type: NOT_CLEARED, isCleared: false},
+  {grade: '*', gradePoint: 0.0, type: NOT_CLEARED, isCleared: false},
   {grade: 'A+', gradePoint: 5.0, type: NORMAL, isCleared: true},
   {grade: 'A', gradePoint: 5.0, type: NORMAL, isCleared: true},
   {grade: 'A-', gradePoint: 4.5, type: NORMAL, isCleared: true},
@@ -50,7 +50,7 @@ export const GRADES_SU = [
 ];
 
 export const GRADES = [
-  {grade: '*', gradePoint: -1.0, type: NOT_CLEARED, isCleared: false},
+  {grade: '*', gradePoint: 0.0, type: NOT_CLEARED, isCleared: false},
   {grade: 'A+', gradePoint: 5.0, type: NORMAL, isCleared: true},
   {grade: 'A', gradePoint: 5.0, type: NORMAL, isCleared: true},
   {grade: 'A-', gradePoint: 4.5, type: NORMAL, isCleared: true},

@@ -81,6 +81,10 @@ const initialState = {
       totalMxP: 0,
       totalMCClearedInternal: 0,
       totalMCClearedExternal: 0,
+      mcLeft: 0, //add this
+      targetCapString: '0.0', //add this
+      targetCap: 0.0,
+      neededCap: 0.0, //add this
       currentCap: 0.0,
       isDarkModeChecked: false,
       isDisplayed: [

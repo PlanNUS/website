@@ -9,6 +9,11 @@ export default function OwnInput(props) {
   const onChangeHandler = props.onChangeHandler;
   const maxInputLength = props.maxInputLength;
   const type = props.type;
+  let width = props.width;
+
+  if (width === undefined) {
+    width = 20;
+  }
 
   const [borderColor, updateBorderColor] = useState('grey');
 
@@ -28,6 +33,7 @@ export default function OwnInput(props) {
           <input
             value={value}
             type="text"
+            style={{width: width}}
             maxLength={maxInputLength}
             className={`${darkTheme ? 'dark' : 'light'}Words`}
             onChange={(event) => onChangeHandler(event.target.value)}

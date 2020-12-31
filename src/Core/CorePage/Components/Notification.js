@@ -25,6 +25,9 @@ export default function Notification(props) {
               <li className={`${darkTheme ? 'dark' : 'light'}Words`}>
                 A 'F'/'U'/'CU' grade will is counted as not clearing the module.
               </li>
+              <li className={`${darkTheme ? 'dark' : 'light'}Words`}>
+                Users are encouraged to double check before using 'CS/CU' grade.
+              </li>
             </ul>
           </div>
           <div id="controls">
