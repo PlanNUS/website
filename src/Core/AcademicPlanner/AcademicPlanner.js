@@ -203,7 +203,7 @@ function AcademicPlanner(props) {
           Academic Planner
         </p>
         <div id="rightGroup">
-          <OwnButton
+          {/* <OwnButton
             styles={styles}
             buttonDesc={buttonString}
             type="sync"
@@ -212,7 +212,7 @@ function AcademicPlanner(props) {
               // setTimeout(handleCheckRequirement, 100);
               handleCheckRequirement();
             }}
-          />
+          /> */}
           <div id="buttonSpacer" />
           <OwnButton
             styles={styles}
