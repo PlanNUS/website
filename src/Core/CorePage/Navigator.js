@@ -56,6 +56,7 @@ export default function Navigator(props) {
         <div id="appWrapper">
           {/* <Notification type="Global" styles={styles} /> */}
           <Notification
+            updateIsNotifOpen={updateIsNotifOpen}
             type={currNotif}
             isNotifOpen={isNotifOpen}
             styles={styles}

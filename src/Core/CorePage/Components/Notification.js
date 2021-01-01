@@ -7,6 +7,7 @@ export default function Notification(props) {
   const type = props.type;
   const styles = props.styles;
   const isNotifOpen = props.isNotifOpen;
+  const updateIsNotifOpen = props.updateIsNotifOpen;
 
   if (isNotifOpen) {
     if (type === '/CAPCalculator') {
