@@ -1,5 +1,6 @@
 import React from 'react';
-import {IoAdd, IoSync, IoEye, IoEyeOff} from 'react-icons/io5';
+import {IoSync, IoEye, IoEyeOff} from 'react-icons/io5';
+import {MdAdd} from 'react-icons/md';
 
 // import './OwnButton.css';
 import '../../../Style/CorePage/Components/OwnButton.css';
@@ -14,7 +15,7 @@ export default function OwnButton(props) {
   let icon;
   switch (type) {
     case 'add':
-      icon = <IoAdd color={styles.appButtonIconColor} size="25px" />;
+      icon = <MdAdd color={styles.appButtonIconColor} size="25px" />;
       break;
     case 'sync':
       icon = <IoSync color={styles.appButtonIconColor} size="25px" />;

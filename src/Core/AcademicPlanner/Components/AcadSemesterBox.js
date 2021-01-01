@@ -1,4 +1,5 @@
-import {IoAdd, IoClose} from 'react-icons/io5';
+import {IoClose} from 'react-icons/io5';
+import {MdAdd} from 'react-icons/md';
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
@@ -240,43 +241,58 @@ function AcadSemesterBox(props) {
           onClose={() => {
             updateShowAdditionPopup(false);
           }}>
-          <DialogTitle>Add modules to {currentSemester}</DialogTitle>
-          <DialogContent>
-            <Autocomplete
-              id="combo-box-demo"
-              onInputChange={(event) => {
-                updateSearchStringByUser(event.target.value);
-              }}
-              onChange={(event) => {
-                addChip(parseInt(event.target.dataset.optionIndex));
-              }}
-              options={searchDataToDisplay}
-              getOptionLabel={(option) => option.moduleCode}
-              style={{width: 300}}
-              renderInput={(params) => (
-                <TextField {...params} label="Module Code" variant="outlined" />
-              )}
-            />
+          <div style={{backgroundColor: styles.dialogBackgroundColor}}>
+            <DialogTitle style={{color: styles.dialogFontColor}}>
+              Add modules to {currentSemester}
+            </DialogTitle>
+            <DialogContent>
+              <Autocomplete
+                id="combo-box-demo"
+                onInputChange={(event) => {
+                  updateSearchStringByUser(event.target.value);
+                }}
+                onChange={(event) => {
+                  addChip(parseInt(event.target.dataset.optionIndex));
+                }}
+                options={searchDataToDisplay}
+                getOptionLabel={(option) => option.moduleCode}
+                style={{width: 300}}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    style={{color: styles.dialogFontColor}}
+                    label="Module Code"
+                    variant="outlined"
+                  />
+                )}
+              />
 
-            {chipsDataToDisplay.map((data, index) => {
-              return (
-                <Chip
-                  key={index}
-                  label={data.moduleCode}
-                  onDelete={() => deleteChip(index)}
-                  id="chip"
-                />
-              );
-            })}
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleCancel} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={addToGlobalData} color="primary">
-              Add
-            </Button>
-          </DialogActions>
+              {chipsDataToDisplay.map((data, index) => {
+                return (
+                  <Chip
+                    key={index}
+                    label={data.moduleCode}
+                    onDelete={() => deleteChip(index)}
+                    id="chip"
+                  />
+                );
+              })}
+            </DialogContent>
+            <DialogActions>
+              <Button
+                style={{color: styles.dialogButtonColor}}
+                onClick={handleCancel}
+                color="primary">
+                Cancel
+              </Button>
+              <Button
+                style={{color: styles.dialogButtonColor}}
+                onClick={addToGlobalData}
+                color="primary">
+                Add
+              </Button>
+            </DialogActions>
+          </div>
         </Dialog>
 
         <Dialog
@@ -286,23 +302,31 @@ function AcadSemesterBox(props) {
           onClose={() => {
             updateShowDeleteConfirmation(false);
           }}>
-          <DialogTitle>Delete {currentSemester}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="error">
-              Warning! All the data for {currentSemester} will be deleted. This
-              action is irreversible.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={() => updateShowDeleteConfirmation(false)}
-              color="primary">
-              Cancel
-            </Button>
-            <Button onClick={handleSemesterDeletion} color="primary">
-              Confirm
-            </Button>
-          </DialogActions>
+          <div style={{backgroundColor: styles.dialogBackgroundColor}}>
+            <DialogTitle style={{color: styles.dialogFontColor}}>
+              Delete {currentSemester}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="error">
+                Warning! All the data for {currentSemester} will be deleted.
+                This action is irreversible.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                style={{color: styles.dialogButtonColor}}
+                onClick={() => updateShowDeleteConfirmation(false)}
+                color="primary">
+                Cancel
+              </Button>
+              <Button
+                style={{color: styles.dialogButtonColor}}
+                onClick={handleSemesterDeletion}
+                color="primary">
+                Confirm
+              </Button>
+            </DialogActions>
+          </div>
         </Dialog>
 
         <Dialog
@@ -341,16 +365,16 @@ function AcadSemesterBox(props) {
             {`${currentSemester} (MCs: ${creditsInSemester})`}
           </p>
           <div id="semesterButtonGroups">
-            <IoAdd
+            <MdAdd
               className="clickableIcon"
-              color={`${darkTheme ? 'white' : 'black'}`}
+              style={{color: styles.controlButtons}}
               size="25px"
               onClick={() => updateShowAdditionPopup(true)}
             />
             <div id="buttonGroupSeperator" />
             <IoClose
               className="clickableIcon"
-              color={`${darkTheme ? 'white' : 'grey'}`}
+              style={{color: styles.controlButtons}}
               size="25px"
               onClick={() => updateShowDeleteConfirmation(true)}
             />

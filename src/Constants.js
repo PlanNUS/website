@@ -1,7 +1,7 @@
 import React from 'react';
 import Slide from '@material-ui/core/Slide';
 
-export const VERSION = '0.0.2a (Alpha)';
+export const VERSION = '0.1.0b (Beta)';
 
 export const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -73,7 +73,7 @@ export const GRADES = [
 export const BORDER_WIDTH = 2;
 
 export const STYLES = {
-  globalBackgroundColor: 'lightgrey',
+  globalBackgroundColor: 'white',
 
   notificationBorderColor: 'green',
   notificationBackgroundColor: '#dbfaf1',
@@ -92,14 +92,14 @@ export const STYLES = {
   yearWidth: BORDER_WIDTH,
 
   semBorderColor: '#ffab3f',
-  semBackgroundColor: '#c6c0fd',
+  semBackgroundColor: '#cdc8fb',
   semWidth: BORDER_WIDTH,
 
   modBorderColor: '#ffcc00',
-  modBackgroundColor: '#beb7fe',
+  modBackgroundColor: '#c6c0fd',
   modWidth: BORDER_WIDTH + 1,
 
-  inputBorderColor: '#c97200',
+  inputBorderColor: '#ffab3f',
   inputBackgroundColor: 'transparent',
   inputWidth: BORDER_WIDTH,
 
@@ -107,50 +107,65 @@ export const STYLES = {
   selectorBackgroundColor: 'transparent',
   selectorWidth: BORDER_WIDTH,
 
-  sideIconColor: 'red',
-  sideFontColor: 'red',
+  sideIconColor: '#262626',
+  sideFontColor: '#262626',
 
-  appButtonIconColor: 'pink',
-  appButtonFontColor: 'pink',
+  appButtonIconColor: 'white',
+  appButtonFontColor: 'white',
 
-  dialogBackgroundColor: 'lightgrey',
-  dialogFontColor: 'yellow',
-  dialogButtonColor: 'pink',
+  dialogBackgroundColor: 'white',
+  dialogFontColor: 'black',
+  dialogButtonColor: 'blue',
 
-  fontColor: 'green',
-  controlButtons: 'yellow',
+  fontColor: '#262626',
+  controlButtons: '#5a5a5a',
 };
 
 export const DARK_STYLES = {
-  notificationBorderColor: 'green',
-  notificationBackgroundColor: '#dbfaf1',
+  globalBackgroundColor: '#3d3d3d',
+
+  notificationBorderColor: '#84ff84',
+  notificationBackgroundColor: '#9ab19c',
   notificationWidth: BORDER_WIDTH,
 
-  disclaimerBorderColor: 'blue',
-  disclaimerBackgroundColor: '#e1effa',
+  disclaimerBorderColor: '#5757fd',
+  disclaimerBackgroundColor: '#949fa8',
   disclaimerWidth: BORDER_WIDTH,
 
-  appBorderColor: '#4000ff',
-  appBackgroundColor: '#eeecff',
+  appBorderColor: '#e3defd',
+  appBackgroundColor: '#6c6b77',
   appWidth: BORDER_WIDTH,
 
-  yearBorderColor: '#6d51d0',
-  yearBackgroundColor: '#d9d5ff',
+  yearBorderColor: '#d9d5ff',
+  yearBackgroundColor: '#8e8c9d',
   yearWidth: BORDER_WIDTH,
 
-  semBorderColor: '#ffab3f',
-  semBackgroundColor: '#c6c0fd',
+  semBorderColor: '#ffd194',
+  semBackgroundColor: '#adabc2',
   semWidth: BORDER_WIDTH,
 
-  modBorderColor: '#ffcc00',
-  modBackgroundColor: '#beb7fe',
-  modWidth: 3,
+  modBorderColor: '#ffea98',
+  modBackgroundColor: '#c3c1d9',
+  modWidth: BORDER_WIDTH + 1,
 
-  inputBorderColor: '#c97200',
+  inputBorderColor: '#ffd194',
   inputBackgroundColor: 'transparent',
   inputWidth: BORDER_WIDTH,
 
-  selectorBorderColor: '#ffcc00',
+  selectorBorderColor: '#ffea98',
   selectorBackgroundColor: 'transparent',
   selectorWidth: BORDER_WIDTH,
+
+  sideIconColor: '#cccccc',
+  sideFontColor: '#cccccc',
+
+  appButtonIconColor: 'white',
+  appButtonFontColor: 'white',
+
+  dialogBackgroundColor: 'white',
+  dialogFontColor: 'black',
+  dialogButtonColor: 'blue',
+
+  fontColor: 'black',
+  controlButtons: 'white',
 };

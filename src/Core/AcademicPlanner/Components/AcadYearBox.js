@@ -1,4 +1,5 @@
-import {IoAdd, IoClose} from 'react-icons/io5';
+import {IoClose} from 'react-icons/io5';
+import {MdAdd} from 'react-icons/md';
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
@@ -157,23 +158,31 @@ function AcadYearBox(props) {
           onClose={() => {
             updateShowDeleteConfirmation(false);
           }}>
-          <DialogTitle>Delete Year {year}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="error">
-              Warning! All the data for Year {year} will be deleted. This action
-              is irreversible.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={() => updateShowDeleteConfirmation(false)}
-              color="primary">
-              Cancel
-            </Button>
-            <Button onClick={handleYearDeletion} color="primary">
-              Confirm
-            </Button>
-          </DialogActions>
+          <div style={{backgroundColor: styles.dialogBackgroundColor}}>
+            <DialogTitle style={{color: styles.dialogFontColor}}>
+              Delete Year {year}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="error">
+                Warning! All the data for Year {year} will be deleted. This
+                action is irreversible.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                style={{color: styles.dialogButtonColor}}
+                onClick={() => updateShowDeleteConfirmation(false)}
+                color="primary">
+                Cancel
+              </Button>
+              <Button
+                style={{color: styles.dialogButtonColor}}
+                onClick={handleYearDeletion}
+                color="primary">
+                Confirm
+              </Button>
+            </DialogActions>
+          </div>
         </Dialog>
 
         <Dialog
@@ -184,44 +193,52 @@ function AcadYearBox(props) {
             updateShowSemesterAddition(false);
             updateAddSemesterErrorString('');
           }}>
-          <DialogTitle>Semester to be Added</DialogTitle>
-          <DialogContent>
-            <FormControl variant="outlined">
-              <Select
-                native
-                value={selectedSemester}
-                onChange={(event) => {
-                  updateAddSemesterErrorString('');
-                  updateSelectedSemester(event.target.value);
-                }}
-                inputProps={{
-                  name: 'Year',
-                  id: 'outlined-age-native-simple',
-                }}>
-                <option value={0}>Semester 1</option>
-                <option value={1}>Semester 2</option>
-                <option value={2}>Special Term 1</option>
-                <option value={3}>Special Term 2</option>
-              </Select>
-            </FormControl>
+          <div style={{backgroundColor: styles.dialogBackgroundColor}}>
+            <DialogTitle style={{color: styles.dialogFontColor}}>
+              Semester to be Added
+            </DialogTitle>
+            <DialogContent>
+              <FormControl variant="outlined">
+                <Select
+                  native
+                  value={selectedSemester}
+                  onChange={(event) => {
+                    updateAddSemesterErrorString('');
+                    updateSelectedSemester(event.target.value);
+                  }}
+                  inputProps={{
+                    name: 'Year',
+                    id: 'outlined-age-native-simple',
+                  }}>
+                  <option value={0}>Semester 1</option>
+                  <option value={1}>Semester 2</option>
+                  <option value={2}>Special Term 1</option>
+                  <option value={3}>Special Term 2</option>
+                </Select>
+              </FormControl>
 
-            <DialogContentText id="error">
-              {addSemesterErrorString}
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={() => {
-                updateShowSemesterAddition(false);
-                updateAddSemesterErrorString('');
-              }}
-              color="primary">
-              Cancel
-            </Button>
-            <Button onClick={handleSelectUpdate} color="primary">
-              Add
-            </Button>
-          </DialogActions>
+              <DialogContentText id="error">
+                {addSemesterErrorString}
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                style={{color: styles.dialogButtonColor}}
+                onClick={() => {
+                  updateShowSemesterAddition(false);
+                  updateAddSemesterErrorString('');
+                }}
+                color="primary">
+                Cancel
+              </Button>
+              <Button
+                style={{color: styles.dialogButtonColor}}
+                onClick={handleSelectUpdate}
+                color="primary">
+                Add
+              </Button>
+            </DialogActions>
+          </div>
         </Dialog>
 
         <div id="yearBoxHeader">
@@ -229,16 +246,16 @@ function AcadYearBox(props) {
             Year {year}
           </p>
           <div id="yearButtonGroups">
-            <IoAdd
+            <MdAdd
               className="clickableIcon"
-              color={`${darkTheme ? 'white' : 'black'}`}
+              style={{color: styles.controlButtons}}
               size="25px"
               onClick={() => updateShowSemesterAddition(true)}
             />
             <div id="buttonGroupSeperator" />
             <IoClose
               className="clickableIcon"
-              color={`${darkTheme ? 'white' : 'grey'}`}
+              style={{color: styles.controlButtons}}
               size="25px"
               onClick={() => updateShowDeleteConfirmation(true)}
             />

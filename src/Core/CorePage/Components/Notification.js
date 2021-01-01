@@ -40,7 +40,7 @@ export default function Notification(props) {
           <div id="controls">
             <IoClose
               className="clickableIcon"
-              color={`${darkTheme ? 'white' : 'grey'}`}
+              style={{color: styles.controlButtons}}
               size="25px"
               onClick={() => updateIsNotifOpen(false)}
             />
@@ -73,7 +73,7 @@ export default function Notification(props) {
           <div id="controls">
             <IoClose
               className="clickableIcon"
-              color={`${darkTheme ? 'white' : 'grey'}`}
+              style={{color: styles.controlButtons}}
               size="25px"
               onClick={() => updateIsNotifOpen(false)}
             />
@@ -122,7 +122,7 @@ export default function Notification(props) {
           <div id="controls">
             <IoClose
               className="clickableIcon"
-              color={`${darkTheme ? 'white' : 'grey'}`}
+              style={{color: styles.controlButtons}}
               size="25px"
               onClick={() => updateIsNotifOpen(false)}
             />

@@ -67,7 +67,7 @@ function CorePage(props) {
 
     updateDarkTheme(globalData[5].isDarkModeChecked);
     updateIsLoading(false);
-    console.log(globalData);
+    // console.log(globalData);
   }, [globalData]);
 
   useEffect(() => {
@@ -144,13 +144,13 @@ function CorePage(props) {
       if (localData !== undefined) {
         const parsedData = JSON.parse(localData);
 
-        localStorage.removeItem('plannusLocalGlobalData');
+        // localStorage.removeItem('plannusLocalGlobalData');
 
-        // if (parsedData[5].suUsed === undefined) {
-        //   localStorage.removeItem('plannusLocalGlobalData');
-        // } else {
-        //   updateData(parsedData);
-        // }
+        if (parsedData[5].suUsed === undefined) {
+          localStorage.removeItem('plannusLocalGlobalData');
+        } else {
+          updateData(parsedData);
+        }
       }
 
       const URLArr = window.location.href.split('#');
@@ -202,7 +202,9 @@ function CorePage(props) {
   } else {
     if (isLoadingSuccess) {
       return (
-        <div id={`${darkTheme ? 'dark' : 'light'}Theme`}>
+        <div
+          id="globalTheme"
+          style={{backgroundColor: styles.globalBackgroundColor}}>
           <div id="forceFooterToBtm">
             <div id="fitContent">
               <Dialog
@@ -212,25 +214,30 @@ function CorePage(props) {
                 onClose={() => {
                   updateIsLinkDialogOpen(false);
                 }}>
-                <DialogTitle>Share Link!</DialogTitle>
-                <DialogContent>
-                  <DialogContentText>
-                    Copy the link below to share your plan with friends!
-                  </DialogContentText>
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    value={shareLink}
-                    disabled
-                  />
-                </DialogContent>
-                <DialogActions>
-                  <Button
-                    onClick={() => updateIsLinkDialogOpen(false)}
-                    color="primary">
-                    Done
-                  </Button>
-                </DialogActions>
+                <div style={{backgroundColor: styles.dialogBackgroundColor}}>
+                  <DialogTitle style={{color: styles.dialogFontColor}}>
+                    Share Link!
+                  </DialogTitle>
+                  <DialogContent>
+                    <DialogContentText style={{color: styles.dialogFontColor}}>
+                      Copy the link below to share your plan with friends!
+                    </DialogContentText>
+                    <TextField
+                      fullWidth
+                      variant="outlined"
+                      value={shareLink}
+                      disabled
+                    />
+                  </DialogContent>
+                  <DialogActions>
+                    <Button
+                      style={{color: styles.dialogButtonColor}}
+                      onClick={() => updateIsLinkDialogOpen(false)}
+                      color="primary">
+                      Done
+                    </Button>
+                  </DialogActions>
+                </div>
               </Dialog>
 
               <div id="headerBanner">
@@ -240,7 +247,11 @@ function CorePage(props) {
 
                 <div id="rightMenu">
                   <div id="shareButton" onClick={handleShareLinkOpen}>
-                    <p id="shareText">Share</p>
+                    <p
+                      id="shareText"
+                      style={{color: styles.appButtonFontColor}}>
+                      Share
+                    </p>
                   </div>
                   <div id="darkModeChecker">
                     <p

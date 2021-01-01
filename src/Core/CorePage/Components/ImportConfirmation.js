@@ -45,7 +45,7 @@ export default function ImportConfirmation(props) {
         <div id="controls">
           <IoClose
             className="clickableIcon"
-            color={`${darkTheme ? 'white' : 'grey'}`}
+            style={{color: styles.controlButtons}}
             size="25px"
             onClick={handleCancel}
           />

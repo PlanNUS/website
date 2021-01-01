@@ -2,15 +2,7 @@ a {
   text-decoration: none;
 }
 
-#darkTheme {
-  background-color: darkgrey;
-  width: 100%;
-  min-width: fit-content;
-  height: 100%;
-}
-
-#lightTheme {
-  background-color: white;
+#globalTheme {
   width: 100%;
   min-width: fit-content;
   height: 100%;

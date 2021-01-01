@@ -78,7 +78,7 @@ export default function AcadModuleBox(props) {
       <div>
         <IoClose
           className="clickableIcon"
-          color={`${darkTheme ? 'white' : 'grey'}`}
+          style={{color: styles.controlButtons}}
           size="25px"
           onClick={() => removeModule(currentIdx)}
         />
