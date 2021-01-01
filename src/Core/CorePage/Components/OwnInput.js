@@ -3,7 +3,6 @@ import React from 'react';
 import '../../../Style/CorePage/Components/OwnInput.css';
 
 export default function OwnInput(props) {
-  const darkTheme = props.darkTheme;
   const styles = props.styles;
   const desc = props.desc;
   const value = props.value;

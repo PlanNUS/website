@@ -12,11 +12,10 @@ import OwnButton from '../CorePage/Components/OwnButton';
 import OwnInput from '../CorePage/Components/OwnInput';
 
 function CAPCalculator(props) {
-  const darkTheme = props.darkTheme;
   const styles = props.styles;
   const globalData = props.globalData;
-  // const updateData = props.updateData;
   const updateCurrLocation = props.updateCurrLocation;
+  const updateIsNotifOpen = props.updateIsNotifOpen;
 
   const [toDisplayArr, updateToDisplayArr] = useState([
     //Year 1
@@ -65,8 +64,6 @@ function CAPCalculator(props) {
     ],
   ]);
 
-  // const [targetCap, updateTargetCap] = useState(0.0);
-
   const [currCap, updateCurrCap] = useState(0.0);
 
   const [isDetailsShown, updateIsDetailsShown] = useState(true);
@@ -77,6 +74,10 @@ function CAPCalculator(props) {
   const [yearThreeShown, updateYearThreeShown] = useState(false);
   const [yearFourShown, updateYearFourShown] = useState(false);
   const [yearFiveShown, updateYearFiveShown] = useState(false);
+
+  useEffect(() => {
+    updateIsNotifOpen(true);
+  }, [updateIsNotifOpen]);
 
   const currLocation = useLocation();
   useEffect(() => {
@@ -123,14 +124,12 @@ function CAPCalculator(props) {
           <OwnInput
             styles={styles}
             type="cap"
-            darkTheme={darkTheme}
             desc="Current CAP:"
             value={currCap}
           />
           <div id="seperator" />
           <OwnButton
             styles={styles}
-            darkTheme={darkTheme}
             buttonDesc={detailButtonString}
             type={detailButtonString}
             onClick={() => updateIsDetailsShown(!isDetailsShown)}
@@ -138,14 +137,9 @@ function CAPCalculator(props) {
         </div>
       </div>
 
-      <DetailsBox
-        isShown={isDetailsShown}
-        styles={styles}
-        darkTheme={darkTheme}
-      />
+      <DetailsBox isShown={isDetailsShown} styles={styles} />
 
       <CalcYearBox
-        darkTheme={darkTheme}
         year="1"
         currentYearIndex={0}
         styles={styles}
@@ -153,7 +147,6 @@ function CAPCalculator(props) {
         semToDisplay={toDisplayArr[0]}
       />
       <CalcYearBox
-        darkTheme={darkTheme}
         year="2"
         currentYearIndex={1}
         styles={styles}
@@ -161,7 +154,6 @@ function CAPCalculator(props) {
         semToDisplay={toDisplayArr[1]}
       />
       <CalcYearBox
-        darkTheme={darkTheme}
         year="3"
         currentYearIndex={2}
         styles={styles}
@@ -169,7 +161,6 @@ function CAPCalculator(props) {
         semToDisplay={toDisplayArr[2]}
       />
       <CalcYearBox
-        darkTheme={darkTheme}
         year="4"
         currentYearIndex={3}
         styles={styles}
@@ -177,7 +168,6 @@ function CAPCalculator(props) {
         semToDisplay={toDisplayArr[3]}
       />
       <CalcYearBox
-        darkTheme={darkTheme}
         year="5"
         currentYearIndex={4}
         styles={styles}

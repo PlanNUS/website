@@ -1,7 +1,3 @@
-/*
- *https://www.npmjs.com/package/react-switch
- */
-
 import React, {useEffect, useState} from 'react';
 import ToggleSwitch from 'react-switch';
 import {connect} from 'react-redux';
@@ -33,13 +29,6 @@ function CorePage(props) {
   const globalData = props.globalData;
   const updateData = props.updateData;
 
-  // console.log(window.location.protocol);
-  // console.log(window.location.host);
-  // console.log(window.location.pathname);
-  // console.log(window.location.search);
-  // console.log(window.location.href);
-  // console.log(window.location.hash);
-  // const acadamicYear = '2020-2021';
   const [shareLink, updateShareLink] = useState('');
   const [isLinkDialogOpen, updateIsLinkDialogOpen] = useState(false);
   const [importData, updateImportData] = useState([]);
@@ -67,7 +56,6 @@ function CorePage(props) {
 
     updateDarkTheme(globalData[5].isDarkModeChecked);
     updateIsLoading(false);
-    // console.log(globalData);
   }, [globalData]);
 
   useEffect(() => {
@@ -96,15 +84,6 @@ function CorePage(props) {
   }
 
   function handleShareLinkOpen() {
-    // const searchText = `?${JSON.stringify(globalData)}`;
-    // const newURL =
-    //   window.location.protocol +
-    //   '//' +
-    //   window.location.host +
-    //   '/' +
-    //   window.location.pathname +
-    //   searchText;
-
     dataToLink(globalData).then((result) => {
       const newURL = window.location.href + '?' + result;
       updateShareLink(newURL);
@@ -195,7 +174,6 @@ function CorePage(props) {
   if (isLoading) {
     return (
       <div id="wholePageCenter">
-        {/* <img src={ErrorIcon} alt="LoadingError" height="70px" /> */}
         <h3 className="lightWords">Loading...</h3>
       </div>
     );
@@ -256,7 +234,7 @@ function CorePage(props) {
                   <div id="darkModeChecker">
                     <p
                       className="words"
-                      style={{color: styles.fontColor}}
+                      style={{color: styles.darkModeText}}
                       id="darkModeWords">
                       Dark Mode
                     </p>
@@ -273,14 +251,13 @@ function CorePage(props) {
               <Navigator
                 isImportConfirmShown={isImportConfirmShown}
                 handleImportConfirmation={handleImportConfirmation}
-                darkTheme={darkTheme}
                 moduleData={moduleData}
                 moduleDataLength={moduleDataLength}
                 transition={Transition}
                 styles={styles}
               />
             </div>
-            <Footer darkTheme={darkTheme} />
+            <Footer />
           </div>
         </div>
       );

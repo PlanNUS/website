@@ -19,7 +19,6 @@ import '../../../Style/Common/YearBoxCommons.css';
 
 function AcadYearBox(props) {
   const year = props.year;
-  const darkTheme = props.darkTheme;
   const isShown = props.isShown;
   const transition = props.transition;
   const updateIsShown = props.updateIsShown;
@@ -267,7 +266,6 @@ function AcadYearBox(props) {
             currentSemester="Semester 1"
             currentSemesterIndex={0}
             currentYearIndex={currentYearIndex}
-            darkTheme={darkTheme}
             transition={transition}
             isShown={semesterOneShown}
             styles={styles}
@@ -279,7 +277,6 @@ function AcadYearBox(props) {
             currentSemester="Semester 2"
             currentSemesterIndex={1}
             currentYearIndex={currentYearIndex}
-            darkTheme={darkTheme}
             transition={transition}
             isShown={semesterTwoShown}
             styles={styles}
@@ -291,7 +288,6 @@ function AcadYearBox(props) {
             currentSemester="Special Term 1"
             currentSemesterIndex={2}
             currentYearIndex={currentYearIndex}
-            darkTheme={darkTheme}
             transition={transition}
             isShown={specialTermOneShown}
             styles={styles}
@@ -303,7 +299,6 @@ function AcadYearBox(props) {
             currentSemester="Special Term 2"
             currentSemesterIndex={3}
             currentYearIndex={currentYearIndex}
-            darkTheme={darkTheme}
             transition={transition}
             isShown={specialTermTwoShown}
             styles={styles}

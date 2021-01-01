@@ -6,7 +6,6 @@ import '../../../Style/Common/ModuleBoxCommons.css';
 
 export default function AcadModuleBox(props) {
   const module = props.module;
-  const darkTheme = props.darkTheme;
   const currentIdx = props.currentIdx;
   const removeModule = props.removeModule;
   const styles = props.styles;

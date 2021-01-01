@@ -24,7 +24,6 @@ function AcadSemesterBox(props) {
   const currentSemester = props.currentSemester;
   const transition = props.transition;
   const isShown = props.isShown;
-  const darkTheme = props.darkTheme;
   const updateIsShown = props.updateIsShown;
   const moduleData = props.moduleData;
   const moduleDataLength = props.moduleDataLength;
@@ -388,7 +387,6 @@ function AcadSemesterBox(props) {
             styles={styles}
             key={currentData.moduleCode}
             module={currentData}
-            darkTheme={darkTheme}
           />
         ))}
       </div>

@@ -6,7 +6,6 @@ import '../../../Style/CorePage/Components/ImportConfirmation.css';
 import OwnButton from './OwnButton';
 
 export default function ImportConfirmation(props) {
-  const darkTheme = props.darkTheme;
   const styles = props.styles;
   const isShown = props.isShown;
   const handleImportConfirmation = props.handleImportConfirmation;
@@ -53,14 +52,12 @@ export default function ImportConfirmation(props) {
           <div id="buttonWrapper">
             <OwnButton
               styles={styles}
-              darkTheme={darkTheme}
               buttonDesc="Import"
               onClick={handleApprove}
             />
             <div id="spacer" />
             <OwnButton
               styles={styles}
-              darkTheme={darkTheme}
               buttonDesc="Maybe Later"
               onClick={handleCancel}
             />

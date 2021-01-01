@@ -25,7 +25,6 @@ function Alert(props) {
 }
 
 function AcademicPlanner(props) {
-  const darkTheme = props.darkTheme;
   const transition = props.transition;
   const moduleData = props.moduleData;
   const moduleDataLength = props.moduleDataLength;
@@ -33,6 +32,7 @@ function AcademicPlanner(props) {
   const updateData = props.updateData;
   const updateCurrLocation = props.updateCurrLocation;
   const styles = props.styles;
+  const updateIsNotifOpen = props.updateIsNotifOpen;
 
   const [toDisplayArr, updateToDisplayArr] = useState([
     //Year 1
@@ -95,6 +95,10 @@ function AcademicPlanner(props) {
   const [selectedYear, updateSelectedYear] = useState('0');
 
   const [addYearErrorString, updateAddYearErrorString] = useState('');
+
+  useEffect(() => {
+    updateIsNotifOpen(true);
+  }, [updateIsNotifOpen]);
 
   const currLocation = useLocation();
   useEffect(() => {
@@ -201,7 +205,6 @@ function AcademicPlanner(props) {
         <div id="rightGroup">
           <OwnButton
             styles={styles}
-            darkTheme={darkTheme}
             buttonDesc={buttonString}
             type="sync"
             onClick={() => {
@@ -213,7 +216,6 @@ function AcademicPlanner(props) {
           <div id="buttonSpacer" />
           <OwnButton
             styles={styles}
-            darkTheme={darkTheme}
             buttonDesc="Add Year"
             type="add"
             onClick={() => updateShowModal(true)}
@@ -298,7 +300,6 @@ function AcademicPlanner(props) {
       </Dialog>
 
       <AcadYearBox
-        darkTheme={darkTheme}
         year="1"
         currentYearIndex={0}
         isShown={yearOneShown}
@@ -310,7 +311,6 @@ function AcademicPlanner(props) {
         semToDisplay={toDisplayArr[0]}
       />
       <AcadYearBox
-        darkTheme={darkTheme}
         year="2"
         currentYearIndex={1}
         isShown={yearTwoShown}
@@ -322,7 +322,6 @@ function AcademicPlanner(props) {
         semToDisplay={toDisplayArr[1]}
       />
       <AcadYearBox
-        darkTheme={darkTheme}
         year="3"
         currentYearIndex={2}
         isShown={yearThreeShown}
@@ -334,7 +333,6 @@ function AcademicPlanner(props) {
         semToDisplay={toDisplayArr[2]}
       />
       <AcadYearBox
-        darkTheme={darkTheme}
         year="4"
         currentYearIndex={3}
         isShown={yearFourShown}
@@ -346,7 +344,6 @@ function AcademicPlanner(props) {
         semToDisplay={toDisplayArr[3]}
       />
       <AcadYearBox
-        darkTheme={darkTheme}
         year="5"
         currentYearIndex={4}
         isShown={yearFiveShown}

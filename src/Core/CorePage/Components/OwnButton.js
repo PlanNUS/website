@@ -6,7 +6,6 @@ import {MdAdd} from 'react-icons/md';
 import '../../../Style/CorePage/Components/OwnButton.css';
 
 export default function OwnButton(props) {
-  const darkTheme = props.darkTheme;
   const buttonDesc = props.buttonDesc;
   const onClick = props.onClick;
   const type = props.type;

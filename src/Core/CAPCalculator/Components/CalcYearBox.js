@@ -7,7 +7,6 @@ import '../../../Style/Common/YearBoxCommons.css';
 
 function CalcYearBox(props) {
   const year = props.year;
-  const darkTheme = props.darkTheme;
   const isShown = props.isShown;
   const styles = props.styles;
 
@@ -46,7 +45,6 @@ function CalcYearBox(props) {
             currentSemester="Semester 1"
             currentSemesterIndex={0}
             currentYearIndex={currentYearIndex}
-            darkTheme={darkTheme}
             styles={styles}
             isShown={semesterOneShown}
           />
@@ -55,7 +53,6 @@ function CalcYearBox(props) {
             currentSemester="Semester 2"
             currentSemesterIndex={1}
             currentYearIndex={currentYearIndex}
-            darkTheme={darkTheme}
             styles={styles}
             isShown={semesterTwoShown}
           />
@@ -63,7 +60,6 @@ function CalcYearBox(props) {
             currentSemester="Special Term 1"
             currentSemesterIndex={2}
             currentYearIndex={currentYearIndex}
-            darkTheme={darkTheme}
             styles={styles}
             isShown={specialTermOneShown}
           />
@@ -71,7 +67,6 @@ function CalcYearBox(props) {
             currentSemester="Special Term 2"
             currentSemesterIndex={3}
             currentYearIndex={currentYearIndex}
-            darkTheme={darkTheme}
             styles={styles}
             isShown={specialTermTwoShown}
           />

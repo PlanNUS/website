@@ -1,35 +1,3 @@
-import {TOTAL_YEAR, TOTAL_SEMESTER} from '../../../Constants';
-
-// const replaceArr = [
-//   [/"moduleCode":/g, ''],
-//   [/"moduleCredit":/g, '|'],
-//   [/"attributes":/g, '|'],
-//   [/"gradeIdx":/g, '|'],
-//   [/"isFlagged":/g, '|'],
-//   [/"isPrereqCleared":/g, '|'],
-//   [/"isPrereqInSameSem":/g, '|'],
-//   [/"isCoreqInSameSem":/g, '|'],
-//   [/"isPrecluAdded":/g, '|'],
-
-//   [/"su":/g, '^'],
-
-//   [/"semModularCredit":/g, '_'],
-
-//   [/"totalSU":/g, '&'],
-//   [/"suUsed":/g, '&'],
-//   [/"suLeft":/g, '&'],
-//   [/"totalMCAdded":/g, '&'],
-//   [/"totalMxP":/g, '&'],
-//   [/"totalMCClearedInternal":/g, '&'],
-//   [/"totalMCClearedExternal":/g, '&'],
-//   [/"currentCap":/g, '&'],
-//   [/"isDarkModeChecked":/g, '&'],
-//   [/"isDisplayed":/g, '&'],
-
-//   [/true/g, 't'],
-//   [/false/g, 'f'],
-// ];
-
 const replaceArr = [
   ['"moduleCode":', 'A='],
   ['"moduleCredit":', 'B='],
@@ -52,22 +20,17 @@ const replaceArr = [
   ['"totalMxP":', 'N='],
   ['"totalMCClearedInternal":', 'O='],
   ['"totalMCClearedExternal":', 'P='],
-  ['"currentCap":', 'Q='],
-  ['"isDarkModeChecked":', 'R='],
-  ['"isDisplayed":', 'S='],
+  ['"mcLeft":', 'Q='],
+  ['"targetCapString":', 'R='],
+  ['"targetCap":', 'S='],
+  ['"neededCap":', 'T='],
+  ['"currentCap":', 'U='],
+  ['"isDarkModeChecked":', 'V='],
+  ['"isDisplayed":', 'W='],
 
   ['true', 't'],
   ['false', 'f'],
 ];
-
-// const reformatString = [
-//   ['t', 'true'],
-//   ['f', 'false'],
-//   ['|', '"|":'],
-//   ['^', '"su":'],
-//   ['_', '"semModularCredit":'],
-//   ['&', '"&":'],
-// ];
 
 export async function dataToLink(globalData) {
   var codec = require('json-url')('lzma');

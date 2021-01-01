@@ -74,6 +74,7 @@ export const BORDER_WIDTH = 2;
 
 export const STYLES = {
   globalBackgroundColor: 'white',
+  darkModeText: 'black',
 
   notificationBorderColor: 'green',
   notificationBackgroundColor: '#dbfaf1',
@@ -123,25 +124,27 @@ export const STYLES = {
 
 export const DARK_STYLES = {
   globalBackgroundColor: '#3d3d3d',
+  darkModeText: 'white',
 
   notificationBorderColor: '#84ff84',
   notificationBackgroundColor: '#9ab19c',
   notificationWidth: BORDER_WIDTH,
 
   disclaimerBorderColor: '#5757fd',
-  disclaimerBackgroundColor: '#949fa8',
+  disclaimerBackgroundColor: '#becbd6',
   disclaimerWidth: BORDER_WIDTH,
 
   appBorderColor: '#e3defd',
-  appBackgroundColor: '#6c6b77',
+  // appBackgroundColor: '#6c6b77',
+  appBackgroundColor: '#b3b2c4',
   appWidth: BORDER_WIDTH,
 
   yearBorderColor: '#d9d5ff',
-  yearBackgroundColor: '#8e8c9d',
+  yearBackgroundColor: '#c4c3d5',
   yearWidth: BORDER_WIDTH,
 
   semBorderColor: '#ffd194',
-  semBackgroundColor: '#adabc2',
+  semBackgroundColor: '#c6c5d9',
   semWidth: BORDER_WIDTH,
 
   modBorderColor: '#ffea98',

@@ -1,14 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {IoClose} from 'react-icons/io5';
 
 import '../../../Style/CorePage/Components/Notification.css';
 
 export default function Notification(props) {
-  const darkTheme = props.darkTheme;
   const type = props.type;
   const styles = props.styles;
-
-  const [isNotifOpen, updateIsNotifOpen] = useState(true);
+  const isNotifOpen = props.isNotifOpen;
 
   if (isNotifOpen) {
     if (type === '/CAPCalculator') {
@@ -80,55 +78,55 @@ export default function Notification(props) {
           </div>
         </div>
       );
-    } else if (type === 'Global') {
-      return (
-        <div
-          id="importNotifWrapper"
-          style={{
-            borderWidth: styles.notificationWidth,
-            borderColor: styles.notificationBorderColor,
-            backgroundColor: styles.notificationBackgroundColor,
-          }}>
-          <div>
-            <h3 className="words" style={{color: styles.fontColor}}>
-              Welcome to PlanNUS Alpha Testing (V2)!
-            </h3>
-            <p className="words" style={{color: styles.fontColor}}>
-              Do give some feedback regarding:
-            </p>
-            <ul>
-              <li className="words" style={{color: styles.fontColor}}>
-                Testing for Requirement check for Prerequisite, Corequisite and
-                Preclusion
-              </li>
-              <li className="words" style={{color: styles.fontColor}}>
-                Testing for CAP Calculation
-              </li>
-              <li className="words" style={{color: styles.fontColor}}>
-                Layout of Academic Planner and CAP Calculator
-              </li>
-              <li className="words" style={{color: styles.fontColor}}>
-                Color scheme for both White and Dark mode
-              </li>
-              <li className="words" style={{color: styles.fontColor}}>
-                General usability
-              </li>
-            </ul>
-            <p className="words" style={{color: styles.fontColor}}>
-              The feedback link can be found in the footer. Thanks again and
-              enjoy hehe!
-            </p>
-          </div>
-          <div id="controls">
-            <IoClose
-              className="clickableIcon"
-              style={{color: styles.controlButtons}}
-              size="25px"
-              onClick={() => updateIsNotifOpen(false)}
-            />
-          </div>
-        </div>
-      );
+      // } else if (type === 'Global') {
+      //   return (
+      //     <div
+      //       id="importNotifWrapper"
+      //       style={{
+      //         borderWidth: styles.notificationWidth,
+      //         borderColor: styles.notificationBorderColor,
+      //         backgroundColor: styles.notificationBackgroundColor,
+      //       }}>
+      //       <div>
+      //         <h3 className="words" style={{color: styles.fontColor}}>
+      //           Welcome to PlanNUS Alpha Testing (V2)!
+      //         </h3>
+      //         <p className="words" style={{color: styles.fontColor}}>
+      //           Do give some feedback regarding:
+      //         </p>
+      //         <ul>
+      //           <li className="words" style={{color: styles.fontColor}}>
+      //             Testing for Requirement check for Prerequisite, Corequisite and
+      //             Preclusion
+      //           </li>
+      //           <li className="words" style={{color: styles.fontColor}}>
+      //             Testing for CAP Calculation
+      //           </li>
+      //           <li className="words" style={{color: styles.fontColor}}>
+      //             Layout of Academic Planner and CAP Calculator
+      //           </li>
+      //           <li className="words" style={{color: styles.fontColor}}>
+      //             Color scheme for both White and Dark mode
+      //           </li>
+      //           <li className="words" style={{color: styles.fontColor}}>
+      //             General usability
+      //           </li>
+      //         </ul>
+      //         <p className="words" style={{color: styles.fontColor}}>
+      //           The feedback link can be found in the footer. Thanks again and
+      //           enjoy hehe!
+      //         </p>
+      //       </div>
+      //       <div id="controls">
+      //         <IoClose
+      //           className="clickableIcon"
+      //           style={{color: styles.controlButtons}}
+      //           size="25px"
+      //           onClick={() => updateIsNotifOpen(false)}
+      //         />
+      //       </div>
+      //     </div>
+      //   );
     } else {
       return null;
     }

@@ -10,7 +10,6 @@ import UpdateGrade from '../Functions/UpdateGrade';
 function CalcModuleBox(props) {
   const module = props.module;
   const suLeft = props.suLeft;
-  const darkTheme = props.darkTheme;
   const styles = props.styles;
 
   const globalData = props.globalData;

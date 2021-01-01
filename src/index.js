@@ -6,9 +6,7 @@ import {createStore} from 'redux';
 
 import './index.css';
 
-// import CorePage from './CorePage/CorePage.js';
 import CorePage from './Core/CorePage/CorePage';
-import Login from './Core/Login/Login';
 import reportWebVitals from './reportWebVitals';
 
 const initialState = {
@@ -81,10 +79,10 @@ const initialState = {
       totalMxP: 0,
       totalMCClearedInternal: 0,
       totalMCClearedExternal: 0,
-      mcLeft: 0, //add this
-      targetCapString: '0.0', //add this
+      mcLeft: 0,
+      targetCapString: '0.0',
       targetCap: 0.0,
-      neededCap: 0.0, //add this
+      neededCap: 0.0,
       currentCap: 0.0,
       isDarkModeChecked: false,
       isDisplayed: [
@@ -153,8 +151,7 @@ const store = createStore(newDataRedux);
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Login />
-      {/* <CorePage /> */}
+      <CorePage />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),

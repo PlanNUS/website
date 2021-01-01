@@ -3,9 +3,7 @@ import React from 'react';
 import '../../Style/CorePage/Footer.css';
 import {VERSION} from '../../Constants';
 
-export default function Footer(props) {
-  // const darkTheme = props.darkTheme;
-
+export default function Footer() {
   return (
     <div id="footerWrapper">
       <div id="clickableLine">

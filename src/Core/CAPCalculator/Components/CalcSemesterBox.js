@@ -8,7 +8,6 @@ import CalcModuleBox from './CalcModuleBox';
 function CalcSemesterBox(props) {
   const currentSemester = props.currentSemester;
   const isShown = props.isShown;
-  const darkTheme = props.darkTheme;
   const currentYearIndex = props.currentYearIndex;
   const currentSemesterIndex = props.currentSemesterIndex;
   const globalData = props.globalData;
@@ -49,7 +48,6 @@ function CalcSemesterBox(props) {
             key={currentData.moduleCode}
             module={currentData}
             styles={styles}
-            darkTheme={darkTheme}
           />
         ))}
       </div>

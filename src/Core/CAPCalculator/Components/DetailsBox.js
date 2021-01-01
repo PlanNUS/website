@@ -12,7 +12,6 @@ function DetailsBox(props) {
   const styles = props.styles;
 
   const isShown = props.isShown;
-  const darkTheme = props.darkTheme;
 
   const [totalSUString, updateTotalSUString] = useState('');
   const [suUsed, updateSuUsed] = useState(0);
@@ -149,7 +148,6 @@ function DetailsBox(props) {
           <div id="rowWrapper">
             <OwnInput
               type="input"
-              darkTheme={darkTheme}
               desc="Total SU:"
               value={totalSUString}
               styles={styles}
@@ -159,14 +157,12 @@ function DetailsBox(props) {
             <OwnInput
               type="display"
               styles={styles}
-              darkTheme={darkTheme}
               desc="SU Used:"
               value={suUsed}
             />
             <OwnInput
               type="su"
               styles={styles}
-              darkTheme={darkTheme}
               desc="SU Left:"
               value={suLeft}
             />
@@ -176,21 +172,18 @@ function DetailsBox(props) {
             <OwnInput
               type="display"
               styles={styles}
-              darkTheme={darkTheme}
               desc="MCs Added:"
               value={MCAdded}
             />
             <OwnInput
               type="display"
               styles={styles}
-              darkTheme={darkTheme}
               desc="MCs Cleared:"
               value={totalMCClearedExternal}
             />
             <OwnInput
               type="display"
               styles={styles}
-              darkTheme={darkTheme}
               desc="MCs Left:"
               value={totalMCClearedExternal}
             />
@@ -201,7 +194,6 @@ function DetailsBox(props) {
               <OwnInput
                 type="input"
                 styles={styles}
-                darkTheme={darkTheme}
                 desc="Target CAP:"
                 value={targetCapString}
                 onChangeHandler={handleNewTarget}

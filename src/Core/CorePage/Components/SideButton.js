@@ -7,7 +7,6 @@ export default function SideButton(props) {
   // const icon = props.icon;
   const desc = props.desc;
   const type = props.type;
-  const darkTheme = props.darkTheme;
   const styles = props.styles;
 
   let icon = null;

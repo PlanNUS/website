@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
-  BrowserRouter,
+  // BrowserRouter,
   HashRouter,
   Switch,
   Route,
@@ -18,19 +18,18 @@ import ImportConfirmation from './Components/ImportConfirmation';
 import Notification from './Components/Notification';
 
 export default function Navigator(props) {
-  // const planner = require('./Assets/PlannerIcon.png').default;
-  // const calculator = require('./Assets/CalculatorIcon.png').default;
-
   const isImportConfirmShown = props.isImportConfirmShown;
   const handleImportConfirmation = props.handleImportConfirmation;
-  const darkTheme = props.darkTheme;
   const styles = props.styles;
   const moduleData = props.moduleData;
   const moduleDataLength = props.moduleDataLength;
   const transition = props.transition;
 
-  const [currLocation, updateCurrLocation] = useState({pathname: '/'});
+  const [currLocation, updateCurrLocation] = useState({
+    pathname: '/',
+  });
   const [currNotif, updateCurrNotif] = useState('');
+  const [isNotifOpen, updateIsNotifOpen] = useState(true);
 
   useEffect(() => {
     if (currLocation.pathname.includes('CAPCalculator')) {
@@ -46,33 +45,22 @@ export default function Navigator(props) {
       <div id="mainPage">
         <nav id="navigatorSelector">
           <Link to="/AcademicPlanner">
-            <SideButton
-              styles={styles}
-              type="plan"
-              desc="Planner"
-              darkTheme={darkTheme}
-            />
+            <SideButton styles={styles} type="plan" desc="Planner" />
           </Link>
           <Link to="/CAPCalculator">
-            <SideButton
-              styles={styles}
-              type="calc"
-              desc="Calculator"
-              darkTheme={darkTheme}
-            />
+            <SideButton styles={styles} type="calc" desc="Calculator" />
           </Link>
         </nav>
 
         <Redirect exact from="/" to={currLocation.pathname} />
         <div id="appWrapper">
-          <Notification type="Global" styles={styles} darkTheme={darkTheme} />
+          {/* <Notification type="Global" styles={styles} /> */}
           <Notification
             type={currNotif}
+            isNotifOpen={isNotifOpen}
             styles={styles}
-            darkTheme={darkTheme}
           />
           <ImportConfirmation
-            darkTheme={darkTheme}
             styles={styles}
             isShown={isImportConfirmShown}
             handleImportConfirmation={handleImportConfirmation}
@@ -91,7 +79,8 @@ export default function Navigator(props) {
                 render={(routeProps) => (
                   <Home
                     {...routeProps}
-                    darkTheme={darkTheme}
+                    updateIsNotifOpen={updateIsNotifOpen}
+                    styles={styles}
                     moduleData={moduleData}
                     moduleDataLength={moduleDataLength}
                     transition={transition}
@@ -105,8 +94,8 @@ export default function Navigator(props) {
                 render={(routeProps) => (
                   <AcademicPlanner
                     {...routeProps}
+                    updateIsNotifOpen={updateIsNotifOpen}
                     styles={styles}
-                    darkTheme={darkTheme}
                     moduleData={moduleData}
                     moduleDataLength={moduleDataLength}
                     transition={transition}
@@ -120,8 +109,8 @@ export default function Navigator(props) {
                 render={(routeProps) => (
                   <CAPCalculator
                     {...routeProps}
+                    updateIsNotifOpen={updateIsNotifOpen}
                     styles={styles}
-                    darkTheme={darkTheme}
                     updateCurrLocation={updateCurrLocation}
                   />
                 )}
