@@ -100,6 +100,17 @@ function AcadYearBox(props) {
         }
         break;
       case '1':
+        if (semesterTwoShown === false) {
+          const tempGlobalData = [...globalData];
+          tempGlobalData[5].isDisplayed[currentYearIndex][4] = true;
+          updateData(tempGlobalData);
+          updateSemesterTwoShown(true);
+          updateShowSemesterAddition(false);
+        } else {
+          updateAddSemesterErrorString('The chosen semester is already shown!');
+        }
+        break;
+      case '2':
         if (specialTermOneShown === false) {
           const tempGlobalData = [...globalData];
           tempGlobalData[5].isDisplayed[currentYearIndex][2] = true;
@@ -110,23 +121,12 @@ function AcadYearBox(props) {
           updateAddSemesterErrorString('The chosen semester is already shown!');
         }
         break;
-      case '2':
+      case '3':
         if (specialTermTwoShown === false) {
           const tempGlobalData = [...globalData];
           tempGlobalData[5].isDisplayed[currentYearIndex][3] = true;
           updateData(tempGlobalData);
           updateSpecialTermTwoShown(true);
-          updateShowSemesterAddition(false);
-        } else {
-          updateAddSemesterErrorString('The chosen semester is already shown!');
-        }
-        break;
-      case '3':
-        if (semesterTwoShown === false) {
-          const tempGlobalData = [...globalData];
-          tempGlobalData[5].isDisplayed[currentYearIndex][4] = true;
-          updateData(tempGlobalData);
-          updateSemesterTwoShown(true);
           updateShowSemesterAddition(false);
         } else {
           updateAddSemesterErrorString('The chosen semester is already shown!');
@@ -199,9 +199,9 @@ function AcadYearBox(props) {
                   id: 'outlined-age-native-simple',
                 }}>
                 <option value={0}>Semester 1</option>
-                <option value={1}>Special Term 1</option>
-                <option value={2}>Special Term 2</option>
-                <option value={3}>Semester 2</option>
+                <option value={1}>Semester 2</option>
+                <option value={2}>Special Term 1</option>
+                <option value={3}>Special Term 2</option>
               </Select>
             </FormControl>
 
@@ -225,7 +225,9 @@ function AcadYearBox(props) {
         </Dialog>
 
         <div id="yearBoxHeader">
-          <p className={`${darkTheme ? 'dark' : 'light'}Words`}>Year {year}</p>
+          <p className="words" style={{color: styles.fontColor}}>
+            Year {year}
+          </p>
           <div id="yearButtonGroups">
             <IoAdd
               className="clickableIcon"
@@ -257,8 +259,20 @@ function AcadYearBox(props) {
             updateIsShown={updateSemesterOneShown}
           />
           <AcadSemesterBox
-            currentSemester="Special Term 1"
+            currentSemester="Semester 2"
             currentSemesterIndex={1}
+            currentYearIndex={currentYearIndex}
+            darkTheme={darkTheme}
+            transition={transition}
+            isShown={semesterTwoShown}
+            styles={styles}
+            moduleData={moduleData}
+            moduleDataLength={moduleDataLength}
+            updateIsShown={updateSemesterTwoShown}
+          />
+          <AcadSemesterBox
+            currentSemester="Special Term 1"
+            currentSemesterIndex={2}
             currentYearIndex={currentYearIndex}
             darkTheme={darkTheme}
             transition={transition}
@@ -270,7 +284,7 @@ function AcadYearBox(props) {
           />
           <AcadSemesterBox
             currentSemester="Special Term 2"
-            currentSemesterIndex={2}
+            currentSemesterIndex={3}
             currentYearIndex={currentYearIndex}
             darkTheme={darkTheme}
             transition={transition}
@@ -279,18 +293,6 @@ function AcadYearBox(props) {
             moduleData={moduleData}
             moduleDataLength={moduleDataLength}
             updateIsShown={updateSpecialTermTwoShown}
-          />
-          <AcadSemesterBox
-            currentSemester="Semester 2"
-            currentSemesterIndex={3}
-            currentYearIndex={currentYearIndex}
-            darkTheme={darkTheme}
-            transition={transition}
-            isShown={semesterTwoShown}
-            styles={styles}
-            moduleData={moduleData}
-            moduleDataLength={moduleDataLength}
-            updateIsShown={updateSemesterTwoShown}
           />
         </div>
       </div>

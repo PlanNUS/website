@@ -31,14 +31,14 @@ export default function ImportConfirmation(props) {
           backgroundColor: styles.notificationBackgroundColor,
         }}>
         <div>
-          <h3 className={`${darkTheme ? 'dark' : 'light'}Words`}>
+          <h3 className="words" style={{color: styles.fontColor}}>
             New Import Available!
           </h3>
           <br />
-          <p className={`${darkTheme ? 'dark' : 'light'}Words`}>
+          <p className="words" style={{color: styles.fontColor}}>
             Should your current data be updated?
           </p>
-          <p className={`${darkTheme ? 'dark' : 'light'}Words`}>
+          <p className="words" style={{color: styles.fontColor}}>
             This will replace all current data for both Planner and Calculator.
           </p>
         </div>
@@ -52,12 +52,14 @@ export default function ImportConfirmation(props) {
           <div id="crossSpacer" />
           <div id="buttonWrapper">
             <OwnButton
+              styles={styles}
               darkTheme={darkTheme}
               buttonDesc="Import"
               onClick={handleApprove}
             />
             <div id="spacer" />
             <OwnButton
+              styles={styles}
               darkTheme={darkTheme}
               buttonDesc="Maybe Later"
               onClick={handleCancel}

@@ -1,12 +1,10 @@
-.darkWords {
-  /* color: white; */
-  color: black;
+/* .darkWords {
   margin: 0px;
   padding: 0px;
-}
+} */
 
-.lightWords {
-  color: black;
+.words {
+  /* color: black; */
   margin: 0px;
   padding: 0px;
 }

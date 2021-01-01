@@ -49,14 +49,15 @@ export default function AcadModuleBox(props) {
     <div
       id="moduleBox"
       style={{
-        borderWidth: styles.selectorWidth,
-        borderColor: styles.selectorBorderColor,
-        backgroundColor: styles.selectorBackgroundColor,
+        borderWidth: styles.modWidth,
+        borderColor: styles.modBorderColor,
+        backgroundColor: styles.modBackgroundColor,
       }}
       className={`${module.isFlagged ? 'lightOrange' : 'white'}`}>
       <div id="contentBox">
         <p
-          className={`${darkTheme ? 'dark' : 'light'}Words`}
+          className="words"
+          style={{color: styles.fontColor}}
           id="moduleCodetitle">
           {module.moduleCode}
         </p>
@@ -65,7 +66,8 @@ export default function AcadModuleBox(props) {
           {verifiedDisplay.map((currentItem) => (
             <li
               key={currentItem.key}
-              className={`${darkTheme ? 'dark' : 'light'}Words`}
+              className="words"
+              style={{color: styles.fontColor}}
               id="errorMessage">
               {currentItem.message}
             </li>

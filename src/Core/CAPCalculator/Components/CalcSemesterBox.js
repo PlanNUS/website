@@ -35,7 +35,7 @@ function CalcSemesterBox(props) {
           backgroundColor: styles.semBackgroundColor,
         }}>
         <div id="semesterHeader">
-          <p className={`${darkTheme ? 'dark' : 'light'}Words`}>
+          <p className="words" style={{color: styles.fontColor}}>
             {currentSemester}
           </p>
         </div>

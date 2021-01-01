@@ -73,6 +73,8 @@ export const GRADES = [
 export const BORDER_WIDTH = 2;
 
 export const STYLES = {
+  globalBackgroundColor: 'lightgrey',
+
   notificationBorderColor: 'green',
   notificationBackgroundColor: '#dbfaf1',
   notificationWidth: BORDER_WIDTH,
@@ -95,7 +97,7 @@ export const STYLES = {
 
   modBorderColor: '#ffcc00',
   modBackgroundColor: '#beb7fe',
-  modWidth: BORDER_WIDTH,
+  modWidth: BORDER_WIDTH + 1,
 
   inputBorderColor: '#c97200',
   inputBackgroundColor: 'transparent',
@@ -104,6 +106,19 @@ export const STYLES = {
   selectorBorderColor: '#ffcc00',
   selectorBackgroundColor: 'transparent',
   selectorWidth: BORDER_WIDTH,
+
+  sideIconColor: 'red',
+  sideFontColor: 'red',
+
+  appButtonIconColor: 'pink',
+  appButtonFontColor: 'pink',
+
+  dialogBackgroundColor: 'lightgrey',
+  dialogFontColor: 'yellow',
+  dialogButtonColor: 'pink',
+
+  fontColor: 'green',
+  controlButtons: 'yellow',
 };
 
 export const DARK_STYLES = {
@@ -129,7 +144,7 @@ export const DARK_STYLES = {
 
   modBorderColor: '#ffcc00',
   modBackgroundColor: '#beb7fe',
-  modWidth: BORDER_WIDTH,
+  modWidth: 3,
 
   inputBorderColor: '#c97200',
   inputBackgroundColor: 'transparent',

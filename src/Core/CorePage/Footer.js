@@ -15,12 +15,10 @@ export default function Footer(props) {
           Feedback
         </p>
       </div>
-      {/* <p className={`${darkTheme ? 'dark' : 'light'}Words`} id="footerFont"> */}
       <p className="lightWords" id="footerFont">
         Data retrieved from NUSMods. Any feedback will be much appriciated.
         &#9924;
       </p>
-      {/* <p className={`${darkTheme ? 'dark' : 'light'}Words`} id="footerFont"> */}
       <p className="lightWords" id="footerFont">
         Current version: {VERSION}
       </p>

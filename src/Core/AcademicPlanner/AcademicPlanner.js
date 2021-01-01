@@ -195,11 +195,12 @@ function AcademicPlanner(props) {
         />
       </Helmet>
       <div id="appHeader">
-        <p className={`${darkTheme ? 'dark' : 'light'}Words`} id="appTitle">
+        <p className="words" style={{color: styles.fontColor}} id="appTitle">
           Academic Planner
         </p>
         <div id="rightGroup">
           <OwnButton
+            styles={styles}
             darkTheme={darkTheme}
             buttonDesc={buttonString}
             type="sync"
@@ -211,6 +212,7 @@ function AcademicPlanner(props) {
           />
           <div id="buttonSpacer" />
           <OwnButton
+            styles={styles}
             darkTheme={darkTheme}
             buttonDesc="Add Year"
             type="add"
@@ -245,43 +247,54 @@ function AcademicPlanner(props) {
           updateShowModal(false);
           updateAddYearErrorString('');
         }}>
-        <DialogTitle>Academic Year to be Added</DialogTitle>
-        <DialogContent>
-          <FormControl variant="outlined">
-            <Select
-              native
-              value={selectedYear}
-              onChange={(event) => {
-                updateAddYearErrorString('');
-                updateSelectedYear(event.target.value);
-              }}
-              inputProps={{
-                name: 'Year',
-                id: 'outlined-age-native-simple',
-              }}>
-              <option value={0}>Year 1</option>
-              <option value={1}>Year 2</option>
-              <option value={2}>Year 3</option>
-              <option value={3}>Year 4</option>
-              <option value={4}>Year 5</option>
-            </Select>
-          </FormControl>
+        <div style={{backgroundColor: styles.dialogBackgroundColor}}>
+          <DialogTitle style={{color: styles.dialogFontColor}}>
+            Academic Year to be Added
+          </DialogTitle>
+          <DialogContent>
+            <FormControl variant="outlined">
+              <Select
+                native
+                style={{color: styles.dialogFontColor}}
+                value={selectedYear}
+                onChange={(event) => {
+                  updateAddYearErrorString('');
+                  updateSelectedYear(event.target.value);
+                }}
+                inputProps={{
+                  name: 'Year',
+                  id: 'outlined-age-native-simple',
+                }}>
+                <option value={0}>Year 1</option>
+                <option value={1}>Year 2</option>
+                <option value={2}>Year 3</option>
+                <option value={3}>Year 4</option>
+                <option value={4}>Year 5</option>
+              </Select>
+            </FormControl>
 
-          <DialogContentText id="error">{addYearErrorString}</DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={() => {
-              updateShowModal(false);
-              updateAddYearErrorString('');
-            }}
-            color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleSelectUpdate} color="primary">
-            Add
-          </Button>
-        </DialogActions>
+            <DialogContentText id="error">
+              {addYearErrorString}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                updateShowModal(false);
+                updateAddYearErrorString('');
+              }}
+              style={{color: styles.dialogButtonColor}}
+              color="primary">
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSelectUpdate}
+              style={{color: styles.dialogButtonColor}}
+              color="primary">
+              Add
+            </Button>
+          </DialogActions>
+        </div>
       </Dialog>
 
       <AcadYearBox

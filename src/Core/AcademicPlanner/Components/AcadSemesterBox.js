@@ -337,7 +337,7 @@ function AcadSemesterBox(props) {
         </Dialog>
 
         <div id="semesterHeader">
-          <p className={`${darkTheme ? 'dark' : 'light'}Words`}>
+          <p className="words" style={{color: styles.fontColor}}>
             {`${currentSemester} (MCs: ${creditsInSemester})`}
           </p>
           <div id="semesterButtonGroups">

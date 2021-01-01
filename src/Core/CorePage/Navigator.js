@@ -18,8 +18,8 @@ import ImportConfirmation from './Components/ImportConfirmation';
 import Notification from './Components/Notification';
 
 export default function Navigator(props) {
-  const planner = require('./Assets/PlannerIcon.png').default;
-  const calculator = require('./Assets/CalculatorIcon.png').default;
+  // const planner = require('./Assets/PlannerIcon.png').default;
+  // const calculator = require('./Assets/CalculatorIcon.png').default;
 
   const isImportConfirmShown = props.isImportConfirmShown;
   const handleImportConfirmation = props.handleImportConfirmation;
@@ -46,11 +46,17 @@ export default function Navigator(props) {
       <div id="mainPage">
         <nav id="navigatorSelector">
           <Link to="/AcademicPlanner">
-            <SideButton icon={planner} desc="Planner" darkTheme={darkTheme} />
+            <SideButton
+              styles={styles}
+              type="plan"
+              desc="Planner"
+              darkTheme={darkTheme}
+            />
           </Link>
           <Link to="/CAPCalculator">
             <SideButton
-              icon={calculator}
+              styles={styles}
+              type="calc"
               desc="Calculator"
               darkTheme={darkTheme}
             />

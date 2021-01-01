@@ -83,11 +83,14 @@ function CalcModuleBox(props) {
       }}>
       <div id="contentBox">
         <p
-          className={`${darkTheme ? 'dark' : 'light'}Words`}
+          className="words"
+          style={{color: styles.fontColor}}
           id="moduleCodetitle">
           {module.moduleCode}
         </p>
-        <p className={`${darkTheme ? 'dark' : 'light'}Words`}>{errorFlag}</p>
+        <p className="words" style={{color: styles.fontColor}}>
+          {errorFlag}
+        </p>
       </div>
 
       <div
@@ -100,7 +103,7 @@ function CalcModuleBox(props) {
         <form>
           <select
             name="grades"
-            className={`${darkTheme ? 'dark' : 'light'}Words selector`}
+            className="words selector"
             value={selectedIdx}
             onChange={(event) => {
               handleGradeChange(parseInt(event.target.value));

@@ -36,7 +36,9 @@ function CalcYearBox(props) {
           backgroundColor: styles.yearBackgroundColor,
         }}>
         <div id="yearBoxHeader">
-          <p className={`${darkTheme ? 'dark' : 'light'}Words`}>Year {year}</p>
+          <p className="words" style={{color: styles.fontColor}}>
+            Year {year}
+          </p>
         </div>
 
         <div id="semesterWrapper">
@@ -48,9 +50,18 @@ function CalcYearBox(props) {
             styles={styles}
             isShown={semesterOneShown}
           />
+
+          <CalcSemesterBox
+            currentSemester="Semester 2"
+            currentSemesterIndex={1}
+            currentYearIndex={currentYearIndex}
+            darkTheme={darkTheme}
+            styles={styles}
+            isShown={semesterTwoShown}
+          />
           <CalcSemesterBox
             currentSemester="Special Term 1"
-            currentSemesterIndex={1}
+            currentSemesterIndex={2}
             currentYearIndex={currentYearIndex}
             darkTheme={darkTheme}
             styles={styles}
@@ -58,19 +69,11 @@ function CalcYearBox(props) {
           />
           <CalcSemesterBox
             currentSemester="Special Term 2"
-            currentSemesterIndex={2}
-            currentYearIndex={currentYearIndex}
-            darkTheme={darkTheme}
-            styles={styles}
-            isShown={specialTermTwoShown}
-          />
-          <CalcSemesterBox
-            currentSemester="Semester 2"
             currentSemesterIndex={3}
             currentYearIndex={currentYearIndex}
             darkTheme={darkTheme}
             styles={styles}
-            isShown={semesterTwoShown}
+            isShown={specialTermTwoShown}
           />
         </div>
       </div>

@@ -144,13 +144,13 @@ function CorePage(props) {
       if (localData !== undefined) {
         const parsedData = JSON.parse(localData);
 
-        // localStorage.removeItem('plannusLocalGlobalData');
+        localStorage.removeItem('plannusLocalGlobalData');
 
-        if (parsedData[5].suUsed === undefined) {
-          localStorage.removeItem('plannusLocalGlobalData');
-        } else {
-          updateData(parsedData);
-        }
+        // if (parsedData[5].suUsed === undefined) {
+        //   localStorage.removeItem('plannusLocalGlobalData');
+        // } else {
+        //   updateData(parsedData);
+        // }
       }
 
       const URLArr = window.location.href.split('#');
@@ -244,7 +244,8 @@ function CorePage(props) {
                   </div>
                   <div id="darkModeChecker">
                     <p
-                      className={`${darkTheme ? 'dark' : 'light'}Words`}
+                      className="words"
+                      style={{color: styles.fontColor}}
                       id="darkModeWords">
                       Dark Mode
                     </p>

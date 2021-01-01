@@ -26,7 +26,8 @@ export default function OwnInput(props) {
           backgroundColor: styles.semBackgroundColor,
         }}>
         <p
-          className={`${darkTheme ? 'dark' : 'light'}Words`}
+          className="words"
+          style={{color: styles.fontColor}}
           id="inputFieldsText">
           {desc}
         </p>
@@ -41,9 +42,10 @@ export default function OwnInput(props) {
           <input
             value={value}
             type="text"
-            style={{width: width}}
+            style={{width: width, color: styles.fontColor}}
             maxLength={maxInputLength}
-            className={`${darkTheme ? 'dark' : 'light'}Words`}
+            className="words"
+            //Remember to add style if needed (Currently cannot add)
             onChange={(event) => onChangeHandler(event.target.value)}
           />
         </div>
@@ -59,12 +61,15 @@ export default function OwnInput(props) {
           backgroundColor: styles.semBackgroundColor,
         }}>
         <p
-          className={`${darkTheme ? 'dark' : 'light'}Words`}
+          className="words"
+          style={{color: styles.fontColor}}
           id="inputFieldsText">
           {desc}
         </p>
         <div id="suTextinput">
-          <p className={`${darkTheme ? 'dark' : 'light'}Words`}>{value}</p>
+          <p className="words" style={{color: styles.fontColor}}>
+            {value}
+          </p>
         </div>
       </div>
     );
@@ -79,12 +84,15 @@ export default function OwnInput(props) {
           backgroundColor: styles.semBackgroundColor,
         }}>
         <p
-          className={`${darkTheme ? 'dark' : 'light'}Words`}
+          className="words"
+          style={{color: styles.fontColor}}
           id="inputFieldsText">
           {desc}
         </p>
         <div id="suTextinput">
-          <p className={`${darkTheme ? 'dark' : 'light'}Words`}>{value}</p>
+          <p className="words" style={{color: styles.fontColor}}>
+            {value}
+          </p>
         </div>
       </div>
     );
@@ -92,12 +100,13 @@ export default function OwnInput(props) {
     return (
       <div id="inputFields" style={{borderWidth: 0}}>
         <p
-          className={`${darkTheme ? 'dark' : 'light'}Words`}
+          className="words"
+          style={{color: styles.fontColor}}
           id="inputFieldsText">
           {desc}
         </p>
         <div id="suTextinput">
-          <p className={`${darkTheme ? 'dark' : 'light'}Words`}>
+          <p className="words" style={{color: styles.fontColor}}>
             {(Math.floor(value * 100) / 100).toFixed(2)}
             {/* {((value * 100) / 100).toFixed(2)} */}
           </p>

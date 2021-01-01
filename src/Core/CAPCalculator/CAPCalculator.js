@@ -116,11 +116,12 @@ function CAPCalculator(props) {
         />
       </Helmet>
       <div id="appHeader">
-        <p className={`${darkTheme ? 'dark' : 'light'}Words`} id="appTitle">
+        <p className="words" style={{color: styles.fontColor}} id="appTitle">
           CAP Calculator
         </p>
         <div id="rightGroup">
           <OwnInput
+            styles={styles}
             type="cap"
             darkTheme={darkTheme}
             desc="Current CAP:"
@@ -128,6 +129,7 @@ function CAPCalculator(props) {
           />
           <div id="seperator" />
           <OwnButton
+            styles={styles}
             darkTheme={darkTheme}
             buttonDesc={detailButtonString}
             type={detailButtonString}

@@ -211,7 +211,7 @@ function DetailsBox(props) {
             </div>
             <div id="twoThirds">
               <div id="fullDetails">
-                <p className={`${darkTheme ? 'dark' : 'light'}Words`}>
+                <p className="words" style={{color: styles.fontColor}}>
                   {outputString}
                 </p>
               </div>
